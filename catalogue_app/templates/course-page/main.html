@@ -14,13 +14,8 @@
 			<li class="active"><a href="#general">{{ _('General') }}</a></li>
 			<li><a href="#dashboard">{{ _('Dashboard') }}</a></li>
 			<li><a href="#geodata">{{ _('Maps') }}</a></li>
-			<!--
-			<li><a href="#ratings"></a></li>
-			-->
-			<!-- Don't forget to also change Comments name back to 'Comments' -->
-			<li><a href="#comments">{{ _('Ratings') }}</a></li>
-			<!-- Not wrapping 'P&A' in Babel's underscore func as a) same in
-			EN/FR and b) ampersand in func throws error in IE11 -->
+			<li><a href="#comments">{{ _('Comments') }}</a></li>
+			<!-- Not wrapping 'P&A' in Babel's underscore func as throws error in IE11 -->
 			<li><a href="#material">P&amp;A</a></li>
 		</ul>
 		
@@ -46,14 +41,6 @@
 			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/geodata.html' %}
 		</section>
-		
-		<!-- Level 1 Ratings -->
-		<!-- Deleted rather than commented out Jinja2 code as is templating
-		language and will therefore run regardless -->
-		<!--
-		<section id="ratings" class="tab-content hide">
-		</section>
-		-->
 		
 		<!-- Level 1 Comments -->
 		<section id="comments" class="tab-content hide">
