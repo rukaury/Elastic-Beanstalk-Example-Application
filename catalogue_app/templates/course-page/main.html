@@ -55,6 +55,9 @@
 	</div>
 	
 	<script async>
+		// Set font for Highcharts
+		Highcharts.setOptions({chart: {style: {fontFamily: 'Helvetica'}}});
+		
 		// IE11 bug: Charts created in hidden div assigned incorrect width
 		function resizeHighcharts(mySection) {
 			var currentHighcharts = $(mySection + ' div[data-highcharts-chart]');
@@ -71,11 +74,11 @@
 		});
 		
 		// Show and hide sections
-		$('.main-tabs > li > a').click(function(event) {
+		$('.nav-tabs li a').click(function(event) {
 			event.preventDefault();
 			
 			// Hide section that's currently active
-			var current_section = $('.main-tabs > li.active > a').attr('href');
+			var current_section = $(this).parent().siblings('.active').children('a').attr('href');
 			$(current_section).removeClass('active');
 			$(current_section).addClass('hide');
 			
@@ -86,30 +89,12 @@
 			
 			/* IE11 bug: Create Offerings per Region chart only after its parent
 			div is activated, else drilldown functionality won't work */
-			if (!offeringPerRegionCreatedFlag) {
+			if (new_section === '#dashboard' && !offeringPerRegionCreatedFlag) {
 				createOfferingsPerRegion();
 				offeringPerRegionCreatedFlag++;
 			}
 			
 			resizeHighcharts(new_section);
 		});
-		$('.sub-tabs > li > a').click(function(event) {
-			event.preventDefault();
-			
-			// Hide section that's currently active
-			var current_section = $('.sub-tabs > li.active > a').attr('href');
-			$(current_section).removeClass('active');
-			$(current_section).addClass('hide');
-			
-			// Show section whose tab was just clicked
-			var new_section = $(this).attr('href');
-			$(new_section).removeClass('hide');
-			$(new_section).addClass('active');
-			
-			resizeHighcharts(new_section);
-		});
-		
-		// Set font for Highcharts
-		Highcharts.setOptions({chart: {style: {fontFamily: 'Helvetica'}}});
 	</script>
 {% endblock body %}
