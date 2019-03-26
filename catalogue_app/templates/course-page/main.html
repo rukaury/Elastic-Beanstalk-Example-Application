@@ -24,32 +24,32 @@
 		
 		<!-- Tabs' contents -->
 		<!-- General -->
-		<section id="general" class="tab-content active">
+		<section id="general" class="active">
 			{{ download_raw(url_for('downloads.download_general', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/general.html' %}
 		</section>
 		
 		<!-- Dashboard -->
-		<section id="dashboard" class="tab-content hide">
+		<section id="dashboard" class="hide">
 			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/dashboard-main.html' %}
 		</section>
 		
 		<!-- Geodata -->
-		<section id="geodata" class="tab-content hide">
+		<section id="geodata" class="hide">
 			<!-- Dashboard and Maps tabs built from same table -->
 			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/geodata.html' %}
 		</section>
 		
 		<!-- Level 1 Comments -->
-		<section id="comments" class="tab-content hide">
+		<section id="comments" class="hide">
 			{{ download_raw(url_for('downloads.download_comments', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/comments.html' %}
 		</section>
 		
 		<!-- Material i.e. Prep & Admin -->
-		<section id="material" class="tab-content hide">
+		<section id="material" class="hide">
 			{% include 'course-page/material.html' %}
 		</section>
 	</div>
@@ -66,12 +66,8 @@
 		
 		// Activate and deactivate tabs
 		// Separate classes as two navbars operate independently
-		$('.main-tabs li').on('click', function() {
-			$('.main-tabs li').removeClass('active');
-			$(this).addClass('active');
-		});
-		$('.sub-tabs li').on('click', function() {
-			$('.sub-tabs li').removeClass('active');
+		$('.nav-tabs li').on('click', function() {
+			$(this).siblings().removeClass('active');
 			$(this).addClass('active');
 		});
 		
