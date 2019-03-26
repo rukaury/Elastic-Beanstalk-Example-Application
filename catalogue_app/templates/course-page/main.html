@@ -55,7 +55,7 @@
 	</div>
 	
 	<script async>
-		// Resize Highcharts (often have wrong width when created while hidden)
+		// IE11 bug: Charts created in hidden div assigned incorrect width
 		function resizeHighcharts(mySection) {
 			var currentHighcharts = $(mySection + ' div[data-highcharts-chart]');
 			// Loop through charts and resize
@@ -65,13 +65,14 @@
 		}
 		
 		// Activate and deactivate tabs
-		$(".main-tabs li").on("click", function() {
-			$(".main-tabs li").removeClass("active");
-			$(this).addClass("active");
+		// Separate classes as two navbars operate independently
+		$('.main-tabs li').on('click', function() {
+			$('.main-tabs li').removeClass('active');
+			$(this).addClass('active');
 		});
-		$(".sub-tabs li").on("click", function() {
-			$(".sub-tabs li").removeClass("active");
-			$(this).addClass("active");
+		$('.sub-tabs li').on('click', function() {
+			$('.sub-tabs li').removeClass('active');
+			$(this).addClass('active');
 		});
 		
 		// Show and hide sections
@@ -87,6 +88,13 @@
 			var new_section = $(this).attr('href');
 			$(new_section).removeClass('hide');
 			$(new_section).addClass('active');
+			
+			/* IE11 bug: Create Offerings per Region chart only after its parent
+			div is activated, else drilldown functionality won't work */
+			if (!offeringPerRegionCreatedFlag) {
+				createOfferingsPerRegion();
+				offeringPerRegionCreatedFlag++;
+			}
 			
 			resizeHighcharts(new_section);
 		});
