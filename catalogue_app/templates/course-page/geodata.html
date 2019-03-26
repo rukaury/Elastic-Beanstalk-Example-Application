@@ -29,6 +29,7 @@
 </h4>
 
 <!-- Maps -->
+<!-- Need distinct divs as Google Maps overwrites element contents -->
 <div id="offering-map" class="offering-map"></div>
 <div id="learner-map" class="learner-map"></div>
 
@@ -84,12 +85,12 @@
 	});
 	
 	// Unsual structure to fix IE11 jQuery bug: hide with JS, not with CSS
-	$('#offering-map').hide();
-	$('#learner-map').hide();
+	$('.offering-map').hide();
+	$('.learner-map').hide();
 	{% if pass_dict.course_info.get('Business Type', 'Online') == _('Online') %}
-		$('#learner-map').show();
+		$('.learner-map').show();
 	{% else %}
-		$('#offering-map').show();
+		$('.offering-map').show();
 	{% endif %}
 	
 	// Enable dropdown to show / hide

@@ -488,10 +488,6 @@ with position: relative, in this case #selection-and-loader */
 
 
 /***** Maps *****/
-/* Show offering-map by default */
-.learner-map {
-	display: none;
-}
 #offering-map,
 #learner-map {
 	float: left;
@@ -504,20 +500,8 @@ with position: relative, in this case #selection-and-loader */
 .map-filter p {
 	display: inline;
 }
-/* Leave space for legend if screen large enough to display alongside map */
 #legend {
 	display: none;
-}
-@media (min-width: 992px) {
-	#offering-map,
-	#learner-map {
-		width: 92%;
-	}
-	#legend {
-		display: block;
-	}
-}
-#legend {
 	float: left;
 	height: 80vh;
 	width: 8%;
@@ -539,6 +523,16 @@ with position: relative, in this case #selection-and-loader */
 .legend-marker {
 	display: block;
 	margin: 0 auto;
+}
+/* Leave space for legend if screen large enough to display alongside map */
+@media (min-width: 992px) {
+	#offering-map,
+	#learner-map {
+		width: 92%;
+	}
+	#legend {
+		display: block;
+	}
 }
 /***** End geodata *****/
 
