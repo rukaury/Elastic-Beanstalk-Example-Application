@@ -5,7 +5,7 @@
 	<!-- If an online course, disable div offering-dash and add tooltip with explanation -->
 	{% if pass_dict.course_info.get('Business Type', 'Online') == _('Online') %}
 		<p>{{ _('Section: ') }}</p>
-		<select id="filter-dash" onchange="filterDashboards()">
+		<select id="filter-dash">
 			<option value="learner-dash">{{ _('Learner Data') }}</option>
 		</select>
 		<img id="online-dashboard-disabled-tooltip" class="inline-tooltip" src="{{ url_for('static', filename='tooltip.png') }}" alt="{{ _('Tooltip') }}" />
@@ -35,7 +35,7 @@
 		html: true
 	});
 	
-	// Unsual structure to fix IE11 jQuery bug: hide with JS, not with CSS
+	// Show only learner data if online course
 	$('#offering-dash').hide();
 	$('#learner-dash').hide();
 	{% if pass_dict.course_info.get('Business Type', 'Online') == _('Online') %}

@@ -84,7 +84,7 @@
 		html: true
 	});
 	
-	// Unsual structure to fix IE11 jQuery bug: hide with JS, not with CSS
+	// Show only learner data if online course
 	$('.offering-map').hide();
 	$('.learner-map').hide();
 	{% if pass_dict.course_info.get('Business Type', 'Online') == _('Online') %}
