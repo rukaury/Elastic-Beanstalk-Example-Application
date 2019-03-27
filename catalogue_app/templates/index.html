@@ -50,11 +50,11 @@
 		
 		// Upon clicking 'Make My Day', select a random course in dropdown
 		$('#random-button').on('click', function() {
+			number_courses = $('#course_code option').length;
+			random_selection = Math.floor(Math.random() * (number_courses - 1));
 			$('#selection-form').hide();
 			$('#outer-loader').show();
-			number_courses = $('#course_selection option').length;
-			random_selection = Math.floor(Math.random() * (number_courses - 1));
-			$('#course_selection option:eq(' + random_selection + ')').attr('selected', 'selected');
+			$('#course_code option:eq(' + random_selection + ')').attr('selected', 'selected');
 		});
 		
 		// Enable autocomplete functionality in dropdown

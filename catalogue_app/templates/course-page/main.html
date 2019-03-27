@@ -14,13 +14,8 @@
 			<li class="active"><a href="#general">{{ _('General') }}</a></li>
 			<li><a href="#dashboard">{{ _('Dashboard') }}</a></li>
 			<li><a href="#geodata">{{ _('Maps') }}</a></li>
-			<!--
-			<li><a href="#ratings"></a></li>
-			-->
-			<!-- Don't forget to also change Comments name back to 'Comments' -->
-			<li><a href="#comments">{{ _('Ratings') }}</a></li>
-			<!-- Not wrapping 'P&A' in Babel's underscore func as a) same in
-			EN/FR and b) ampersand in func throws error in IE11 -->
+			<li><a href="#comments">{{ _('Comments') }}</a></li>
+			<!-- Not wrapping 'P&A' in Babel's underscore func as throws error in IE11 -->
 			<li><a href="#material">P&amp;A</a></li>
 		</ul>
 		
@@ -29,46 +24,41 @@
 		
 		<!-- Tabs' contents -->
 		<!-- General -->
-		<section id="general" class="tab-content active">
+		<section id="general" class="active">
 			{{ download_raw(url_for('downloads.download_general', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/general.html' %}
 		</section>
 		
 		<!-- Dashboard -->
-		<section id="dashboard" class="tab-content hide">
+		<section id="dashboard" class="hide">
 			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/dashboard-main.html' %}
 		</section>
 		
 		<!-- Geodata -->
-		<section id="geodata" class="tab-content hide">
+		<section id="geodata" class="hide">
 			<!-- Dashboard and Maps tabs built from same table -->
 			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/geodata.html' %}
 		</section>
 		
-		<!-- Level 1 Ratings -->
-		<!-- Deleted rather than commented out Jinja2 code as is templating
-		language and will therefore run regardless -->
-		<!--
-		<section id="ratings" class="tab-content hide">
-		</section>
-		-->
-		
 		<!-- Level 1 Comments -->
-		<section id="comments" class="tab-content hide">
+		<section id="comments" class="hide">
 			{{ download_raw(url_for('downloads.download_comments', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/comments.html' %}
 		</section>
 		
 		<!-- Material i.e. Prep & Admin -->
-		<section id="material" class="tab-content hide">
+		<section id="material" class="hide">
 			{% include 'course-page/material.html' %}
 		</section>
 	</div>
 	
 	<script async>
-		// Resize Highcharts (often have wrong width when created while hidden)
+		// Set font for Highcharts
+		Highcharts.setOptions({chart: {style: {fontFamily: 'Helvetica'}}});
+		
+		// IE11 bug: Charts created in hidden div assigned incorrect width
 		function resizeHighcharts(mySection) {
 			var currentHighcharts = $(mySection + ' div[data-highcharts-chart]');
 			// Loop through charts and resize
@@ -77,22 +67,18 @@
 			}
 		}
 		
-		// Activate and deactivate tabs
-		$(".main-tabs li").on("click", function() {
-			$(".main-tabs li").removeClass("active");
-			$(this).addClass("active");
-		});
-		$(".sub-tabs li").on("click", function() {
-			$(".sub-tabs li").removeClass("active");
-			$(this).addClass("active");
+		// Update tabs' CSS on click
+		$('.nav-tabs li').on('click', function() {
+			$(this).siblings().removeClass('active');
+			$(this).addClass('active');
 		});
 		
 		// Show and hide sections
-		$('.main-tabs > li > a').click(function(event) {
+		$('.nav-tabs li a').click(function(event) {
 			event.preventDefault();
 			
 			// Hide section that's currently active
-			var current_section = $('.main-tabs > li.active > a').attr('href');
+			var current_section = $(this).parent().siblings('.active').children('a').attr('href');
 			$(current_section).removeClass('active');
 			$(current_section).addClass('hide');
 			
@@ -101,25 +87,14 @@
 			$(new_section).removeClass('hide');
 			$(new_section).addClass('active');
 			
-			resizeHighcharts(new_section);
-		});
-		$('.sub-tabs > li > a').click(function(event) {
-			event.preventDefault();
-			
-			// Hide section that's currently active
-			var current_section = $('.sub-tabs > li.active > a').attr('href');
-			$(current_section).removeClass('active');
-			$(current_section).addClass('hide');
-			
-			// Show section whose tab was just clicked
-			var new_section = $(this).attr('href');
-			$(new_section).removeClass('hide');
-			$(new_section).addClass('active');
+			/* IE11 bug: Create Offerings per Region chart only after its parent
+			div is activated, else drilldown functionality won't work */
+			if (new_section === '#dashboard' && !offeringPerRegionCreatedFlag) {
+				createOfferingsPerRegion();
+				offeringPerRegionCreatedFlag++;
+			}
 			
 			resizeHighcharts(new_section);
 		});
-		
-		// Set font for Highcharts
-		Highcharts.setOptions({chart: {style: {fontFamily: 'Helvetica'}}});
 	</script>
 {% endblock body %}

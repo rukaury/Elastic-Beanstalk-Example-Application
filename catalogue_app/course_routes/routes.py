@@ -21,7 +21,7 @@ def context_processor():
 
 
 # Home page with search bar
-@course.route('/home', methods=['GET', 'POST'])
+@course.route('/home')
 @auth.login_required
 def home():
 	# Only allow 'en' and 'fr' to be passed to app
@@ -48,7 +48,7 @@ def course_result():
 	offering_locations = dashboard_offering_queries.OfferingLocations(lang, THIS_YEAR, course_code).load()
 	learners = dashboard_learner_queries.Learners(lang, THIS_YEAR, course_code).load()
 	map = map_queries.Map(THIS_YEAR, course_code).load()
-	ratings = rating_queries.Ratings(lang, course_code).load()
+	# ratings = rating_queries.Ratings(lang, course_code).load()
 	comments = comment_queries.Comments(lang, course_code).load()
 	
 	pass_dict = {
@@ -85,7 +85,7 @@ def course_result():
 		'offering_city_counts': map.offerings,
 		'learner_city_counts': map.learners,
 		# Ratings
-		'all_ratings': ratings.all_ratings,
+		# 'all_ratings': ratings.all_ratings,
 		# Comments
 		'general_comments': comments.general,
 		'technical_comments': comments.technical,

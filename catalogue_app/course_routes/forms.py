@@ -20,7 +20,7 @@ def course_form(lang, fiscal_year):
 	choices = [(tup[0].upper(), '{0}: {1}'.format(tup[0].upper(), _clean_title(tup[1]))) for tup in results]
 	
 	class CourseForm(Form):
-		# Displaying form_name disabled in 'templates/includes/_formhelpers.html', so pass empty string
+		# <dt> tag removed from 'templates/includes/_formhelpers.html', so pass empty string
 		form_name = ''
 		course_code = SelectField(form_name, choices=choices)
 	
