@@ -13,7 +13,20 @@
 		<ul class="nav nav-tabs nav-justified main-tabs">
 			<li class="active"><a href="#general">{{ _('General') }}</a></li>
 			<li><a href="#dashboard">{{ _('Dashboard') }}</a></li>
-			<li><a href="#geodata">{{ _('Maps') }}</a></li>
+			
+			
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown">
+					{{ _('Maps') }}
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="#geodata" data-div="offering-map">{{ _('Offering Locations') }}</a></li>
+					<li><a href="#geodata" data-div="learner-map">{{ _('Learner Locations') }}</a></li>
+				</ul>
+			</li>
+			
+			
 			<li><a href="#comments">{{ _('Comments') }}</a></li>
 			<!-- Not wrapping 'P&A' in Babel's underscore func as throws error in IE11 -->
 			<li><a href="#material">P&amp;A</a></li>
@@ -67,14 +80,8 @@
 			}
 		}
 		
-		// Update tabs' CSS on click
-		$('.nav-tabs li').on('click', function() {
-			$(this).siblings().removeClass('active');
-			$(this).addClass('active');
-		});
-		
-		// Show and hide sections
-		$('.nav-tabs li a').click(function(event) {
+		// For tabs' on click, show / hide appropriate sections
+		$('.nav-tabs li a').not('.dropdown-toggle').click(function(event) {
 			event.preventDefault();
 			
 			// Hide section that's currently active
@@ -93,6 +100,10 @@
 				createOfferingsPerRegion();
 				offeringPerRegionCreatedFlag++;
 			}
+			
+			// Update tabs' CSS
+			$(this).parent().siblings().removeClass('active');
+			$(this).parent().addClass('active');
 			
 			resizeHighcharts(new_section);
 		});
