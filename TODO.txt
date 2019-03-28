@@ -1,38 +1,33 @@
-### BEFORE DGC ###
+### CURRENT SPRINT ###
+
 # check iPad sitrep
-# if no data, set ratings chart to null rather than 0
-# fix deprecated media query style
-# pagination
-# add clustering (e.g. latent dirichlet) to check top 5 issues mentioned
-	# only enable button if > 50 comments
-	# sort by most recent first
+# dropdowns in navbar in place of subtabs, filter/section drodpown
 # unique learners (line on regs per month + totals for both)
 	# check index
-# finish accounts
-	# can't store possible salts in code?
-# validate methodology and #s
-# before launch, need to convert to 12 month rolling window
-# launch!
+# validate methodology and #s with Ranjith
+# add datatables to depts and classifications
 
 
 
 ### BACKLOG ###
-# refactor chart creation into single funcs, call only when parent div activated to solve resize problem
+
+# add admin accounts
+# decouple frontend and backend
+	# pagination -> renable A230
+# calendar / table with upcoming offerings + link to GCcampus
+# ratings tab to show sentiment analysis over time
+# add clustering (e.g. latent dirichlet) to check top 5 issues mentioned
+	# only enable button if > 50 comments
+	# sort by most recent first
 # update scraper to grab code from title rather than URL; use new catalogue
 # add offering dates to maps
 # copyright
 # explore by director
-	# show flags e.g. regs gone down, copyright expired, no prep and admin, bad sentiment scores
+	# show flags e.g. regs gone down, copyright expired, no prep and admin, bad sentiment scores, open offerings from last year
 	# email director the problems for delegation
 # add dept usage
-	# note explaining current vs billing
-	# download their own csv!
-# link to offerings on gccampus
-# add datatables to depts and classifications
-# focus group w/ users, brainstorm for new KPIs
+# focus groups w/ users, brainstorm for new KPIs
 # unit testing
 	https://digital.canada.ca/2019/03/14/putting-your-trust-in-humans-and-robots/
 	https://www.youtube.com/watch?v=1gvvgsTTyqA
 # let Camille edit directly
-# decouple frontend and backend
-	# add SQLAlchemy to be RDBMS agnostic
