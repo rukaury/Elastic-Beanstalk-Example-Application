@@ -57,7 +57,7 @@
 			random_selection = Math.floor(Math.random() * (number_courses - 1));
 			$('#selection-form').hide();
 			$('#outer-loader').show();
-			$('#course_code option:eq(' + random_selection + ')').attr('selected', 'selected').trigger('chosen:updated');
+			$('#course_code').prop('selectedIndex', random_selection).change().trigger('chosen:updated');
 			$('#selection-form form').submit()
 		});
 		
