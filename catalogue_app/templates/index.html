@@ -43,18 +43,22 @@
 	
 	<script async>
 		// Upon clicking 'Go', hide form and display loader
-		$('#go-button').on('click', function() {
+		$('#go-button').on('click', function(e) {
+			e.preventDefault();
 			$('#selection-form').hide();
 			$('#outer-loader').show();
+			$('#selection-form form').submit()
 		});
 		
 		// Upon clicking 'Make My Day', select a random course in dropdown
-		$('#random-button').on('click', function() {
+		$('#random-button').on('click', function(e) {
+			e.preventDefault();
 			number_courses = $('#course_code option').length;
 			random_selection = Math.floor(Math.random() * (number_courses - 1));
 			$('#selection-form').hide();
 			$('#outer-loader').show();
 			$('#course_code option:eq(' + random_selection + ')').attr('selected', 'selected');
+			$('#selection-form form').submit()
 		});
 		
 		// Enable autocomplete functionality in dropdown
