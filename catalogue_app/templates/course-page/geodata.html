@@ -1,37 +1,30 @@
 <h1>{{ pass_dict.course_title }}</h1>
 
-<!-- Dropdown to select offering-map or learner-map -->
-<div class="map-filter">
-	<!-- If an online course, disable div offering-map and add tooltip with explanation -->
-	{% if pass_dict.course_info.get('Business Type', 'Online') == _('Online') %}
-		<p>{{ _('Section: ') }}</p>
-		<select id="filter-maps">
-			<option value="learner-map">{{ _('Learner Locations') }}</option>
-		</select>
-		<img id="online-map-disabled-tooltip" class="inline-tooltip" src="{{ url_for('static', filename='tooltip.png') }}" alt="{{ _('Tooltip') }}" />
-	{% else %}
-		<p>{{ _('Section: ') }}</p>
-		<select id="filter-maps">
-			<option value="offering-map">{{ _('Offering Locations') }}</option>
-			<option value="learner-map">{{ _('Learner Locations') }}</option>
-		</select>
-	{% endif %}
-</div>
+<!--
+
+cleanup classes, css, etc.
+maybe add h3 indicating if offering or learner locations
+could allow both to be chosen
+	- rather than disabling for online courses, add note saying doesn't make sense
+
+-->
+
+
 
 <!-- Map headings -->
-<h4 class="offering-map">
+<h4 class="offering-map sub-div">
 	{{ _('Locations of open and delivered offerings around the globe.') }}
 	<img id="offering-tooltip" class="inline-tooltip" src="{{ url_for('static', filename='tooltip.png') }}" alt="{{ _('Tooltip') }}" />
 </h4>
-<h4 class="learner-map">
+<h4 class="learner-map sub-div">
 	{{ _('Locations of learners around the globe.') }}
 	<img id="learner-tooltip" class="inline-tooltip" src="{{ url_for('static', filename='tooltip.png') }}" alt="{{ _('Tooltip') }}" />
 </h4>
 
 <!-- Maps -->
 <!-- Need distinct divs as Google Maps overwrites element contents -->
-<div id="offering-map" class="offering-map"></div>
-<div id="learner-map" class="learner-map"></div>
+<div id="offering-map" class="offering-map sub-div"></div>
+<div id="learner-map" class="learner-map sub-div"></div>
 
 <!-- Legend -->
 <div id="legend">
@@ -65,12 +58,6 @@
 
 <script async>
 	// Add tooltip contents
-	$('#online-map-disabled-tooltip').tooltip({
-		placement: 'bottom',
-		title: "{{ _('<h5>Tip:</h5><p>The \'Offering Locations\' section is disabled for online courses as they have no physical location.</p>') }}",
-		animation: true,
-		html: true
-	});
 	$('#offering-tooltip').tooltip({
 		placement: 'bottom',
 		title: "{{ _('<h5>Tip:</h5><p>The map shows offerings with status \'Open\' or \'Delivered\'.</p>') }}",
@@ -82,23 +69,6 @@
 		title: "{{ _('<h5>Tip:</h5><p>The map shows learners whose registration status is \'Confirmed\'.</p>') }}",
 		animation: true,
 		html: true
-	});
-	
-	// Show only learner data if online course
-	$('.offering-map').hide();
-	$('.learner-map').hide();
-	{% if pass_dict.course_info.get('Business Type', 'Online') == _('Online') %}
-		$('.learner-map').show();
-	{% else %}
-		$('.offering-map').show();
-	{% endif %}
-	
-	// Enable dropdown to show / hide
-	$('#filter-maps').on('change', function () {
-		var dropdownSelection = $('#filter-maps').val();
-		$('.offering-map').hide();
-		$('.learner-map').hide();
-		$('.' + dropdownSelection).show();
 	});
 	
 	// Array to store markers' InfoWindows

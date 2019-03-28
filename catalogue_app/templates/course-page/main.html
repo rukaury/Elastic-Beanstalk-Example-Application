@@ -90,10 +90,27 @@
 			$('.main-tab').removeClass('active'); // Appearance of tabs in navbar
 			
 			// Show section whose tab was just clicked
+			
+			/* should these be .hide and .show tho?? */
+			
 			var new_section = $(this).attr('href');
 			$(new_section).removeClass('hide');
 			$(new_section).addClass('active');
 			$(this).parents('li.main-tab').addClass('active'); // Appearance of tab in navbar
+			
+			// If applies, show specific div within section and hide others
+			// Div id stored in attr 'data-div'
+			var specific_div = $(this).attr('data-div');
+			if (specific_div) {
+				$('.sub-div').hide();
+				$('#' + specific_div).show();
+				//alert(specific_div);
+			}
+			
+			
+			
+			
+			
 			
 			/* IE11 bug: Create Offerings per Region chart only after its parent
 			div is activated, else drilldown functionality won't work */
