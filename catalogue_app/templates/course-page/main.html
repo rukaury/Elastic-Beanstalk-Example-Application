@@ -10,12 +10,12 @@
 {% block body %}
 	<div class="container">
 		<!-- Tabs -->
-		<ul class="nav nav-tabs nav-justified main-tabs">
-			<li class="active"><a href="#general">{{ _('General') }}</a></li>
-			<li><a href="#dashboard">{{ _('Dashboard') }}</a></li>
+		<ul class="nav nav-tabs nav-justified">
+			<li class="main-tab active"><a href="#general">{{ _('General') }}</a></li>
+			<li class="main-tab"><a href="#dashboard">{{ _('Dashboard') }}</a></li>
 			
 			
-			<li class="dropdown">
+			<li class="main-tab dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown">
 					{{ _('Maps') }}
 					<span class="caret"></span>
@@ -27,9 +27,9 @@
 			</li>
 			
 			
-			<li><a href="#comments">{{ _('Comments') }}</a></li>
+			<li class="main-tab"><a href="#comments">{{ _('Comments') }}</a></li>
 			<!-- Not wrapping 'P&A' in Babel's underscore func as throws error in IE11 -->
-			<li><a href="#material">P&amp;A</a></li>
+			<li class="main-tab"><a href="#material">P&amp;A</a></li>
 		</ul>
 		
 		<!-- Import custom macro for adding 'Download raw data' button -->
@@ -37,32 +37,32 @@
 		
 		<!-- Tabs' contents -->
 		<!-- General -->
-		<section id="general" class="active">
+		<section id="general" class="main-section active">
 			{{ download_raw(url_for('downloads.download_general', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/general.html' %}
 		</section>
 		
 		<!-- Dashboard -->
-		<section id="dashboard" class="hide">
+		<section id="dashboard" class="main-section hide">
 			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/dashboard-main.html' %}
 		</section>
 		
 		<!-- Geodata -->
-		<section id="geodata" class="hide">
+		<section id="geodata" class="main-section hide">
 			<!-- Dashboard and Maps tabs built from same table -->
 			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/geodata.html' %}
 		</section>
 		
 		<!-- Level 1 Comments -->
-		<section id="comments" class="hide">
+		<section id="comments" class="main-section hide">
 			{{ download_raw(url_for('downloads.download_comments', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/comments.html' %}
 		</section>
 		
 		<!-- Material i.e. Prep & Admin -->
-		<section id="material" class="hide">
+		<section id="material" class="main-section hide">
 			{% include 'course-page/material.html' %}
 		</section>
 	</div>
@@ -84,15 +84,16 @@
 		$('.nav-tabs li a').not('.dropdown-toggle').click(function(event) {
 			event.preventDefault();
 			
-			// Hide section that's currently active
-			var current_section = $(this).parent().siblings('.active').children('a').attr('href');
-			$(current_section).removeClass('active');
-			$(current_section).addClass('hide');
+			// Hide all active sections
+			$('.main-section').removeClass('active');
+			$('.main-section').addClass('hide');
+			$('.main-tab').removeClass('active'); // Appearance of tabs in navbar
 			
 			// Show section whose tab was just clicked
 			var new_section = $(this).attr('href');
 			$(new_section).removeClass('hide');
 			$(new_section).addClass('active');
+			$(this).parents('li.main-tab').addClass('active'); // Appearance of tab in navbar
 			
 			/* IE11 bug: Create Offerings per Region chart only after its parent
 			div is activated, else drilldown functionality won't work */
@@ -100,10 +101,6 @@
 				createOfferingsPerRegion();
 				offeringPerRegionCreatedFlag++;
 			}
-			
-			// Update tabs' CSS
-			$(this).parent().siblings().removeClass('active');
-			$(this).parent().addClass('active');
 			
 			resizeHighcharts(new_section);
 		});
