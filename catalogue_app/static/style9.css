@@ -494,12 +494,6 @@ with position: relative, in this case #selection-and-loader */
 	height: 80vh;
 	width: 100%;
 }
-.map-filter {
-	text-align: right;
-}
-.map-filter p {
-	display: inline;
-}
 #legend {
 	display: none;
 	float: left;
