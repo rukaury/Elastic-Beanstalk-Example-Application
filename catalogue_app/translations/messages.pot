@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-17 02:27-0400\n"
+"POT-Creation-Date: 2019-03-31 19:50-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -225,23 +225,23 @@ msgstr ""
 msgid "Make My Day"
 msgstr ""
 
-#: templates/index.html:62
+#: templates/index.html:66
 msgid "No results"
 msgstr ""
 
-#: templates/layout.html:34 templates/layout.html:36
+#: templates/layout.html:35 templates/layout.html:37
 msgid "DA Logo"
 msgstr ""
 
-#: templates/includes/_head.html:5 templates/layout.html:39
+#: templates/includes/_head.html:5 templates/layout.html:40
 msgid "CSPS Course Catalogue"
 msgstr ""
 
-#: templates/layout.html:52
+#: templates/layout.html:54
 msgid "Top of page"
 msgstr ""
 
-#: templates/layout.html:55
+#: templates/layout.html:57
 msgid "GoC Logo"
 msgstr ""
 
@@ -252,7 +252,6 @@ msgstr ""
 #: templates/course-page/comments.html:7 templates/course-page/comments.html:25
 #: templates/course-page/dashboard-main.html:6
 #: templates/course-page/dashboard-main.html:41
-#: templates/course-page/geodata.html:6 templates/course-page/geodata.html:88
 msgid "Online"
 msgstr ""
 
@@ -279,9 +278,9 @@ msgstr ""
 #: templates/course-page/dashboard-offerings.html:25
 #: templates/course-page/dashboard-offerings.html:30
 #: templates/course-page/dashboard-offerings.html:48
-#: templates/course-page/general.html:46 templates/course-page/geodata.html:11
-#: templates/course-page/geodata.html:24 templates/course-page/geodata.html:28
-#: templates/course-page/ratings.html:3 templates/course-page/ratings.html:15
+#: templates/course-page/general.html:46 templates/course-page/geodata.html:6
+#: templates/course-page/geodata.html:10 templates/course-page/ratings.html:3
+#: templates/course-page/ratings.html:15
 msgid "Tooltip"
 msgstr ""
 
@@ -431,7 +430,6 @@ msgstr ""
 
 #: templates/course-page/dashboard-main.html:7
 #: templates/course-page/dashboard-main.html:13
-#: templates/course-page/geodata.html:7 templates/course-page/geodata.html:13
 msgid "Section: "
 msgstr ""
 
@@ -475,38 +473,38 @@ msgid ""
 "Province, and City.</p>"
 msgstr ""
 
-#: templates/course-page/dashboard-offerings.html:114
+#: templates/course-page/dashboard-offerings.html:118
 msgid "Open & Delivered Offerings per Language"
 msgstr ""
 
-#: templates/course-page/dashboard-offerings.html:120
+#: templates/course-page/dashboard-offerings.html:124
 msgid "English"
 msgstr ""
 
-#: templates/course-page/dashboard-offerings.html:121
+#: templates/course-page/dashboard-offerings.html:125
 msgid "French"
 msgstr ""
 
-#: templates/course-page/dashboard-offerings.html:122
+#: templates/course-page/dashboard-offerings.html:126
 msgid "Bilingual"
 msgstr ""
 
-#: templates/course-page/dashboard-offerings.html:128
+#: templates/course-page/dashboard-offerings.html:133
 #, python-format
 msgid "%% of Offerings Cancelled"
 msgstr ""
 
-#: templates/course-page/dashboard-offerings.html:140
-#: templates/course-page/dashboard-offerings.html:152
-#: templates/course-page/dashboard-offerings.html:163
+#: templates/course-page/dashboard-offerings.html:145
+#: templates/course-page/dashboard-offerings.html:158
+#: templates/course-page/dashboard-offerings.html:170
 msgid "Average All"
 msgstr ""
 
-#: templates/course-page/dashboard-offerings.html:147
+#: templates/course-page/dashboard-offerings.html:153
 msgid "Average Class Size"
 msgstr ""
 
-#: templates/course-page/dashboard-offerings.html:158
+#: templates/course-page/dashboard-offerings.html:165
 msgid "Average No-Shows per Offering"
 msgstr ""
 
@@ -597,55 +595,41 @@ msgstr ""
 msgid "<h5>Tip:</h5><p>This information is tracked by Curriculum Management.</p>"
 msgstr ""
 
-#: templates/course-page/geodata.html:9 templates/course-page/geodata.html:16
-msgid "Learner Locations"
-msgstr ""
-
-#: templates/course-page/geodata.html:15
-msgid "Offering Locations"
-msgstr ""
-
-#: templates/course-page/geodata.html:23
+#: templates/course-page/geodata.html:5
 msgid "Locations of open and delivered offerings around the globe."
 msgstr ""
 
-#: templates/course-page/geodata.html:27
+#: templates/course-page/geodata.html:9
 msgid "Locations of learners around the globe."
 msgstr ""
 
-#: templates/course-page/geodata.html:38
+#: templates/course-page/geodata.html:21
 msgid "Legend"
 msgstr ""
 
-#: templates/course-page/geodata.html:42
+#: templates/course-page/geodata.html:25
 msgid "Red Marker"
 msgstr ""
 
-#: templates/course-page/geodata.html:46
+#: templates/course-page/geodata.html:29
 msgid "Orange Marker"
 msgstr ""
 
-#: templates/course-page/geodata.html:50
+#: templates/course-page/geodata.html:33
 msgid "Green Marker"
 msgstr ""
 
-#: templates/course-page/geodata.html:54
+#: templates/course-page/geodata.html:37
 msgid "Blue Marker"
 msgstr ""
 
-#: templates/course-page/geodata.html:68
-msgid ""
-"<h5>Tip:</h5><p>The 'Offering Locations' section is disabled for online "
-"courses as they have no physical location.</p>"
-msgstr ""
-
-#: templates/course-page/geodata.html:74
+#: templates/course-page/geodata.html:52
 msgid ""
 "<h5>Tip:</h5><p>The map shows offerings with status 'Open' or "
 "'Delivered'.</p>"
 msgstr ""
 
-#: templates/course-page/geodata.html:80
+#: templates/course-page/geodata.html:58
 msgid ""
 "<h5>Tip:</h5><p>The map shows learners whose registration status is "
 "'Confirmed'.</p>"
@@ -656,18 +640,22 @@ msgid "General"
 msgstr ""
 
 #: templates/course-page/main.html:15
-msgid "Dashboard"
+msgid "Dashboards"
 msgstr ""
 
-#: templates/course-page/main.html:16
+#: templates/course-page/main.html:20
 msgid "Maps"
 msgstr ""
 
-#: templates/course-page/main.html:17
-msgid "Ratings"
+#: templates/course-page/main.html:24
+msgid "Offering Locations"
 msgstr ""
 
-#: templates/course-page/main.html:18
+#: templates/course-page/main.html:25
+msgid "Learner Locations"
+msgstr ""
+
+#: templates/course-page/main.html:29
 msgid "Comments"
 msgstr ""
 
@@ -764,7 +752,7 @@ msgid ""
 "Management</a>."
 msgstr ""
 
-#: templates/includes/_formhelpers.html:18
+#: templates/includes/_formhelpers.html:15
 msgid "Download raw data"
 msgstr ""
 
