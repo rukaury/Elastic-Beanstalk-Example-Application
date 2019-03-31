@@ -425,8 +425,10 @@ with position: relative, in this case #selection-and-loader */
 
 
 /***** Report's tabs *****/
-.nav-tabs .active a {
+.nav-tabs a {
 	color: #066169 !important;
+}
+.nav-tabs .active > a {
 	font-weight: bold;
 }
 /***** End report's tabs *****/

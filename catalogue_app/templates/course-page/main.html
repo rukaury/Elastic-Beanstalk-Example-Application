@@ -12,9 +12,9 @@
 		<!-- Tabs -->
 		<ul class="nav nav-tabs nav-justified">
 			<li class="main-tab active"><a href="#general">{{ _('General') }}</a></li>
-			<li class="main-tab"><a href="#dashboard">{{ _('Dashboard') }}</a></li>
+			<li class="main-tab"><a href="#dashboard">{{ _('Dashboards') }}</a></li>
 			
-			
+			<!-- Maps dropdown -->
 			<li class="main-tab dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown">
 					{{ _('Maps') }}
@@ -25,7 +25,6 @@
 					<li><a href="#geodata" data-div="learner-map">{{ _('Learner Locations') }}</a></li>
 				</ul>
 			</li>
-			
 			
 			<li class="main-tab"><a href="#comments">{{ _('Comments') }}</a></li>
 			<!-- Not wrapping 'P&A' in Babel's underscore func as throws error in IE11 -->
@@ -81,18 +80,14 @@
 		}
 		
 		// For tabs' on click, show / hide appropriate sections
-		$('.nav-tabs li a').not('.dropdown-toggle').click(function(event) {
-			event.preventDefault();
+		$('.nav-tabs li a').not('.dropdown-toggle').click(function(e) {
+			e.preventDefault();
 			
 			// Hide all active sections
-			$('.main-section').removeClass('active');
+			$('.main-section, .main-tab').removeClass('active');
 			$('.main-section').addClass('hide');
-			$('.main-tab').removeClass('active'); // Appearance of tabs in navbar
 			
 			// Show section whose tab was just clicked
-			
-			/* should these be .hide and .show tho?? */
-			
 			var new_section = $(this).attr('href');
 			$(new_section).removeClass('hide');
 			$(new_section).addClass('active');
@@ -103,14 +98,9 @@
 			var specific_div = $(this).attr('data-div');
 			if (specific_div) {
 				$('.sub-div').hide();
-				$('#' + specific_div).show();
+				$('.' + specific_div).show();
 				//alert(specific_div);
 			}
-			
-			
-			
-			
-			
 			
 			/* IE11 bug: Create Offerings per Region chart only after its parent
 			div is activated, else drilldown functionality won't work */
