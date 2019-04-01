@@ -1,25 +1,34 @@
 ### CURRENT SPRINT ###
 
-# check iPad sitrep
-# dropdowns in navbar in place of subtabs, filter/section drodpown
-# unique learners (line on regs per month + totals for both)
+# update hidden content for online, tooltips
+# have two separate Overall Numbers tables, one for offerings and one for learners (Lyne Cyr)
+	# total unique learners in latter
+	# also put cumulative unique learners in chart??
 	# check index
-# validate methodology and #s with Ranjith
+# validate methodology and #s with Ranjith after next ETL
 # add datatables to depts and classifications
+# pagination -> reënable A230
+# check if bob comments + descriptions are hardened against xss
 
 
 
 ### BACKLOG ###
 
+# update scraper to grab code from title rather than URL
+# load rate, a few averages of ratings (Christine Dionne)
 # add admin accounts
+	# roll-out very slowly, try with 1 course from Jeremy and 1 from regions
+	# check if upload is dangerous
 # decouple frontend and backend
-	# pagination -> renable A230
+	# check out flask-restful
+	# Maps tab could get a lot better if decoupled
+		# maps API route could accept start_date, end_date, offering_lang, etc.
+		# users could select options, map would delete markers and re-add
 # calendar / table with upcoming offerings + link to GCcampus
 # ratings tab to show sentiment analysis over time
 # add clustering (e.g. latent dirichlet) to check top 5 issues mentioned
 	# only enable button if > 50 comments
 	# sort by most recent first
-# update scraper to grab code from title rather than URL; use new catalogue
 # add offering dates to maps
 # copyright
 # explore by director
