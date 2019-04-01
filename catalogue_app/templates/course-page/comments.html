@@ -2,7 +2,7 @@
 
 {% set comment_names = ['general_comments', 'technical_comments', 'language_comments', 'performance_comments'] %}
 {% for comment_name in comment_names %}
-	<section id="{{ comment_name }}" class="tab-content all-comment-tabs {{ 'active' if loop.index == 1 else 'hide' }}">
+	<section id="{{ comment_name }}" class="{{ 'active' if loop.index == 1 else 'hide' }}">
 		<!-- Only render the rest of the section if feedback exists -->
 		{% if pass_dict[comment_name] %}
 			
@@ -133,14 +133,13 @@
 	</section>
 {% endfor %}
 
-
 <!-- For now, instructor_comments are disabled for privacy -->
-<section id="instructor_comments" class="tab-content all-comment-tabs hide">
+<section id="instructor_comments" class="hide">
 	<h4>{{ _('Comments on instructor performance are currently disabled due to privacy restrictions.') }}</h4>
 </section>
 
 <!-- Categorical Questions -->
-<section id="other" class="tab-content all-comment-tabs hide">
+<section id="other" class="hide">
 	<!-- Display categorical comments if any, else error message -->
 	{% if any ([pass_dict.reason_to_participate, pass_dict.technical_issues,
 				pass_dict.languages_available, pass_dict.tools_used, pass_dict.prepared_by]) %}
@@ -163,12 +162,14 @@
 
 <script async>
 	// Add tooltip contents
+	/*
 	$('#performance-tooltip').tooltip({
 		placement: 'bottom',
 		title: "{{ _('<h5>Tip:</h5><p>Learners explain why they feel the training won\'t improve their job performance.</p>') }}",
 		animation: true,
 		html: true
 	});
+	*/
 	$('.computed-score-tooltip').tooltip({
 		placement: 'bottom',
 		title: "{{ _('<h5>Tip:</h5><p>Comments are assigned a sentiment score between 1 (most negative) and 5 (most positive) using machine learning.</p>') }}",

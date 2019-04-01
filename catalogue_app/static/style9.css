@@ -620,7 +620,7 @@ bar and label on same line */
 	}
 }
 /* Prevent screen jump when switching from full -> empty tabs */
-.all-comment-tabs {
+#comments section {
 	min-height: 90vh;
 }
 /***** End comments *****/
