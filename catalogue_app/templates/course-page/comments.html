@@ -72,26 +72,26 @@
 			<!-- Dropdown to filter by star -->
 			<div class="star-filter">
 				<p>{{ _('Stars: ') }}</p>
-				<select onchange="filterComments()">
-					<option value="bob-comment">{{ _('All') }}</option>
-					<option value="star-5">{{ _('Five') }}</option>
-					<option value="star-4">{{ _('Four') }}</option>
-					<option value="star-3">{{ _('Three') }}</option>
-					<option value="star-2">{{ _('Two') }}</option>
-					<option value="star-1">{{ _('One') }}</option>
+				<select data-target="{{ comment_name }}">
+					<option value="">{{ _('All') }}</option>
+					<option value=".star-5">{{ _('Five') }}</option>
+					<option value=".star-4">{{ _('Four') }}</option>
+					<option value=".star-3">{{ _('Three') }}</option>
+					<option value=".star-2">{{ _('Two') }}</option>
+					<option value=".star-1">{{ _('One') }}</option>
 				</select>
 			</div>
 			
 			<!-- Dropdown to filter by fiscal year -->
 			<div class="year-filter">
 				<p>{{ _('Fiscal Year: ') }}</p>
-				<select onchange="filterComments()">
-					<option value="bob-comment">{{ _('All') }}</option>
-					<option value="FY2015-16">2015-16</option>
-					<option value="FY2016-17">2016-17</option>
-					<option value="FY2017-18">2017-18</option>
-					<option value="FY2018-19">2018-19</option>
-					<option value="FY2019-20">2019-20</option>
+				<select data-target="{{ comment_name }}">
+					<option value="">{{ _('All') }}</option>
+					<option value=".FY2015-16">2015-16</option>
+					<option value=".FY2016-17">2016-17</option>
+					<option value=".FY2017-18">2017-18</option>
+					<option value=".FY2018-19">2018-19</option>
+					<option value=".FY2019-20">2019-20</option>
 				</select>
 			</div>
 			
@@ -177,7 +177,7 @@
 	// Dynamically update CSS bar charts to show star percentages
 	function updateBarChart(tabName) {
 		// Get fiscal year dropdown selection
-		var fiscalYearDropdown = '.' + $(tabName + ' .year-filter select')[0].value;
+		var fiscalYearDropdown = $(tabName + ' .year-filter select')[0].value;
 		
 		// Get counts
 		var fiveStar = $(tabName + ' .star-5' + fiscalYearDropdown).length;
@@ -251,56 +251,54 @@
 	
 	
 	// Create listener enabling CSS bar chart to trigger star filters
-	function addListenerBarChart(tabName) {
-		$(tabName + ' .stars-bar-chart a').on('click', function(e) {
-			e.stopImmediatePropagation();
-			e.preventDefault();
-			var clicked = $(this).attr('data-target');
-			$(tabName + ' .star-filter select').val('star-' + clicked).change();
-			return false;
-		});
-	}
+	//function addListenerBarChart(tabName) {
+		//$(tabName + ' .stars-bar-chart a').on('click', function(e) {
+		//	e.stopImmediatePropagation();
+		//	e.preventDefault();
+		//	var clicked = $(this).attr('data-target');
+		//	$(tabName + ' .star-filter select').val('star-' + clicked).change();
+		//	return false;
+		//});
+	//}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// Create bar charts across all comment subtabs
 	{% for comment_name in comment_names %}
 		{% if pass_dict[comment_name] %}
 			updateBarChart('.{{ comment_name }}');
-			//addListenerBarChart('. { comment_name ');
+			//addListenerBarChart('
 		{% endif %}
 	{% endfor %}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Enable star and fiscal year dropdowns to show / hide
-	function filterComments() {
+	// Enable dropdowns to show / hide
+	// If click on any <select>, get value of all others on same page
+	// Filter comments on page by values of dropdowns
+	$('select').on('change', function(e) {
+		e.preventDefault();
+		
 		// Get current tab
-		var currentCommentTabId= $('.sub-tabs li.active a:first').attr('href');
+		var currentCommentTab = '.' + $(this).attr('data-target');
 		
 		// Hide all comments
-		$(currentCommentTabId + ' .bob-comment').hide();
+		$(currentCommentTab + ' .bob-comment').hide();
 		
-		// Show comments according to selection in dropdown(s)
-		var dropdowns = $(currentCommentTabId + ' select');
-		if (dropdowns.length == 1) {
-			var starDropdown = dropdowns[0].value;
-			$(currentCommentTabId + ' .bob-comment' + '.' + starDropdown).show();
-		} else {
-			var starDropdown = dropdowns[0].value;
-			var fiscalYearDropdown = dropdowns[1].value;
-			$(currentCommentTabId + ' .bob-comment' + '.' + starDropdown + '.' + fiscalYearDropdown).show();
-			
-			// Update bar chart to match fiscal year selected
-			updateBarChart(currentCommentTabId);
-		}
-	}
+		// Get dropdown selections and show relevant comments
+		var dropdowns = $(currentCommentTab + ' select');
+		var starDropdown = dropdowns[0].value;
+		var yearDropdown = dropdowns[1].value;
+		var target = currentCommentTab + ' .bob-comment' + starDropdown + yearDropdown;
+		$(target).show();
+		
+		// Update bar chart to match fiscal year selected
+		updateBarChart(currentCommentTab);
+	});
 	
 	function createPieChart(id, title, data) {
 		$('#' + String(id)).highcharts({
