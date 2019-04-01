@@ -1,6 +1,6 @@
 <h1>{{ pass_dict.course_title }}</h1>
 
-{% set comment_names = ['general_comments', 'technical_comments', 'language_comments', 'performance_comments'] %}
+{% set comment_names = ['general_comments', 'instructor_comments', 'technical_comments', 'language_comments', 'performance_comments'] %}
 {% for comment_name in comment_names %}
 	<section class="{{ comment_name }} hideable">
 		<!-- Only render the rest of the section if feedback exists -->
@@ -23,7 +23,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('Five') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-five" href="" data-target="5">
+							<a class="bar-stars-five" data-target="5">
 								<!-- Width and text added dynamically by jQuery in script tag below -->
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
@@ -33,7 +33,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('Four') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-four" href="" data-target="4">
+							<a class="bar-stars-four" data-target="4">
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
 							</a>
@@ -42,7 +42,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('Three') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-three" href="" data-target="3">
+							<a class="bar-stars-three" data-target="3">
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
 							</a>
@@ -51,7 +51,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('Two') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-two" href="" data-target="2">
+							<a class="bar-stars-two" data-target="2">
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
 							</a>
@@ -60,7 +60,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('One') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-one" href="" data-target="1">
+							<a class="bar-stars-one" data-target="1">
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
 							</a>
@@ -127,16 +127,13 @@
 					</div>
 				</div>
 			{% endfor %}
+		{% elif comment_name == 'instructor_comments' %}
+			<h4>{{ _('Comments on instructor performance are currently disabled due to privacy restrictions.') }}</h4>
 		{% else %}
 			<h4>{{ _('Apologies, this course has yet to receive any feedback of this type.') }}</h4>
 		{% endif %}
 	</section>
 {% endfor %}
-
-<!-- For now, instructor_comments are disabled for privacy -->
-<section class="instructor_comments hideable">
-	<h4>{{ _('Comments on instructor performance are currently disabled due to privacy restrictions.') }}</h4>
-</section>
 
 <!-- Categorical Questions -->
 <section class="other hideable">
@@ -180,13 +177,7 @@
 	// Dynamically update CSS bar charts to show star percentages
 	function updateBarChart(tabName) {
 		// Get fiscal year dropdown selection
-		var currentCommentTabId= $('.sub-tabs li.active a:first').attr('href');
-		var dropdowns = $(currentCommentTabId + ' select');
-		if (dropdowns.length > 1) {
-			var fiscalYearDropdown = '.' + dropdowns[1].value;
-		} else {
-			var fiscalYearDropdown = '';
-		}
+		var fiscalYearDropdown = '.' + $(tabName + ' .year-filter select')[0].value;
 		
 		// Get counts
 		var fiveStar = $(tabName + ' .star-5' + fiscalYearDropdown).length;
@@ -247,13 +238,17 @@
 		// Add leading space to distinguish from uppercase 'Commentaires'
 		var titleNoun = (totalComments == 1) ? "{{ _(' Comment ') }}" : "{{ _(' Comments') }}";
 		var titlePrep = "{{ _('in') }}";
-		var fiscalYearSelected = $(dropdowns[1]).find('option:selected').text();
+		var fiscalYearSelected = $(tabName + ' .year-filter select').find('option:selected').text();
 		if (fiscalYearSelected == "{{ _('All') }}") {
 			$(tabName + ' .stars-bar-chart thead h3 span').text(totalComments + titleNoun + ' ' + "{{ _('in Total') }}");
 		} else {
 			$(tabName + ' .stars-bar-chart thead h3 span').text(totalComments + titleNoun + ' ' + titlePrep + ' ' + fiscalYearSelected);
 		}
 	}
+	
+	
+	
+	
 	
 	// Create listener enabling CSS bar chart to trigger star filters
 	function addListenerBarChart(tabName) {
@@ -269,10 +264,20 @@
 	// Create bar charts across all comment subtabs
 	{% for comment_name in comment_names %}
 		{% if pass_dict[comment_name] %}
-			updateBarChart('#{{ comment_name }}');
-			addListenerBarChart('#{{ comment_name }}');
+			updateBarChart('.{{ comment_name }}');
+			//addListenerBarChart('. { comment_name ');
 		{% endif %}
 	{% endfor %}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// Enable star and fiscal year dropdowns to show / hide
 	function filterComments() {
