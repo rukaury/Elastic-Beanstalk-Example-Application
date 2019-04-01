@@ -2,7 +2,7 @@
 
 {% set comment_names = ['general_comments', 'technical_comments', 'language_comments', 'performance_comments'] %}
 {% for comment_name in comment_names %}
-	<section id="{{ comment_name }}" class="{{ 'active' if loop.index == 1 else 'hide' }}">
+	<section class="{{ comment_name }} hideable">
 		<!-- Only render the rest of the section if feedback exists -->
 		{% if pass_dict[comment_name] %}
 			
@@ -134,12 +134,12 @@
 {% endfor %}
 
 <!-- For now, instructor_comments are disabled for privacy -->
-<section id="instructor_comments" class="hide">
+<section class="instructor_comments hideable">
 	<h4>{{ _('Comments on instructor performance are currently disabled due to privacy restrictions.') }}</h4>
 </section>
 
 <!-- Categorical Questions -->
-<section id="other" class="hide">
+<section class="other hideable">
 	<!-- Display categorical comments if any, else error message -->
 	{% if any ([pass_dict.reason_to_participate, pass_dict.technical_issues,
 				pass_dict.languages_available, pass_dict.tools_used, pass_dict.prepared_by]) %}

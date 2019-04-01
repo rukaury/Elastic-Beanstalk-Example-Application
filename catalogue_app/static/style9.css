@@ -575,7 +575,7 @@ with position: relative, in this case #selection-and-loader */
 	border-color: #066169 !important;
 }
 /* Error message for instructor comments */
-#instructor_comments p {
+.instructor_comments p {
 	margin: 1.25rem 0;
 }
 /* Stars */
