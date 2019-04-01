@@ -472,12 +472,6 @@ with position: relative, in this case #selection-and-loader */
 
 
 /***** Dashboard *****/
-.dash-filter {
-	text-align: right;
-}
-.dash-filter p {
-	display: inline;
-}
 .dashboard-chart {
 	margin-bottom: 1.25rem;
 }

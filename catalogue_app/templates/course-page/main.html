@@ -12,7 +12,18 @@
 		<!-- Tabs -->
 		<ul class="nav nav-tabs nav-justified">
 			<li class="main-tab active"><a href="#general">{{ _('General') }}</a></li>
-			<li class="main-tab"><a href="#dashboard">{{ _('Dashboards') }}</a></li>
+			
+			<!-- Dashboards dropdown -->
+			<li class="main-tab dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown">
+					{{ _('Dashboards') }}
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="#dashboard" data-class="offering-dash">{{ _('Offerings') }}</a></li>
+					<li><a href="#dashboard" data-class="learner-dash">{{ _('Learners') }}</a></li>
+				</ul>
+			</li>
 			
 			<!-- Maps dropdown -->
 			<li class="main-tab dropdown">
@@ -21,8 +32,8 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="#geodata" data-class="offering-map">{{ _('Offering Locations') }}</a></li>
-					<li><a href="#geodata" data-class="learner-map">{{ _('Learner Locations') }}</a></li>
+					<li><a href="#geodata" data-class="offering-map">{{ _('Offerings') }}</a></li>
+					<li><a href="#geodata" data-class="learner-map">{{ _('Learners') }}</a></li>
 				</ul>
 			</li>
 			
