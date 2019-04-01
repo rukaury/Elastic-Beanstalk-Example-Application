@@ -37,7 +37,22 @@
 				</ul>
 			</li>
 			
-			<li class="main-tab"><a href="#comments">{{ _('Comments') }}</a></li>
+			<!-- Comments dropdown -->
+			<li class="main-tab dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown">
+					{{ _('Comments') }}
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="#comments" data-class="general_comments">{{ _('Overall') }}</a></li>
+					<li><a href="#comments" data-class="instructor_comments">{{ _('Instructor') }}</a></li>
+					<li><a href="#comments" data-class="technical_comments">{{ _('Technical') }}</a></li>
+					<li><a href="#comments" data-class="language_comments">{{ _('Language') }}</a></li>
+					<li><a href="#comments" data-class="performance_comments">{{ _('Performance') }}</a></li>
+					<li><a href="#comments" data-class="other">{{ _('Categorical') }}</a></li>
+				</ul>
+			</li>
+			
 			<!-- Not wrapping 'P&A' in Babel's underscore func as throws error in IE11 -->
 			<li class="main-tab"><a href="#material">P&amp;A</a></li>
 		</ul>
@@ -52,26 +67,26 @@
 			{% include 'course-page/general.html' %}
 		</section>
 		
-		<!-- Dashboard -->
+		<!-- Dashboards -->
 		<section id="dashboard" class="main-section hide">
 			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/dashboard-main.html' %}
 		</section>
 		
-		<!-- Geodata -->
+		<!-- Maps -->
 		<section id="geodata" class="main-section hide">
 			<!-- Dashboard and Maps tabs built from same table -->
 			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/geodata.html' %}
 		</section>
 		
-		<!-- Level 1 Comments -->
+		<!-- Comments -->
 		<section id="comments" class="main-section hide">
 			{{ download_raw(url_for('downloads.download_comments', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/comments.html' %}
 		</section>
 		
-		<!-- Material i.e. Prep & Admin -->
+		<!-- Prep & Admin -->
 		<section id="material" class="main-section hide">
 			{% include 'course-page/material.html' %}
 		</section>
@@ -100,8 +115,7 @@
 			
 			// Show section whose tab was just clicked
 			var new_section = $(this).attr('href');
-			$(new_section).removeClass('hide');
-			$(new_section).addClass('active');
+			$(new_section).removeClass('hide').addClass('active');
 			$(this).parents('li.main-tab').addClass('active'); // Appearance of tab in navbar
 			
 			// If applicable, show specific class within section and hide others
