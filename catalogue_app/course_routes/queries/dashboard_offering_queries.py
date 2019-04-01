@@ -143,32 +143,14 @@ class OverallOfferingNumbers:
 	def _offering_additional_counts(self):
 		"""Additional offering counts used by School analysts."""
 		table_name = 'lsr{0}'.format(self.fiscal_year)
-		
 		query_client_reqs = """
 			SELECT COUNT(DISTINCT offering_id)
 			FROM {0}
 			WHERE course_code = %s AND client != '' AND offering_status IN ('Open - Normal', 'Delivered - Normal');
 		""".format(table_name)
 		client_reqs = query_mysql(query_client_reqs, (self.course_code,))
-		
-		query_regs = """
-			SELECT COUNT(reg_id)
-			FROM {0}
-			WHERE course_code = %s AND reg_status = 'Confirmed';
-		""".format(table_name)
-		regs = query_mysql(query_regs, (self.course_code,))
-		
-		query_no_shows = """
-			SELECT SUM(no_show)
-			FROM {0}
-			WHERE course_code = %s;
-		""".format(table_name)
-		no_shows = query_mysql(query_no_shows, (self.course_code,))
-		
-		results = [(gettext('Client Requests'), as_int(client_reqs)),
-				   (gettext('Registrations'), as_int(regs)),
-				   (gettext('No-Shows'), as_int(no_shows))]
-		self.counts.extend(results)
+		results = (gettext('Client Requests'), as_int(client_reqs))
+		self.counts.append(results)
 
 
 def offerings_per_lang(fiscal_year, course_code):
