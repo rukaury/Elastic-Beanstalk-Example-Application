@@ -101,7 +101,7 @@ class OfferingLocations:
 		return results_processed
 
 
-class OverallNumbers:
+class OverallOfferingNumbers:
 	"""Data for a given fiscal year of the Overall Numbers table."""
 	def __init__(self, fiscal_year, course_code):
 		self.fiscal_year = fiscal_year
@@ -209,7 +209,6 @@ def offerings_cancelled(fiscal_year, course_code):
 	return as_percent(results)
 
 
-# Need to separate global into separate function as using LIKE '%' too slow
 def offerings_cancelled_global(fiscal_year):
 	table_name = 'lsr{0}'.format(fiscal_year)
 	query = """
@@ -242,7 +241,6 @@ def avg_class_size(fiscal_year, course_code):
 	return as_int(results)
 
 
-# Need to separate global into separate function as using LIKE '%' too slow
 def avg_class_size_global(fiscal_year):
 	table_name = 'lsr{0}'.format(fiscal_year)
 	query = """
@@ -275,7 +273,6 @@ def avg_no_shows(fiscal_year, course_code):
 	return as_float(results)
 
 
-# Need to separate global into separate function as using LIKE '%' too slow
 def avg_no_shows_global(fiscal_year):
 	table_name = 'lsr{0}'.format(fiscal_year)
 	query = """

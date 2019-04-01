@@ -43,8 +43,8 @@ def course_result():
 	
 	# Instantiate classes
 	course_info = general_queries.CourseInfo(lang, course_code).load()
-	overall_numbers_LY = dashboard_offering_queries.OverallNumbers(LAST_YEAR, course_code).load()
-	overall_numbers_TY = dashboard_offering_queries.OverallNumbers(THIS_YEAR, course_code).load()
+	overall_offering_numbers_LY = dashboard_offering_queries.OverallOfferingNumbers(LAST_YEAR, course_code).load()
+	overall_offering_numbers_TY = dashboard_offering_queries.OverallOfferingNumbers(THIS_YEAR, course_code).load()
 	offering_locations = dashboard_offering_queries.OfferingLocations(lang, THIS_YEAR, course_code).load()
 	learners = dashboard_learner_queries.Learners(lang, THIS_YEAR, course_code).load()
 	map = map_queries.Map(THIS_YEAR, course_code).load()
@@ -58,8 +58,8 @@ def course_result():
 		# General
 		'course_info': course_info.course_info,
 		# Dashboard - offerings
-		'overall_numbers_LY': overall_numbers_LY.counts,
-		'overall_numbers_TY': overall_numbers_TY.counts,
+		'overall_offering_numbers_LY': overall_offering_numbers_LY.counts,
+		'overall_offering_numbers_TY': overall_offering_numbers_TY.counts,
 		'region_drilldown': offering_locations.regions,
 		'province_drilldown': offering_locations.provinces,
 		'city_drilldown': offering_locations.cities,
