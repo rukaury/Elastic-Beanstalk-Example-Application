@@ -221,13 +221,13 @@
 		// Add labels showing percentages
 		var totalComments = fiveStar + fourStar + threeStar + twoStar + oneStar;
 		// Account for 0 comments
-		totalComments = (totalComments) ? totalComments : 1;
+		totalCommentsDivisor = (totalComments) ? totalComments : 1;
 		// Multiply then divide by ten as JS built-in Math.round doesn't support rounding to 1 decimal
-		var percentFive = Math.round((fiveStar / totalComments) * 100 * 10) / 10;
-		var percentFour = Math.round((fourStar / totalComments) * 100 * 10) / 10;
-		var percentThree = Math.round((threeStar / totalComments) * 100 * 10) / 10;
-		var percentTwo = Math.round((twoStar / totalComments) * 100 * 10) / 10;
-		var percentOne = Math.round((oneStar / totalComments) * 100 * 10) / 10;
+		var percentFive = Math.round((fiveStar / totalCommentsDivisor) * 100 * 10) / 10;
+		var percentFour = Math.round((fourStar / totalCommentsDivisor) * 100 * 10) / 10;
+		var percentThree = Math.round((threeStar / totalCommentsDivisor) * 100 * 10) / 10;
+		var percentTwo = Math.round((twoStar / totalCommentsDivisor) * 100 * 10) / 10;
+		var percentOne = Math.round((oneStar / totalCommentsDivisor) * 100 * 10) / 10;
 		$(tabName + ' .stars-bar-chart .bar-stars-five span.bar-label').text(String(percentFive) + '%');
 		$(tabName + ' .stars-bar-chart .bar-stars-four span.bar-label').text(String(percentFour) + '%');
 		$(tabName + ' .stars-bar-chart .bar-stars-three span.bar-label').text(String(percentThree) + '%');
