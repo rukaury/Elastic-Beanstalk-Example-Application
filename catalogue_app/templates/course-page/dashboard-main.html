@@ -1,54 +1,21 @@
 <h1>{{ pass_dict.course_title }}</h1>
 
-<!-- Dropdown to select offering-dash or learner-dash -->
-<div class="dash-filter">
-	<!-- If an online course, disable div offering-dash and add tooltip with explanation -->
-	{% if pass_dict.course_info.get('Business Type', 'Online') == _('Online') %}
-		<p>{{ _('Section: ') }}</p>
-		<select id="filter-dash">
-			<option value="learner-dash">{{ _('Learner Data') }}</option>
-		</select>
-		<img id="online-dashboard-disabled-tooltip" class="inline-tooltip" src="{{ url_for('static', filename='tooltip.png') }}" alt="{{ _('Tooltip') }}" />
-	{% else %}
-		<p>{{ _('Section: ') }}</p>
-		<select id="filter-dash">
-			<option value="offering-dash">{{ _('Offering Data') }}</option>
-			<option value="learner-dash">{{ _('Learner Data') }}</option>
-		</select>
-	{% endif %}
-</div>
-
-<div id="offering-dash">
+<div class="offering-dash hideable">
 	{% include 'course-page/dashboard-offerings.html' %}
 </div>
 
-<div id="learner-dash">
+<div class="learner-dash hideable">
 	{% include 'course-page/dashboard-learners.html' %}
 </div>
 
 <script async>
 	// Add tooltip contents
+	/*
 	$('#online-dashboard-disabled-tooltip').tooltip({
 		placement: 'bottom',
 		title: "{{ _('<h5>Tip:</h5><p>The Offering Data section is disabled for online courses as they have no physical location. Try an instructor-led course like D101 to see more.</p>') }}",
 		animation: true,
 		html: true
 	});
-	
-	// Show only learner data if online course
-	$('#offering-dash').hide();
-	$('#learner-dash').hide();
-	{% if pass_dict.course_info.get('Business Type', 'Online') == _('Online') %}
-		$('#learner-dash').show();
-	{% else %}
-		$('#offering-dash').show();
-	{% endif %}
-	
-	// Enable dropdown to show / hide
-	$('#filter-dash').on('change', function() {
-		var dropdownSelection = $('#filter-dash').val();
-		$('#offering-dash').hide();
-		$('#learner-dash').hide();
-		$('#' + dropdownSelection).show();
-	});
+	*/
 </script>

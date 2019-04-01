@@ -425,8 +425,10 @@ with position: relative, in this case #selection-and-loader */
 
 
 /***** Report's tabs *****/
-.nav-tabs .active a {
+.nav-tabs a {
 	color: #066169 !important;
+}
+.nav-tabs .active > a {
 	font-weight: bold;
 }
 /***** End report's tabs *****/
@@ -470,12 +472,6 @@ with position: relative, in this case #selection-and-loader */
 
 
 /***** Dashboard *****/
-.dash-filter {
-	text-align: right;
-}
-.dash-filter p {
-	display: inline;
-}
 .dashboard-chart {
 	margin-bottom: 1.25rem;
 }
@@ -493,12 +489,6 @@ with position: relative, in this case #selection-and-loader */
 	float: left;
 	height: 80vh;
 	width: 100%;
-}
-.map-filter {
-	text-align: right;
-}
-.map-filter p {
-	display: inline;
 }
 #legend {
 	display: none;
@@ -585,7 +575,7 @@ with position: relative, in this case #selection-and-loader */
 	border-color: #066169 !important;
 }
 /* Error message for instructor comments */
-#instructor_comments p {
+.instructor_comments p {
 	margin: 1.25rem 0;
 }
 /* Stars */
@@ -630,7 +620,7 @@ bar and label on same line */
 	}
 }
 /* Prevent screen jump when switching from full -> empty tabs */
-.all-comment-tabs {
+#comments section {
 	min-height: 90vh;
 }
 /***** End comments *****/

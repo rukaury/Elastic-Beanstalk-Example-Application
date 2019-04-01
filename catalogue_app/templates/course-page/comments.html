@@ -1,35 +1,8 @@
 <h1>{{ pass_dict.course_title }}</h1>
 
-<!-- Subtabs -->
-<ul class="nav nav-tabs nav-justified sub-tabs">
-	<li class="active"><a href="#general_comments">{{ _('Overall') }}</a></li>
-	<!-- Show Technical comments for Online courses; Instructor comments for Instructor-Led -->
-	{% if pass_dict.course_info.get('Business Type', 'Online') == _('Online') %}
-		<li><a href="#technical_comments">{{ _('Technical') }}</a></li>
-	{% else %}
-		<li><a href="#instructor_comments">{{ _('Instructor') }}</a></li>
-	{% endif %}
-	<li><a href="#language_comments">{{ _('Language') }}</a></li>
-	<!-- Add tooltip explaining Performance comments -->
-	<li>
-		<a href="#performance_comments">
-			{{ _('Performance') }}
-			<img id="performance-tooltip" class="inline-tooltip" src="{{ url_for('static', filename='tooltip.png') }}" alt="{{ _('Tooltip') }}" />
-		</a>
-	</li>
-	<li><a href="#other">{{ _('Categorical') }}</a></li>
-</ul>
-
-<!-- Subtabs' contents -->
-<!-- List of comments to render -->
-{% if pass_dict.course_info.get('Business Type', 'Online') == _('Online') %}
-	{% set comment_names = ['general_comments', 'technical_comments', 'language_comments', 'performance_comments'] %}
-{% else %}
-	{% set comment_names = ['general_comments', 'language_comments', 'performance_comments'] %}
-{% endif %}
-
+{% set comment_names = ['general_comments', 'instructor_comments', 'technical_comments', 'language_comments', 'performance_comments'] %}
 {% for comment_name in comment_names %}
-	<section id="{{ comment_name }}" class="tab-content all-comment-tabs {{ 'active' if loop.index == 1 else 'hide' }}">
+	<section class="{{ comment_name }} hideable">
 		<!-- Only render the rest of the section if feedback exists -->
 		{% if pass_dict[comment_name] %}
 			
@@ -50,7 +23,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('Five') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-five" href="" data-target="5">
+							<a class="bar-stars-five" href="" data-target=".star-5">
 								<!-- Width and text added dynamically by jQuery in script tag below -->
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
@@ -60,7 +33,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('Four') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-four" href="" data-target="4">
+							<a class="bar-stars-four" href="" data-target=".star-4">
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
 							</a>
@@ -69,7 +42,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('Three') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-three" href="" data-target="3">
+							<a class="bar-stars-three" href="" data-target=".star-3">
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
 							</a>
@@ -78,7 +51,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('Two') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-two" href="" data-target="2">
+							<a class="bar-stars-two" href="" data-target=".star-2">
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
 							</a>
@@ -87,7 +60,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('One') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-one" href="" data-target="1">
+							<a class="bar-stars-one" href="" data-target=".star-1">
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
 							</a>
@@ -99,27 +72,26 @@
 			<!-- Dropdown to filter by star -->
 			<div class="star-filter">
 				<p>{{ _('Stars: ') }}</p>
-				<select onchange="filterComments()">
-					<!-- Dropdown values filled dynamically by jQuery below -->
-					<option value="bob-comment">{{ _('All') }}</option>
-					<option value="star-5">{{ _('Five') }}</option>
-					<option value="star-4">{{ _('Four') }}</option>
-					<option value="star-3">{{ _('Three') }}</option>
-					<option value="star-2">{{ _('Two') }}</option>
-					<option value="star-1">{{ _('One') }}</option>
+				<select data-target="{{ comment_name }}">
+					<option value="">{{ _('All') }}</option>
+					<option value=".star-5">{{ _('Five') }}</option>
+					<option value=".star-4">{{ _('Four') }}</option>
+					<option value=".star-3">{{ _('Three') }}</option>
+					<option value=".star-2">{{ _('Two') }}</option>
+					<option value=".star-1">{{ _('One') }}</option>
 				</select>
 			</div>
 			
 			<!-- Dropdown to filter by fiscal year -->
 			<div class="year-filter">
 				<p>{{ _('Fiscal Year: ') }}</p>
-				<select onchange="filterComments()">
-					<!-- Dropdown values filled dynamically by jQuery below -->
-					<option value="bob-comment">{{ _('All') }}</option>
-					<option value="FY2015-16">2015-16</option>
-					<option value="FY2016-17">2016-17</option>
-					<option value="FY2017-18">2017-18</option>
-					<option value="FY2018-19">2018-19</option>
+				<select data-target="{{ comment_name }}">
+					<option value="">{{ _('All') }}</option>
+					<option value=".FY2015-16">2015-16</option>
+					<option value=".FY2016-17">2016-17</option>
+					<option value=".FY2017-18">2017-18</option>
+					<option value=".FY2018-19">2018-19</option>
+					<option value=".FY2019-20">2019-20</option>
 				</select>
 			</div>
 			
@@ -155,20 +127,16 @@
 					</div>
 				</div>
 			{% endfor %}
+		{% elif comment_name == 'instructor_comments' %}
+			<h4>{{ _('Comments on instructor performance are currently disabled due to privacy restrictions.') }}</h4>
 		{% else %}
 			<h4>{{ _('Apologies, this course has yet to receive any feedback of this type.') }}</h4>
 		{% endif %}
 	</section>
 {% endfor %}
 
-
-<!-- For now, instructor_comments are disabled for privacy -->
-<section id="instructor_comments" class="tab-content all-comment-tabs hide">
-	<h4>{{ _('Comments on instructor performance are currently disabled due to privacy restrictions.') }}</h4>
-</section>
-
 <!-- Categorical Questions -->
-<section id="other" class="tab-content all-comment-tabs hide">
+<section class="other hideable">
 	<!-- Display categorical comments if any, else error message -->
 	{% if any ([pass_dict.reason_to_participate, pass_dict.technical_issues,
 				pass_dict.languages_available, pass_dict.tools_used, pass_dict.prepared_by]) %}
@@ -191,12 +159,14 @@
 
 <script async>
 	// Add tooltip contents
+	/*
 	$('#performance-tooltip').tooltip({
 		placement: 'bottom',
 		title: "{{ _('<h5>Tip:</h5><p>Learners explain why they feel the training won\'t improve their job performance.</p>') }}",
 		animation: true,
 		html: true
 	});
+	*/
 	$('.computed-score-tooltip').tooltip({
 		placement: 'bottom',
 		title: "{{ _('<h5>Tip:</h5><p>Comments are assigned a sentiment score between 1 (most negative) and 5 (most positive) using machine learning.</p>') }}",
@@ -207,13 +177,7 @@
 	// Dynamically update CSS bar charts to show star percentages
 	function updateBarChart(tabName) {
 		// Get fiscal year dropdown selection
-		var currentCommentTabId= $('.sub-tabs li.active a:first').attr('href');
-		var dropdowns = $(currentCommentTabId + ' select');
-		if (dropdowns.length > 1) {
-			var fiscalYearDropdown = '.' + dropdowns[1].value;
-		} else {
-			var fiscalYearDropdown = '';
-		}
+		var fiscalYearDropdown = $(tabName + ' .year-filter select')[0].value;
 		
 		// Get counts
 		var fiveStar = $(tabName + ' .star-5' + fiscalYearDropdown).length;
@@ -257,13 +221,13 @@
 		// Add labels showing percentages
 		var totalComments = fiveStar + fourStar + threeStar + twoStar + oneStar;
 		// Account for 0 comments
-		totalComments = (totalComments) ? totalComments : 1;
+		totalCommentsDivisor = (totalComments) ? totalComments : 1;
 		// Multiply then divide by ten as JS built-in Math.round doesn't support rounding to 1 decimal
-		var percentFive = Math.round((fiveStar / totalComments) * 100 * 10) / 10;
-		var percentFour = Math.round((fourStar / totalComments) * 100 * 10) / 10;
-		var percentThree = Math.round((threeStar / totalComments) * 100 * 10) / 10;
-		var percentTwo = Math.round((twoStar / totalComments) * 100 * 10) / 10;
-		var percentOne = Math.round((oneStar / totalComments) * 100 * 10) / 10;
+		var percentFive = Math.round((fiveStar / totalCommentsDivisor) * 100 * 10) / 10;
+		var percentFour = Math.round((fourStar / totalCommentsDivisor) * 100 * 10) / 10;
+		var percentThree = Math.round((threeStar / totalCommentsDivisor) * 100 * 10) / 10;
+		var percentTwo = Math.round((twoStar / totalCommentsDivisor) * 100 * 10) / 10;
+		var percentOne = Math.round((oneStar / totalCommentsDivisor) * 100 * 10) / 10;
 		$(tabName + ' .stars-bar-chart .bar-stars-five span.bar-label').text(String(percentFive) + '%');
 		$(tabName + ' .stars-bar-chart .bar-stars-four span.bar-label').text(String(percentFour) + '%');
 		$(tabName + ' .stars-bar-chart .bar-stars-three span.bar-label').text(String(percentThree) + '%');
@@ -274,7 +238,7 @@
 		// Add leading space to distinguish from uppercase 'Commentaires'
 		var titleNoun = (totalComments == 1) ? "{{ _(' Comment ') }}" : "{{ _(' Comments') }}";
 		var titlePrep = "{{ _('in') }}";
-		var fiscalYearSelected = $(dropdowns[1]).find('option:selected').text();
+		var fiscalYearSelected = $(tabName + ' .year-filter select').find('option:selected').text();
 		if (fiscalYearSelected == "{{ _('All') }}") {
 			$(tabName + ' .stars-bar-chart thead h3 span').text(totalComments + titleNoun + ' ' + "{{ _('in Total') }}");
 		} else {
@@ -288,7 +252,7 @@
 			e.stopImmediatePropagation();
 			e.preventDefault();
 			var clicked = $(this).attr('data-target');
-			$(tabName + ' .star-filter select').val('star-' + clicked).change();
+			$(tabName + ' .star-filter select').val(clicked).change();
 			return false;
 		});
 	}
@@ -296,33 +260,33 @@
 	// Create bar charts across all comment subtabs
 	{% for comment_name in comment_names %}
 		{% if pass_dict[comment_name] %}
-			updateBarChart('#{{ comment_name }}');
-			addListenerBarChart('#{{ comment_name }}');
+			updateBarChart('.{{ comment_name }}');
+			addListenerBarChart('.{{ comment_name }}');
 		{% endif %}
 	{% endfor %}
 	
-	// Enable star and fiscal year dropdowns to show / hide
-	function filterComments() {
+	// Enable dropdowns to show / hide
+	// If click on any <select>, get value of all others on same page
+	// Filter comments on page by values of dropdowns
+	$('select').on('change', function(e) {
+		e.preventDefault();
+		
 		// Get current tab
-		var currentCommentTabId= $('.sub-tabs li.active a:first').attr('href');
+		var currentCommentTab = '.' + $(this).attr('data-target');
 		
 		// Hide all comments
-		$(currentCommentTabId + ' .bob-comment').hide();
+		$(currentCommentTab + ' .bob-comment').hide();
 		
-		// Show comments according to selection in dropdown(s)
-		var dropdowns = $(currentCommentTabId + ' select');
-		if (dropdowns.length == 1) {
-			var starDropdown = dropdowns[0].value;
-			$(currentCommentTabId + ' .bob-comment' + '.' + starDropdown).show();
-		} else {
-			var starDropdown = dropdowns[0].value;
-			var fiscalYearDropdown = dropdowns[1].value;
-			$(currentCommentTabId + ' .bob-comment' + '.' + starDropdown + '.' + fiscalYearDropdown).show();
-			
-			// Update bar chart to match fiscal year selected
-			updateBarChart(currentCommentTabId);
-		}
-	}
+		// Get dropdown selections and show relevant comments
+		var dropdowns = $(currentCommentTab + ' select');
+		var starDropdown = dropdowns[0].value;
+		var yearDropdown = dropdowns[1].value;
+		var target = currentCommentTab + ' .bob-comment' + starDropdown + yearDropdown;
+		$(target).show();
+		
+		// Update bar chart to match fiscal year selected
+		updateBarChart(currentCommentTab);
+	});
 	
 	function createPieChart(id, title, data) {
 		$('#' + String(id)).highcharts({
