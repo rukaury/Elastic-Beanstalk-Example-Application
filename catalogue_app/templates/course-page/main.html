@@ -21,8 +21,8 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="#geodata" data-div="offering-map">{{ _('Offering Locations') }}</a></li>
-					<li><a href="#geodata" data-div="learner-map">{{ _('Learner Locations') }}</a></li>
+					<li><a href="#geodata" data-class="offering-map">{{ _('Offering Locations') }}</a></li>
+					<li><a href="#geodata" data-class="learner-map">{{ _('Learner Locations') }}</a></li>
 				</ul>
 			</li>
 			
@@ -93,13 +93,13 @@
 			$(new_section).addClass('active');
 			$(this).parents('li.main-tab').addClass('active'); // Appearance of tab in navbar
 			
-			// If applies, show specific div within section and hide others
-			// Div id stored in attr 'data-div'
-			var specific_div = $(this).attr('data-div');
-			if (specific_div) {
-				$('.sub-div').hide();
-				$('.' + specific_div).show();
-				//alert(specific_div);
+			// If applicable, show specific class within section and hide others
+			// Class name stored in attr 'data-class'
+			var show_class = $(this).attr('data-class');
+			if (show_class) {
+				// Hide all irrelevant divs
+				$('.hideable').hide();
+				$('.' + show_class).show();
 			}
 			
 			/* IE11 bug: Create Offerings per Region chart only after its parent
