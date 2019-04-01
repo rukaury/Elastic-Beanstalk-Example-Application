@@ -1,33 +1,6 @@
 <h1>{{ pass_dict.course_title }}</h1>
 
-<!-- Subtabs -->
-<ul class="nav nav-tabs nav-justified sub-tabs">
-	<li class="active"><a href="#general_comments">{{ _('Overall') }}</a></li>
-	<!-- Show Technical comments for Online courses; Instructor comments for Instructor-Led -->
-	{% if pass_dict.course_info.get('Business Type', 'Online') == _('Online') %}
-		<li><a href="#technical_comments">{{ _('Technical') }}</a></li>
-	{% else %}
-		<li><a href="#instructor_comments">{{ _('Instructor') }}</a></li>
-	{% endif %}
-	<li><a href="#language_comments">{{ _('Language') }}</a></li>
-	<!-- Add tooltip explaining Performance comments -->
-	<li>
-		<a href="#performance_comments">
-			{{ _('Performance') }}
-			<img id="performance-tooltip" class="inline-tooltip" src="{{ url_for('static', filename='tooltip.png') }}" alt="{{ _('Tooltip') }}" />
-		</a>
-	</li>
-	<li><a href="#other">{{ _('Categorical') }}</a></li>
-</ul>
-
-<!-- Subtabs' contents -->
-<!-- List of comments to render -->
-{% if pass_dict.course_info.get('Business Type', 'Online') == _('Online') %}
-	{% set comment_names = ['general_comments', 'technical_comments', 'language_comments', 'performance_comments'] %}
-{% else %}
-	{% set comment_names = ['general_comments', 'language_comments', 'performance_comments'] %}
-{% endif %}
-
+{% set comment_names = ['general_comments', 'technical_comments', 'language_comments', 'performance_comments'] %}
 {% for comment_name in comment_names %}
 	<section id="{{ comment_name }}" class="tab-content all-comment-tabs {{ 'active' if loop.index == 1 else 'hide' }}">
 		<!-- Only render the rest of the section if feedback exists -->
@@ -100,7 +73,6 @@
 			<div class="star-filter">
 				<p>{{ _('Stars: ') }}</p>
 				<select onchange="filterComments()">
-					<!-- Dropdown values filled dynamically by jQuery below -->
 					<option value="bob-comment">{{ _('All') }}</option>
 					<option value="star-5">{{ _('Five') }}</option>
 					<option value="star-4">{{ _('Four') }}</option>
@@ -114,12 +86,12 @@
 			<div class="year-filter">
 				<p>{{ _('Fiscal Year: ') }}</p>
 				<select onchange="filterComments()">
-					<!-- Dropdown values filled dynamically by jQuery below -->
 					<option value="bob-comment">{{ _('All') }}</option>
 					<option value="FY2015-16">2015-16</option>
 					<option value="FY2016-17">2016-17</option>
 					<option value="FY2017-18">2017-18</option>
 					<option value="FY2018-19">2018-19</option>
+					<option value="FY2019-20">2019-20</option>
 				</select>
 			</div>
 			
