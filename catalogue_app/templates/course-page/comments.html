@@ -23,7 +23,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('Five') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-five" data-target="5">
+							<a class="bar-stars-five" href="" data-target=".star-5">
 								<!-- Width and text added dynamically by jQuery in script tag below -->
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
@@ -33,7 +33,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('Four') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-four" data-target="4">
+							<a class="bar-stars-four" href="" data-target=".star-4">
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
 							</a>
@@ -42,7 +42,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('Three') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-three" data-target="3">
+							<a class="bar-stars-three" href="" data-target=".star-3">
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
 							</a>
@@ -51,7 +51,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('Two') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-two" data-target="2">
+							<a class="bar-stars-two" href="" data-target=".star-2">
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
 							</a>
@@ -60,7 +60,7 @@
 					<tr>
 						<td class="col-xs-2 text-center">{{ _('One') }}</td>
 						<td class="col-xs-10">
-							<a class="bar-stars-one" data-target="1">
+							<a class="bar-stars-one" href="" data-target=".star-1">
 								<span class="bar-fill" style="width: 0%;"></span>
 								<span class="bar-label"></span>
 							</a>
@@ -246,34 +246,22 @@
 		}
 	}
 	
-	
-	
-	
-	
 	// Create listener enabling CSS bar chart to trigger star filters
-	//function addListenerBarChart(tabName) {
-		//$(tabName + ' .stars-bar-chart a').on('click', function(e) {
-		//	e.stopImmediatePropagation();
-		//	e.preventDefault();
-		//	var clicked = $(this).attr('data-target');
-		//	$(tabName + ' .star-filter select').val('star-' + clicked).change();
-		//	return false;
-		//});
-	//}
-	
-	
-	
-	
-	
-	
-	
-	
+	function addListenerBarChart(tabName) {
+		$(tabName + ' .stars-bar-chart a').on('click', function(e) {
+			e.stopImmediatePropagation();
+			e.preventDefault();
+			var clicked = $(this).attr('data-target');
+			$(tabName + ' .star-filter select').val(clicked).change();
+			return false;
+		});
+	}
 	
 	// Create bar charts across all comment subtabs
 	{% for comment_name in comment_names %}
 		{% if pass_dict[comment_name] %}
 			updateBarChart('.{{ comment_name }}');
-			//addListenerBarChart('
+			addListenerBarChart('.{{ comment_name }}');
 		{% endif %}
 	{% endfor %}
 	
