@@ -1,14 +1,8 @@
 <h1>{{ pass_dict.course_title }}</h1>
 
 <!-- Map headings -->
-<h4 class="offering-map hideable">
-	{{ _('Locations of open and delivered offerings around the globe.') }}
-	<img id="offering-tooltip" class="inline-tooltip" src="{{ url_for('static', filename='tooltip.png') }}" alt="{{ _('Tooltip') }}" />
-</h4>
-<h4 class="learner-map hideable">
-	{{ _('Locations of learners around the globe.') }}
-	<img id="learner-tooltip" class="inline-tooltip" src="{{ url_for('static', filename='tooltip.png') }}" alt="{{ _('Tooltip') }}" />
-</h4>
+<h4 class="offering-map hideable">{{ _('Locations of open and delivered offerings around the globe for the current fiscal year.') }}</h4>
+<h4 class="learner-map hideable">{{ _('Locations of confirmed registrations around the globe for the current fiscal year.') }}</h4>
 
 <!-- Maps -->
 <!-- Need distinct divs as Google Maps overwrites element contents -->
@@ -46,20 +40,6 @@
 </div>
 
 <script async>
-	// Add tooltip contents
-	$('#offering-tooltip').tooltip({
-		placement: 'bottom',
-		title: "{{ _('<h5>Tip:</h5><p>The map shows offerings with status \'Open\' or \'Delivered\'.</p>') }}",
-		animation: true,
-		html: true
-	});
-	$('#learner-tooltip').tooltip({
-		placement: 'bottom',
-		title: "{{ _('<h5>Tip:</h5><p>The map shows learners whose registration status is \'Confirmed\'.</p>') }}",
-		animation: true,
-		html: true
-	});
-	
 	// Array to store markers' InfoWindows
 	var infoWindowArray = [];
 	
@@ -103,7 +83,6 @@
 			content: contentString
 		});
 		infoWindowArray.push(infoWindow);
-		
 		// Show InfoWindow upon click
 		marker.addListener('click', function() {
 			closeInfoWindows();
