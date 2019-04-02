@@ -102,13 +102,37 @@
 		chart: {type: 'column'},
 		title: {text: ''},
 		xAxis: {type: 'category'},
-		yAxis: {title: {text: ''}, allowDecimals: false, min: 0},
+		plotOptions: {
+			column: {
+				stacking: 'normal',
+				dataLabels: {enabled: false}
+			}
+		},
 		legend: {enabled: false},
 		credits: {text: ''},
-		series: [{
-			name: "{{ _('Registrations') }}",
-			colorByPoint: false,
-			data: {{ pass_dict.regs_per_month | safe }}
-		}]
+		yAxis: {
+			title: {text: ''},
+			allowDecimals: false,
+			min: 0,
+			reversedStacks: false
+		},
+        series: [
+			{
+				name: "{{ _('Registrations') }}",
+				data: [
+					['New York', 50],
+					['LA', 60],
+					['Chicago', 50]
+				]
+			},
+			{
+				name: "{{ _('No-Shows') }}",
+				data: [
+					['New York', 2],
+					['LA', 4],
+					['Chicago', 2]
+				]
+			}
+		]
 	});
 </script>
