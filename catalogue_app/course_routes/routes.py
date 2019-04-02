@@ -46,6 +46,8 @@ def course_result():
 	overall_offering_numbers_LY = dashboard_offering_queries.OverallOfferingNumbers(LAST_YEAR, course_code).load()
 	overall_offering_numbers_TY = dashboard_offering_queries.OverallOfferingNumbers(THIS_YEAR, course_code).load()
 	offering_locations = dashboard_offering_queries.OfferingLocations(lang, THIS_YEAR, course_code).load()
+	overall_learner_numbers_LY = dashboard_learner_queries.OverallLearnerNumbers(LAST_YEAR, course_code).load()
+	overall_learner_numbers_TY = dashboard_learner_queries.OverallLearnerNumbers(THIS_YEAR, course_code).load()
 	learners = dashboard_learner_queries.Learners(lang, THIS_YEAR, course_code).load()
 	map = map_queries.Map(THIS_YEAR, course_code).load()
 	# ratings = rating_queries.Ratings(lang, course_code).load()
@@ -57,7 +59,7 @@ def course_result():
 		'course_title': learners.course_title,
 		# General
 		'course_info': course_info.course_info,
-		# Dashboard - offerings
+		# Dashboards - Offerings
 		'overall_offering_numbers_LY': overall_offering_numbers_LY.counts,
 		'overall_offering_numbers_TY': overall_offering_numbers_TY.counts,
 		'region_drilldown': offering_locations.regions,
@@ -77,7 +79,9 @@ def course_result():
 		'avg_no_shows_global_TY': round(dashboard_offering_queries.avg_no_shows_global(THIS_YEAR), 1),
 		'avg_no_shows_LY': round(dashboard_offering_queries.avg_no_shows(LAST_YEAR, course_code), 1),
 		'avg_no_shows_TY': round(dashboard_offering_queries.avg_no_shows(THIS_YEAR, course_code), 1),
-		# Dashboard - learners
+		# Dashboards - Learners
+		'overall_learner_numbers_LY': overall_learner_numbers_LY,
+		'overall_learner_numbers_TY': overall_learner_numbers_TY,
 		'regs_per_month': learners.regs_per_month,
 		'top_5_depts': learners.top_depts,
 		'top_5_classifs': learners.top_classifs,
@@ -91,7 +95,7 @@ def course_result():
 		'technical_comments': comments.technical,
 		'language_comments': comments.language,
 		'performance_comments': comments.performance,
-		# Categorical and yes/no questions
+		# Comments - Other
 		'reason_to_participate': comments.reason,
 		'technical_issues': comments.technical_bool,
 		'languages_available': comments.language_bool,
