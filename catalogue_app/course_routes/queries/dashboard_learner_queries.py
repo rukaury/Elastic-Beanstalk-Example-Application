@@ -124,7 +124,8 @@ class OverallLearnerNumbers:
 	def load(self):
 		"""Run all queries and process all raw data."""
 		self._calc_total_regs()
-		# ...
+		self._calc_unique_learners()
+		self._calc_total_no_shows()
 		# Return self to allow method chaining
 		return self
 	
@@ -142,29 +143,27 @@ class OverallLearnerNumbers:
 		self.counts.append(results_processed)
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	def _calc_no_shows(self):
-		pass
-		# also add to regs per month chart; should be in different object?
-	
-	
 	def _calc_unique_learners(self):
-		"""Calc by month for chart.
-				
-		
-		query_no_shows = 
+		"""Query total number of unique learners."""
+		table_name = 'lsr{0}'.format(self.fiscal_year)
+		query = """
+			SELECT COUNT(DISTINCT learner_id)
+			FROM {0}
+			WHERE course_code = %s AND reg_status = 'Confirmed';
+		""".format(table_name)
+		results = query_mysql(query, (self.course_code,))
+		results_processed = (gettext('Unique Learners'), as_int(results))
+		self.counts.append(results_processed)
+	
+	
+	def _calc_total_no_shows(self):
+		"""Query total number of no-shows."""
+		table_name = 'lsr{0}'.format(self.fiscal_year)
+		query = """
 			SELECT SUM(no_show)
 			FROM {0}
 			WHERE course_code = %s;
-		.format(table_name)
-		no_shows = query_mysql(query_no_shows, (self.course_code,))
-		"""
-		pass
-		# also add to regs per month chart; should be in different object?
+		""".format(table_name)
+		results = query_mysql(query, (self.course_code,))
+		results_processed = (gettext('No-Shows'), as_int(results))
+		self.counts.append(results_processed)
