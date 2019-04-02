@@ -14,7 +14,15 @@
 		{% for tup1, tup2 in pass_dict.overall_learner_numbers_LY|zip(pass_dict.overall_learner_numbers_TY) %}
 			<tr>
 				<!-- Name -->
-				<td>{{ tup1[0] }}</td>
+				<!-- Add tooltip explaining difference between Registrations and Unique Learners -->
+				{% if tup1[0] == _('Unique Learners') %}
+					<td>
+						{{ tup1[0] }}
+						<img id="unique-learners-tooltip" class="table-tooltip" src="{{ url_for('static', filename='tooltip.png') }}" alt="{{ _('Tooltip') }}" />
+					</td>
+				{% else %}
+					<td>{{ tup1[0] }}</td>
+				{% endif %}
 				
 				<!-- LAST_YEAR's value -->
 				<td class="text-center">{{ tup1[1] }}</td>
@@ -28,10 +36,7 @@
 
 <!-- Registrations per Month -->
 <div class="row dashboard-chart">
-	<h4 class= "dashboard-chart-title">
-		{{ _('Registrations per Month') }}
-		<img id="regs-per-month-tooltip" class="inline-tooltip" src="{{ url_for('static', filename='tooltip.png') }}" alt="{{ _('Tooltip') }}" />
-	</h4>
+	<h4 class= "dashboard-chart-title">{{ _('No-Shows and Confirmed Registrations per Month') }}</h4>
 	<div id="regs-per-month" class="col-xs-12"></div>
 </div>
 
@@ -85,14 +90,14 @@
 
 <script async>
 	// Add tooltips
-	$('#regs-per-month-tooltip').tooltip({
+	$('#unique-learners-tooltip').tooltip({
 		placement: 'bottom',
-		title: "{{ _('<h5>Tip:</h5><p>Learners whose registration status is \'Confirmed\'.</p>') }}",
+		title: "{{ _('<h5>Tip:</h5><p>There may be fewer unique learners than registrations if one or more people retook the course.</p>') }}",
 		animation: true,
 		html: true
 	});
 	
-	// Registrations per month
+	// No-Shows and Confirmed Registrations per Month
 	$('#regs-per-month').highcharts({
 		chart: {type: 'column'},
 		title: {text: ''},
@@ -101,7 +106,7 @@
 		legend: {enabled: false},
 		credits: {text: ''},
 		series: [{
-			name: "{{ _('Learners') }}",
+			name: "{{ _('Registrations') }}",
 			colorByPoint: false,
 			data: {{ pass_dict.regs_per_month | safe }}
 		}]
