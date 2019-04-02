@@ -1,10 +1,10 @@
 from flask_babel import gettext
 from catalogue_app.db import query_mysql
-from catalogue_app.course_routes.utils import as_string
+from catalogue_app.course_routes.utils import as_string, as_int
 
 
 class Learners:
-	"""Data for the Learners section of the Dashboard tab."""
+	"""Data for the Learners section of the Dashboards tab."""
 	def __init__(self, lang, fiscal_year, course_code):
 		self.lang = lang
 		self.fiscal_year = fiscal_year
@@ -109,3 +109,62 @@ class Learners:
 		results = query_mysql(query, (self.course_code,))
 		results = as_string(results)
 		self.course_title = results
+
+
+class OverallLearnerNumbers:
+	"""Data for a given fiscal year of the Overall Numbers table."""
+	def __init__(self, fiscal_year, course_code):
+		self.fiscal_year = fiscal_year
+		self.course_code = course_code
+		# Store results in single list so can be iterated through
+		# in templates by single for loop. Keeps code lean.
+		self.counts = []
+	
+	
+	def load(self):
+		"""Run all queries and process all raw data."""
+		self._calc_total_regs()
+		# ...
+		# Return self to allow method chaining
+		return self
+	
+	
+	def _calc_total_regs(self):
+		"""Query total number of confirmed registrations."""
+		table_name = 'lsr{0}'.format(self.fiscal_year)
+		query = """
+			SELECT COUNT(reg_id)
+			FROM {0}
+			WHERE course_code = %s AND reg_status = 'Confirmed';
+		""".format(table_name)
+		results = query_mysql(query, (self.course_code,))
+		results_processed = (gettext('Registrations'), as_int(results))
+		self.counts.append(results_processed)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	def _calc_no_shows(self):
+		pass
+		# also add to regs per month chart; should be in different object?
+	
+	
+	def _calc_unique_learners(self):
+		"""Calc by month for chart.
+				
+		
+		query_no_shows = 
+			SELECT SUM(no_show)
+			FROM {0}
+			WHERE course_code = %s;
+		.format(table_name)
+		no_shows = query_mysql(query_no_shows, (self.course_code,))
+		"""
+		pass
+		# also add to regs per month chart; should be in different object?
