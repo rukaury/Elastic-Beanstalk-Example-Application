@@ -10,6 +10,7 @@ class Learners:
 		self.fiscal_year = fiscal_year
 		self.course_code = course_code
 		self.regs_per_month = None
+		self.no_shows_per_month = None
 		self.top_classifs = None
 		self.top_depts = None
 		self.course_title = None
@@ -43,7 +44,8 @@ class Learners:
 		results = query_mysql(query, (self.course_code,))
 		results = {tup[0]: (tup[1], tup[2]) for tup in results}
 		# Process results into format required by Highcharts
-		results_processed = []
+		results_processed_regs = []
+		results_processed_no_shows = []
 		# Ensure every month is returned, even if count 0
 		months = [
 			gettext('April'),
@@ -60,9 +62,11 @@ class Learners:
 			gettext('March')
 		]
 		for month in months:
-			count = results.get(month, (0, 0))
-			results_processed.append({'name': month, 'y': count[0], 'z': count[1]})
-		self.regs_per_month = results_processed
+			counts = results.get(month, (0, 0))
+			results_processed_regs.append([month, counts[0]])
+			results_processed_no_shows.append([month, counts[1]])
+		self.regs_per_month = results_processed_regs
+		self.no_shows_per_month = results_processed_no_shows
 	
 	
 	def _calc_top_classifs(self):

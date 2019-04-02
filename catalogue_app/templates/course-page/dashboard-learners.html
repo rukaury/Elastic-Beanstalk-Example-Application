@@ -116,22 +116,24 @@
 			min: 0,
 			reversedStacks: false
 		},
+		// Display tooltip to right of top center of column
+		// Displays above said point by default
+		tooltip: {
+			positioner: function(labelWidth, labelHeight, point) {
+				return {
+					x: point.plotX + (labelWidth / 2),
+					y: point.plotY
+				};
+			}
+		},
         series: [
 			{
 				name: "{{ _('Registrations') }}",
-				data: [
-					['New York', 50],
-					['LA', 60],
-					['Chicago', 50]
-				]
+				data: {{ pass_dict.regs_per_month | safe }}
 			},
 			{
 				name: "{{ _('No-Shows') }}",
-				data: [
-					['New York', 2],
-					['LA', 4],
-					['Chicago', 2]
-				]
+				data: {{ pass_dict.no_shows_per_month | safe }}
 			}
 		]
 	});

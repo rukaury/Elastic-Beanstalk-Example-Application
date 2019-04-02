@@ -83,6 +83,7 @@ def course_result():
 		'overall_learner_numbers_LY': overall_learner_numbers_LY.counts,
 		'overall_learner_numbers_TY': overall_learner_numbers_TY.counts,
 		'regs_per_month': learners.regs_per_month,
+		'no_shows_per_month': learners.no_shows_per_month,
 		'top_5_depts': learners.top_depts,
 		'top_5_classifs': learners.top_classifs,
 		# Maps
