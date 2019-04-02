@@ -55,8 +55,12 @@ CREATE INDEX idx_cc_cl_os_oid ON lsr2018_19(course_code, client, offering_status
 # Index for confirmed regs
 CREATE INDEX idx_cc_rs ON lsr2018_19(course_code, reg_status);
 
-# Index for no-shows
+# Index for total no-shows
 CREATE INDEX idx_cc_ns ON lsr2018_19(course_code, no_show);
+
+# Index for combo no-shows and registrations per month
+CREATE INDEX idx_cc_mnen_rs_ns ON lsr2018_19(course_code, month_en, reg_status, no_show);
+CREATE INDEX idx_cc_mnfr_rs_ns ON lsr2018_19(course_code, month_fr, reg_status, no_show);
 
 # Index for class OfferingLocations
 CREATE INDEX idx_cc_os_oren_open_oc_oid ON lsr2018_19(course_code, offering_status, offering_region_en, offering_province_en, offering_city, offering_id);
