@@ -17,7 +17,7 @@ class Learners:
 	
 	def load(self):
 		"""Run all learner queries."""
-		self._calc_regs_per_month()
+		self._calc_regs_and_no_shows_per_month()
 		self._calc_top_classifs()
 		self._calc_top_depts()
 		self._get_course_tile()
@@ -25,20 +25,23 @@ class Learners:
 		return self
 	
 	
-	def _calc_regs_per_month(self):
-		"""Query number of regisrations per month; include months
-		that have 0 registrations.
+	def _calc_regs_and_no_shows_per_month(self):
+		"""Query number of confirmed regisrations and no-shows per
+		month; include months that have 0 of both.
 		"""
 		field_name = 'month_{0}'.format(self.lang)
 		table_name = 'lsr{0}'.format(self.fiscal_year)
 		query = """
-			SELECT {0}, COUNT(reg_id)
+			SELECT 
+				{0},
+				COUNT(DISTINCT CASE WHEN (reg_status = 'Confirmed') THEN reg_id END),
+				CAST(SUM(no_show) AS UNSIGNED)
 			FROM {1}
-			WHERE course_code = %s AND reg_status = 'Confirmed'
-			GROUP BY {0};
+			WHERE course_code = %s
+			GROUP BY month_en;
 		""".format(field_name, table_name)
 		results = query_mysql(query, (self.course_code,))
-		results = dict(results)
+		results = {tup[0]: (tup[1], tup[2]) for tup in results}
 		# Process results into format required by Highcharts
 		results_processed = []
 		# Ensure every month is returned, even if count 0
@@ -57,8 +60,8 @@ class Learners:
 			gettext('March')
 		]
 		for month in months:
-			count = results.get(month, 0)
-			results_processed.append({'name': month, 'y': count})
+			count = results.get(month, (0, 0))
+			results_processed.append({'name': month, 'y': count[0], 'z': count[1]})
 		self.regs_per_month = results_processed
 	
 	
