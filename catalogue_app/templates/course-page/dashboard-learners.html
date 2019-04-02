@@ -1,3 +1,31 @@
+<!-- Overall Numbers-->
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<td class="text-center" colspan="3"><h4><strong>{{ _('Overall Numbers') }}</strong></h4></td>
+		</tr>
+		<tr>
+			<td><strong>{{ _('Fiscal Year') }}</strong></td>
+			<td class="text-center"><strong>{{ LAST_YEAR }}</strong></td>
+			<td class="text-center"><strong>{{ THIS_YEAR }}</strong></td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for tup1, tup2 in pass_dict.overall_learner_numbers_LY|zip(pass_dict.overall_learner_numbers_TY) %}
+			<tr>
+				<!-- Name -->
+				<td>{{ tup1[0] }}</td>
+				
+				<!-- LAST_YEAR's value -->
+				<td class="text-center">{{ tup1[1] }}</td>
+				
+				<!-- THIS_YEAR's value -->
+				<td class="text-center">{{ tup2[1] }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
 <!-- Registrations per Month -->
 <div class="row dashboard-chart">
 	<h4 class= "dashboard-chart-title">

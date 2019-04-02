@@ -80,8 +80,8 @@ def course_result():
 		'avg_no_shows_LY': round(dashboard_offering_queries.avg_no_shows(LAST_YEAR, course_code), 1),
 		'avg_no_shows_TY': round(dashboard_offering_queries.avg_no_shows(THIS_YEAR, course_code), 1),
 		# Dashboards - Learners
-		'overall_learner_numbers_LY': overall_learner_numbers_LY,
-		'overall_learner_numbers_TY': overall_learner_numbers_TY,
+		'overall_learner_numbers_LY': overall_learner_numbers_LY.counts,
+		'overall_learner_numbers_TY': overall_learner_numbers_TY.counts,
 		'regs_per_month': learners.regs_per_month,
 		'top_5_depts': learners.top_depts,
 		'top_5_classifs': learners.top_classifs,
