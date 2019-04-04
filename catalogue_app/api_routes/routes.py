@@ -31,7 +31,7 @@ def comments(comment_type, course_code):
 	# Validate user input
 	# Avoid use of Flask Babel gettext in this module to allow
 	# query string to override cookie 'lang'
-	course_code = utils.validate_course_code({'course_code': course_code}, Config.THIS_YEAR)
+	course_code = utils.validate_course_code({'course_code': course_code}, 'this_year')
 	if not course_code:
 		if lang == 'fr':
 			error_message = 'Erreur : Cours introuvable'

@@ -6,7 +6,7 @@ def validate_course_code(args, fiscal_year):
 	course_code = str(args.get('course_code', False)).upper()
 	
 	# Check if found in DB; automatically escaped in MySQL via %s
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT EXISTS (
 			SELECT course_code

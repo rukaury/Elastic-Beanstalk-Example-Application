@@ -31,7 +31,7 @@ class Learners:
 		month; include months that have 0 of both.
 		"""
 		field_name = 'month_{0}'.format(self.lang)
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
 			SELECT 
 				{0},
@@ -71,7 +71,7 @@ class Learners:
 	
 	def _calc_top_classifs(self):
 		"""Query the top classifications by number of registrations."""
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
 			SELECT learner_classif, COUNT(learner_classif)
 			FROM {0}
@@ -87,7 +87,7 @@ class Learners:
 	def _calc_top_depts(self):
 		"""Query the top departments by number of registrations."""
 		field_name =  'billing_dept_name_{0}'.format(self.lang)
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
 			SELECT {0}, COUNT({0})
 			FROM {1}
@@ -106,7 +106,7 @@ class Learners:
 		table in case the course has registrations but has yet
 		to be catalogued by CM."""
 		field_name =  'course_title_{0}'.format(self.lang)
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
 			SELECT {0}
 			FROM {1}
@@ -139,7 +139,7 @@ class OverallLearnerNumbers:
 	
 	def _calc_total_regs(self):
 		"""Query total number of confirmed registrations."""
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
 			SELECT COUNT(reg_id)
 			FROM {0}
@@ -152,7 +152,7 @@ class OverallLearnerNumbers:
 	
 	def _calc_unique_learners(self):
 		"""Query total number of unique learners."""
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
 			SELECT COUNT(DISTINCT learner_id)
 			FROM {0}
@@ -165,7 +165,7 @@ class OverallLearnerNumbers:
 	
 	def _calc_total_no_shows(self):
 		"""Query total number of no-shows."""
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
 			SELECT SUM(no_show)
 			FROM {0}

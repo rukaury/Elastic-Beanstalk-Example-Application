@@ -32,7 +32,7 @@ class OfferingLocations:
 		"""
 		field_name_1 = 'offering_region_{0}'.format(self.lang)
 		field_name_2 = 'offering_province_{0}'.format(self.lang)
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
 			SELECT {0}, {1}, offering_city, COUNT(DISTINCT offering_id)
 			FROM {2}
@@ -121,7 +121,7 @@ class OverallOfferingNumbers:
 	
 	def _offering_status_counts(self):
 		"""Query number of offerings by status for a given fiscal year."""
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
 			SELECT offering_status, COUNT(DISTINCT offering_id)
 			FROM {0}
@@ -142,7 +142,7 @@ class OverallOfferingNumbers:
 	
 	def _offering_additional_counts(self):
 		"""Additional offering counts used by School analysts."""
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query_client_reqs = """
 			SELECT COUNT(DISTINCT offering_id)
 			FROM {0}
@@ -154,7 +154,7 @@ class OverallOfferingNumbers:
 
 
 def offerings_per_lang(fiscal_year, course_code):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT offering_language, COUNT(DISTINCT offering_id)
 		FROM {0}
@@ -175,7 +175,7 @@ def offerings_per_lang(fiscal_year, course_code):
 
 
 def offerings_cancelled(fiscal_year, course_code):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT SUM(a.Mars / b.Mars)
 		FROM
@@ -192,7 +192,7 @@ def offerings_cancelled(fiscal_year, course_code):
 
 
 def offerings_cancelled_global(fiscal_year):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT SUM(a.Mars / b.Mars)
 		FROM
@@ -209,7 +209,7 @@ def offerings_cancelled_global(fiscal_year):
 
 
 def avg_class_size(fiscal_year, course_code):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT AVG(class_size)
 		FROM(
@@ -224,7 +224,7 @@ def avg_class_size(fiscal_year, course_code):
 
 
 def avg_class_size_global(fiscal_year):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT AVG(class_size)
 		FROM(
@@ -239,7 +239,7 @@ def avg_class_size_global(fiscal_year):
 
 
 def avg_no_shows(fiscal_year, course_code):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT SUM(a.Mars / b.Mars)
 		FROM
@@ -256,7 +256,7 @@ def avg_no_shows(fiscal_year, course_code):
 
 
 def avg_no_shows_global(fiscal_year):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT SUM(a.Mars / b.Mars)
 		FROM

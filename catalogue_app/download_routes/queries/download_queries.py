@@ -22,8 +22,7 @@ def general_tab(course_code):
 
 def dashboard_tab(course_code):
 	"""Query raw data used for the Dashboard and Maps tabs."""
-	THIS_YEAR = Config.THIS_YEAR
-	table_name = 'lsr{0}'.format(THIS_YEAR)
+	table_name = 'lsr_this_year'
 	# Exclude course_title_en and course_title_fr
 	# Saves a LOT of time, space for huge courses
 	query = """
