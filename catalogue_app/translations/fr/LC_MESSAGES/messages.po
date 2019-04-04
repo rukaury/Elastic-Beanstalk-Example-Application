@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.9\n"
 "Report-Msgid-Bugs-To: sam.louden@canada.ca\n"
-"POT-Creation-Date: 2019-04-01 14:29-0400\n"
+"POT-Creation-Date: 2019-04-04 17:09-0400\n"
 "PO-Revision-Date: 2019-01-06 13:06-0500\n"
 "Last-Translator: SAM LOUDEN sam.louden@canada.ca\n"
 "Language: fr\n"
@@ -23,65 +23,82 @@ msgstr ""
 msgid "No response"
 msgstr "Aucune réponse"
 
-#: course_routes/queries/dashboard_learner_queries.py:46
+#: course_routes/queries/dashboard_learner_queries.py:51
 #: templates/course-page/ratings.html:25
 msgid "April"
 msgstr "Avril"
 
-#: course_routes/queries/dashboard_learner_queries.py:47
+#: course_routes/queries/dashboard_learner_queries.py:52
 #: templates/course-page/ratings.html:25
 msgid "May"
 msgstr "Mai"
 
-#: course_routes/queries/dashboard_learner_queries.py:48
+#: course_routes/queries/dashboard_learner_queries.py:53
 #: templates/course-page/ratings.html:25
 msgid "June"
 msgstr "Juin"
 
-#: course_routes/queries/dashboard_learner_queries.py:49
+#: course_routes/queries/dashboard_learner_queries.py:54
 #: templates/course-page/ratings.html:26
 msgid "July"
 msgstr "Juillet"
 
-#: course_routes/queries/dashboard_learner_queries.py:50
+#: course_routes/queries/dashboard_learner_queries.py:55
 #: templates/course-page/ratings.html:26
 msgid "August"
 msgstr "Août"
 
-#: course_routes/queries/dashboard_learner_queries.py:51
+#: course_routes/queries/dashboard_learner_queries.py:56
 #: templates/course-page/ratings.html:26
 msgid "September"
 msgstr "Septembre"
 
-#: course_routes/queries/dashboard_learner_queries.py:52
+#: course_routes/queries/dashboard_learner_queries.py:57
 #: templates/course-page/ratings.html:27
 msgid "October"
 msgstr "Octobre"
 
-#: course_routes/queries/dashboard_learner_queries.py:53
+#: course_routes/queries/dashboard_learner_queries.py:58
 #: templates/course-page/ratings.html:27
 msgid "November"
 msgstr "Novembre"
 
-#: course_routes/queries/dashboard_learner_queries.py:54
+#: course_routes/queries/dashboard_learner_queries.py:59
 #: templates/course-page/ratings.html:27
 msgid "December"
 msgstr "Décembre"
 
-#: course_routes/queries/dashboard_learner_queries.py:55
+#: course_routes/queries/dashboard_learner_queries.py:60
 #: templates/course-page/ratings.html:28
 msgid "January"
 msgstr "Janvier"
 
-#: course_routes/queries/dashboard_learner_queries.py:56
+#: course_routes/queries/dashboard_learner_queries.py:61
 #: templates/course-page/ratings.html:28
 msgid "February"
 msgstr "Février"
 
-#: course_routes/queries/dashboard_learner_queries.py:57
+#: course_routes/queries/dashboard_learner_queries.py:62
 #: templates/about.html:20 templates/course-page/ratings.html:28
 msgid "March"
 msgstr "Mars"
+
+#: course_routes/queries/dashboard_learner_queries.py:149
+#: templates/course-page/dashboards/learners.html:53
+#: templates/course-page/dashboards/learners.html:76
+#: templates/course-page/dashboards/learners.html:131
+msgid "Registrations"
+msgstr "Inscriptions"
+
+#: course_routes/queries/dashboard_learner_queries.py:162
+#: templates/course-page/dashboards/learners.html:18
+msgid "Unique Learners"
+msgstr "Apprenants uniques"
+
+#: course_routes/queries/dashboard_learner_queries.py:175
+#: templates/course-page/dashboards/learners.html:135
+msgid "No-Shows"
+msgstr "Absences"
 
 #: course_routes/queries/dashboard_offering_queries.py:54
 msgid "Atlantic"
@@ -112,7 +129,7 @@ msgid "Outside Canada"
 msgstr "Hors du Canada"
 
 #: course_routes/queries/dashboard_offering_queries.py:135
-#: templates/course-page/dashboard-offerings.html:20
+#: templates/course-page/dashboards/offerings.html:20
 msgid "Open Offerings"
 msgstr "Offres ouvertes"
 
@@ -124,22 +141,12 @@ msgstr "Offres livrées"
 msgid "Cancelled Offerings"
 msgstr "Offres annulées"
 
-#: course_routes/queries/dashboard_offering_queries.py:168
+#: course_routes/queries/dashboard_offering_queries.py:152
 msgid "Client Requests"
 msgstr "Demandes des clients"
 
-#: course_routes/queries/dashboard_offering_queries.py:169
-#: templates/course-page/dashboard-learners.html:20
-#: templates/course-page/dashboard-learners.html:43
-msgid "Registrations"
-msgstr "Inscriptions"
-
-#: course_routes/queries/dashboard_offering_queries.py:170
-msgid "No-Shows"
-msgstr "Absences"
-
-#: course_routes/queries/explore_queries.py:47
-#: course_routes/queries/explore_queries.py:55
+#: course_routes/queries/explore_queries.py:48
+#: course_routes/queries/explore_queries.py:56
 msgid "<awaiting mapping>"
 msgstr "<en attente de catégorisation>"
 
@@ -163,7 +170,7 @@ msgstr "Onglet des commentaires"
 msgid "Course Not Found"
 msgstr "Cours introuvable"
 
-#: download_routes/queries/download_queries.py:87
+#: download_routes/queries/download_queries.py:86
 msgid "Apologies, this tab contains no data."
 msgstr "Désolé, cet onglet ne contient aucune donnée."
 
@@ -253,12 +260,11 @@ msgid "GoC Logo"
 msgstr "Logo du GC"
 
 #: templates/course-page/comments.html:17
-#: templates/course-page/dashboard-learners.html:5
-#: templates/course-page/dashboard-offerings.html:25
-#: templates/course-page/dashboard-offerings.html:30
-#: templates/course-page/dashboard-offerings.html:48
-#: templates/course-page/general.html:46 templates/course-page/geodata.html:6
-#: templates/course-page/geodata.html:10 templates/course-page/ratings.html:3
+#: templates/course-page/dashboards/learners.html:21
+#: templates/course-page/dashboards/offerings.html:25
+#: templates/course-page/dashboards/offerings.html:30
+#: templates/course-page/dashboards/offerings.html:48
+#: templates/course-page/general.html:46 templates/course-page/ratings.html:3
 #: templates/course-page/ratings.html:15
 msgid "Tooltip"
 msgstr "Infobulle"
@@ -294,7 +300,7 @@ msgstr "Étoiles : "
 
 #: templates/course-page/comments.html:76
 #: templates/course-page/comments.html:89
-#: templates/course-page/comments.html:242
+#: templates/course-page/comments.html:244
 msgid "All"
 msgstr "Toutes"
 
@@ -310,7 +316,7 @@ msgstr "Avatar"
 msgid "Sentiment Score: "
 msgstr "Classement calculé : "
 
-#: templates/course-page/comments.html:131
+#: templates/course-page/comments.html:133
 msgid ""
 "Comments on instructor performance are currently disabled due to privacy "
 "restrictions."
@@ -318,13 +324,13 @@ msgstr ""
 "Les commentaires concernant les instructeurs sont présentement désactivés"
 " à cause des restrictions de confidentialité."
 
-#: templates/course-page/comments.html:133
-#: templates/course-page/comments.html:156
+#: templates/course-page/comments.html:135
+#: templates/course-page/comments.html:158
 #: templates/course-page/ratings.html:49
 msgid "Apologies, this course has yet to receive any feedback of this type."
 msgstr "Désolé, ce cours n'a pas encore reçu de rétroactions de ce type."
 
-#: templates/course-page/comments.html:165
+#: templates/course-page/comments.html:167
 msgid ""
 "<h5>Tip:</h5><p>Learners explain why they feel the training won't improve"
 " their job performance.</p>"
@@ -332,7 +338,7 @@ msgstr ""
 "<h5>Indice :</h5><p>Les apprenants expliquent pourquoi ils ne croient pas"
 " que la formation va améliorer leur rendement au travail.</p>"
 
-#: templates/course-page/comments.html:172
+#: templates/course-page/comments.html:174
 msgid ""
 "<h5>Tip:</h5><p>Comments are assigned a sentiment score between 1 (most "
 "negative) and 5 (most positive) using machine learning.</p>"
@@ -340,150 +346,49 @@ msgstr ""
 "<h5>Indice :</h5><p>Les commentaires sont classés entre 1 (très négatif) "
 "et 5 (très positif) par le biais de l'apprentissage automatique.</p>"
 
-#: templates/course-page/comments.html:239
+#: templates/course-page/comments.html:241
 msgid " Comment "
 msgstr " commentaire"
 
-#: templates/course-page/comments.html:239
+#: templates/course-page/comments.html:241
 msgid " Comments"
 msgstr " commentaires"
 
-#: templates/course-page/comments.html:240
+#: templates/course-page/comments.html:242
 msgid "in"
 msgstr "en"
 
-#: templates/course-page/comments.html:243
+#: templates/course-page/comments.html:245
 msgid "in Total"
 msgstr "en total"
 
-#: templates/course-page/comments.html:299
+#: templates/course-page/comments.html:301
 msgid "<strong>Number of Responses:</strong> 0"
 msgstr "<strong>Numéro de réponses :</strong> 0"
 
-#: templates/course-page/comments.html:301
+#: templates/course-page/comments.html:303
 msgid "<strong>Number of Responses:</strong> "
 msgstr "<strong>Numéro de réponses :</strong>"
 
-#: templates/course-page/comments.html:328
+#: templates/course-page/comments.html:330
 msgid "Reason to Participate"
 msgstr "Raison principale pour prendre part"
 
-#: templates/course-page/comments.html:329
+#: templates/course-page/comments.html:331
 msgid "Did You Experience Technical Issues?"
 msgstr "Avez-vous éprouvé des difficultés techniques?"
 
-#: templates/course-page/comments.html:330
+#: templates/course-page/comments.html:332
 msgid "The Course Was Available in the Official Language of My Choice"
 msgstr "Le cours était offert dans la langue officielle de mon choix."
 
-#: templates/course-page/comments.html:331
+#: templates/course-page/comments.html:333
 msgid "Did the Course Make Use of GCcampus Tools?"
 msgstr "Utilisation d'outils supplémentaires provenant de GCcampus?"
 
-#: templates/course-page/comments.html:332
+#: templates/course-page/comments.html:334
 msgid "Method of Preparing for the Course"
 msgstr "Méthode de préparation au cours"
-
-#: templates/course-page/dashboard-learners.html:4
-msgid "Registrations per Month"
-msgstr "Inscriptions par mois"
-
-#: templates/course-page/dashboard-learners.html:16
-msgid "Top 5 Departments"
-msgstr "Top 5 des ministères"
-
-#: templates/course-page/dashboard-learners.html:19
-#: templates/course-page/dashboard-learners.html:42
-msgid "Name"
-msgstr "Nom"
-
-#: templates/course-page/dashboard-learners.html:39
-msgid "Top 5 Classifications"
-msgstr "Top 5 des classifications"
-
-#: templates/course-page/dashboard-learners.html:62
-msgid "<h5>Tip:</h5><p>Learners whose registration status is 'Confirmed'.</p>"
-msgstr ""
-"<h5>Indice :</h5><p>Les apprenants ayant une inscription avec le statut "
-"de 'Confirmée'.</p>"
-
-#: templates/course-page/dashboard-learners.html:76
-#: templates/course-page/main.html:24 templates/course-page/main.html:36
-msgid "Learners"
-msgstr "Apprenants"
-
-#: templates/course-page/dashboard-main.html:16
-msgid ""
-"<h5>Tip:</h5><p>The Offering Data section is disabled for online courses "
-"as they have no physical location. Try an instructor-led course like D101"
-" to see more.</p>"
-msgstr ""
-"<h5>Indice :</h5><p>La section « Offres » est désactivée pour les cours "
-"en ligne car ils n'ont pas d'emplacement physique. Veuillez essayer un "
-"cours livré en salle de classe comme le D101 pour en voir plus."
-
-#: templates/course-page/dashboard-offerings.html:5
-msgid "Overall Numbers"
-msgstr "Chiffres globaux"
-
-#: templates/course-page/dashboard-offerings.html:8
-msgid "Fiscal Year"
-msgstr "Année fiscale"
-
-#: templates/course-page/dashboard-offerings.html:47
-msgid "Offerings per Region"
-msgstr "Offres par région"
-
-#: templates/course-page/dashboard-offerings.html:73
-msgid ""
-"<h5>Tip:</h5><p>Past offerings must be closed before Level 1 surveys are "
-"sent.</p>"
-msgstr ""
-"<h5>Indice :</h5><p>Les offres ayant déjà eu lieu doivent être fermées "
-"afin d'assurer l'envoi des sondages de niveau 1.</p>"
-
-#: templates/course-page/dashboard-offerings.html:79
-msgid ""
-"<h5>Tip:</h5><p>This chart is interactive and shows offerings by Region, "
-"Province, and City.</p>"
-msgstr ""
-"<h5>Indice :</h5><p>Ce graphique est interactif est présente les offres "
-"par région, province, et ville.</p>"
-
-#: templates/course-page/dashboard-offerings.html:118
-msgid "Open & Delivered Offerings per Language"
-msgstr "Offres ouvertes & livrées par langue"
-
-#: templates/course-page/dashboard-offerings.html:124
-msgid "English"
-msgstr "Anglais"
-
-#: templates/course-page/dashboard-offerings.html:125
-msgid "French"
-msgstr "Français"
-
-#: templates/course-page/dashboard-offerings.html:126
-msgid "Bilingual"
-msgstr "Bilingue"
-
-#: templates/course-page/dashboard-offerings.html:133
-#, python-format
-msgid "%% of Offerings Cancelled"
-msgstr "%% d'offres annulées"
-
-#: templates/course-page/dashboard-offerings.html:145
-#: templates/course-page/dashboard-offerings.html:158
-#: templates/course-page/dashboard-offerings.html:170
-msgid "Average All"
-msgstr "Moyenne globale"
-
-#: templates/course-page/dashboard-offerings.html:153
-msgid "Average Class Size"
-msgstr "Effectif de classe moyen"
-
-#: templates/course-page/dashboard-offerings.html:165
-msgid "Average No-Shows per Offering"
-msgstr "Absences moyennes par offre"
 
 #: templates/course-page/general.html:11
 msgid "Apologies, this course is currently catalogued without a description."
@@ -576,49 +481,41 @@ msgstr ""
 "<h5>Indice :</h5><p>Ces infos sont maintenues par Gestion du "
 "curriculum.</p>"
 
+#: templates/course-page/geodata.html:4
+msgid ""
+"Locations of open and delivered offerings around the globe for the "
+"current fiscal year."
+msgstr ""
+"Emplacements des offres ouvertes et livrées à travers le monde pour "
+"l'année fiscale en cours."
+
 #: templates/course-page/geodata.html:5
-msgid "Locations of open and delivered offerings around the globe."
-msgstr "Emplacements des offres ouvertes et livrées à travers le monde."
+msgid ""
+"Locations of confirmed registrations around the globe for the current "
+"fiscal year."
+msgstr ""
+"Emplacements des inscriptions confirmées à travers le monde pour l'année "
+"fiscale en cours."
 
-#: templates/course-page/geodata.html:9
-msgid "Locations of learners around the globe."
-msgstr "Emplacements des apprenants à travers le monde."
-
-#: templates/course-page/geodata.html:21
+#: templates/course-page/geodata.html:15
 msgid "Legend"
 msgstr "Légende"
 
-#: templates/course-page/geodata.html:25
+#: templates/course-page/geodata.html:19
 msgid "Red Marker"
 msgstr "Icône rouge"
 
-#: templates/course-page/geodata.html:29
+#: templates/course-page/geodata.html:23
 msgid "Orange Marker"
 msgstr "Icône orange"
 
-#: templates/course-page/geodata.html:33
+#: templates/course-page/geodata.html:27
 msgid "Green Marker"
 msgstr "Icône verte"
 
-#: templates/course-page/geodata.html:37
+#: templates/course-page/geodata.html:31
 msgid "Blue Marker"
 msgstr "Icône bleue"
-
-#: templates/course-page/geodata.html:52
-msgid ""
-"<h5>Tip:</h5><p>The map shows offerings with status 'Open' or "
-"'Delivered'.</p>"
-msgstr ""
-"<h5>Indice :</h5><p>Les emplacements des offres ayant le statut de "
-"'Ouverte' ou 'Livrée' sont placés sur la carte.</p>"
-
-#: templates/course-page/geodata.html:58
-msgid ""
-"<h5>Tip:</h5><p>The map shows learners whose registration status is "
-"'Confirmed'.</p>"
-msgstr ""
-"<h5>Indice :</h5><p>Les emplacements des apprenants ayant une inscription"
-" avec le statut de 'Confirmée' sont placés sur la carte.</p>"
 
 #: templates/course-page/main.html:14
 msgid "General"
@@ -631,6 +528,10 @@ msgstr "Tableaux de bord"
 #: templates/course-page/main.html:23 templates/course-page/main.html:35
 msgid "Offerings"
 msgstr "Offres"
+
+#: templates/course-page/main.html:24 templates/course-page/main.html:36
+msgid "Learners"
+msgstr "Apprenants"
 
 #: templates/course-page/main.html:31
 msgid "Maps"
@@ -753,6 +654,109 @@ msgstr ""
 "instructeurs sont présentement désactivées à cause des restrictions de "
 "confidentialité.</p>"
 
+#: templates/course-page/dashboards/learners.html:5
+#: templates/course-page/dashboards/offerings.html:5
+msgid "Overall Numbers"
+msgstr "Chiffres globaux"
+
+#: templates/course-page/dashboards/learners.html:8
+#: templates/course-page/dashboards/offerings.html:8
+msgid "Fiscal Year"
+msgstr "Année fiscale"
+
+#: templates/course-page/dashboards/learners.html:39
+msgid "No-Shows and Confirmed Registrations per Month"
+msgstr "Absences et inscriptions confirmées par mois"
+
+#: templates/course-page/dashboards/learners.html:49
+msgid "Top 5 Departments"
+msgstr "Top 5 des ministères"
+
+#: templates/course-page/dashboards/learners.html:52
+#: templates/course-page/dashboards/learners.html:75
+msgid "Name"
+msgstr "Nom"
+
+#: templates/course-page/dashboards/learners.html:72
+msgid "Top 5 Classifications"
+msgstr "Top 5 des classifications"
+
+#: templates/course-page/dashboards/learners.html:95
+msgid ""
+"<h5>Tip:</h5><p>There may be fewer unique learners than registrations if "
+"one or more people retook the course.</p>"
+msgstr ""
+"<h5>Indice :</h5><p>Le nombre d'apprenants uniques pourrait être "
+"inférieur au nombre d'inscriptions au cas où on reprend le cours.</p>"
+
+#: templates/course-page/dashboards/main.html:4
+msgid "Instructor-Led"
+msgstr ""
+
+#: templates/course-page/dashboards/main.html:7
+msgid ""
+"The Offerings section is disabled for online courses as they have no "
+"physical location. Try an instructor-led course like D101 to see more."
+msgstr ""
+"La section « Offres » est désactivée pour les cours en ligne car ils "
+"n'ont pas d'emplacement physique. Veuillez essayer un cours livré en "
+"salle de classe comme le D101 pour en voir plus."
+
+#: templates/course-page/dashboards/offerings.html:47
+msgid "Offerings per Region"
+msgstr "Offres par région"
+
+#: templates/course-page/dashboards/offerings.html:73
+msgid ""
+"<h5>Tip:</h5><p>Past offerings must be closed before Level 1 surveys are "
+"sent.</p>"
+msgstr ""
+"<h5>Indice :</h5><p>Les offres ayant déjà eu lieu doivent être fermées "
+"afin d'assurer l'envoi des sondages de niveau 1.</p>"
+
+#: templates/course-page/dashboards/offerings.html:79
+msgid ""
+"<h5>Tip:</h5><p>This chart is interactive and shows offerings by Region, "
+"Province, and City.</p>"
+msgstr ""
+"<h5>Indice :</h5><p>Ce graphique est interactif est présente les offres "
+"par région, province, et ville.</p>"
+
+#: templates/course-page/dashboards/offerings.html:118
+msgid "Open & Delivered Offerings per Language"
+msgstr "Offres ouvertes & livrées par langue"
+
+#: templates/course-page/dashboards/offerings.html:124
+msgid "English"
+msgstr "Anglais"
+
+#: templates/course-page/dashboards/offerings.html:125
+msgid "French"
+msgstr "Français"
+
+#: templates/course-page/dashboards/offerings.html:126
+msgid "Bilingual"
+msgstr "Bilingue"
+
+#: templates/course-page/dashboards/offerings.html:133
+#, python-format
+msgid "%% of Offerings Cancelled"
+msgstr "%% d'offres annulées"
+
+#: templates/course-page/dashboards/offerings.html:145
+#: templates/course-page/dashboards/offerings.html:158
+#: templates/course-page/dashboards/offerings.html:170
+msgid "Average All"
+msgstr "Moyenne globale"
+
+#: templates/course-page/dashboards/offerings.html:153
+msgid "Average Class Size"
+msgstr "Effectif de classe moyen"
+
+#: templates/course-page/dashboards/offerings.html:165
+msgid "Average No-Shows per Offering"
+msgstr "Absences moyennes par offre"
+
 #: templates/explore/explore.html:5
 msgid "Explore courses by business line and provider."
 msgstr "Naviguer les cours par ligne d'affaires et fournisseur."
@@ -795,19 +799,3 @@ msgstr "Naviguer"
 #: templates/includes/_navbar.html:36
 msgid "Departments"
 msgstr "Ministères"
-
-#~ msgid ""
-#~ "<h5>Tip:</h5><p>The 'Offering Locations' section "
-#~ "is disabled for online courses as "
-#~ "they have no physical location.</p>"
-#~ msgstr ""
-#~ "<h5>Indice :</h5><p>La section 'Emplacements "
-#~ "des offres' est désactivée pour les "
-#~ "cours en ligne car ils n'ont pas"
-#~ " d'emplacement physique.</p>"
-
-#~ msgid "Ratings"
-#~ msgstr "Évaluations"
-
-#~ msgid "Online"
-#~ msgstr "En ligne"
