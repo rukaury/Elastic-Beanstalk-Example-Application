@@ -10,13 +10,11 @@ CREATE TABLE comments(
 	text_answer TEXT,
 	text_answer_fr VARCHAR(90),
 	overall_satisfaction TINYINT,
-	stars FLOAT,
-	magnitude FLOAT
 );
 
 
 
-LOAD DATA INFILE 'C:\\Users\\CSPS000567\\Desktop\\NLP\\comments_ML.csv'
+LOAD DATA INFILE 'D:\\comments.csv'
 INTO TABLE comments
 FIELDS OPTIONALLY ENCLOSED BY '"'
 TERMINATED BY ','
