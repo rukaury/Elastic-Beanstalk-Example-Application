@@ -9,7 +9,7 @@ CREATE TABLE comments(
 	short_question VARCHAR(60),
 	text_answer TEXT,
 	text_answer_fr VARCHAR(90),
-	overall_satisfaction TINYINT,
+	overall_satisfaction TINYINT
 );
 
 
