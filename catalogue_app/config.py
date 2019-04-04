@@ -12,3 +12,4 @@ class Config:
 	BASIC_AUTH_USERNAME = os.environ.get('BASIC_AUTH_USERNAME')
 	BASIC_AUTH_PASSWORD = os.environ.get('BASIC_AUTH_PASSWORD')
 	SECRET_KEY = os.environ.get('SECRET_KEY')
+	GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')

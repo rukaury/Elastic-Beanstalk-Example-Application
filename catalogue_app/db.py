@@ -42,8 +42,8 @@ def get_db(local):
 		if local:
 			g.db = mysql.connector.connect(host='localhost',
 										   user='admin',
-										   password='Newton11',
-										   database='csps_dashboards')
+										   password=os.environ.get('DB_PASSWORD'),
+										   database=os.environ.get('DB_DATABASE_NAME'))
 		else:
 			g.db = mysql.connector.connect(host=os.environ.get('DB_HOST'),
 										   user=os.environ.get('DB_USER'),

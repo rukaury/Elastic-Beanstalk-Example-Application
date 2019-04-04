@@ -29,13 +29,14 @@ class CourseList:
 		"""Query the DB and store results in DataFrame."""
 		# Get course codes from LSR to ensure course has usage and will
 		# therefore have an entry in the catalogue i.e. no dead links
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
 			SELECT DISTINCT b.provider_{0}, b.business_line_{0}, a.course_code, a.course_title_{0}
-			FROM lsr{1} AS a
+			FROM {1} AS a
 			LEFT OUTER JOIN product_info AS b
 			ON a.course_code = b.course_code
 			ORDER BY BINARY 1, 2, 3 ASC;
-		""".format(self.lang, self.fiscal_year)
+		""".format(self.lang, table_name)
 		results = query_mysql(query)
 		results = pd.DataFrame(results, columns=['provider', 'business_line', 'course_code', 'course_title'])
 		self.data = results

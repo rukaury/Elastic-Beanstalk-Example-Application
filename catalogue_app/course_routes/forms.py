@@ -7,7 +7,7 @@ def course_form(lang, fiscal_year):
 	"""Query list of all course codes and their titles as seen
 	in the LSR. Pass to WTForms to make a dropdown menu."""
 	field_name = 'course_title_{0}'.format(lang)
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT DISTINCT course_code, {0}
 		FROM {1}

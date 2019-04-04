@@ -12,12 +12,17 @@ from catalogue_app.course_routes.queries import (
 course = Blueprint('course', __name__)
 
 
-# Make LAST_YEAR and THIS_YEAR available to all templates
+# Make certain config vars available to all templates
 LAST_YEAR = Config.LAST_YEAR
 THIS_YEAR = Config.THIS_YEAR
+GOOGLE_MAPS_API_KEY = Config.GOOGLE_MAPS_API_KEY
 @course.context_processor
 def context_processor():
-	return {'LAST_YEAR': LAST_YEAR.replace('_', '-'), 'THIS_YEAR': THIS_YEAR.replace('_', '-')}
+	return {
+		'LAST_YEAR': LAST_YEAR.replace('_', '-'),
+		'THIS_YEAR': THIS_YEAR.replace('_', '-'),
+		'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY
+	}
 
 
 # Home page with search bar
@@ -26,7 +31,7 @@ def context_processor():
 def home():
 	# Only allow 'en' and 'fr' to be passed to app
 	lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en'
-	form = course_form(lang, THIS_YEAR)()
+	form = course_form(lang, 'this_year')()
 	return render_template('index.html', form=form)
 
 
@@ -37,17 +42,19 @@ def course_result():
 	# Only allow 'en' and 'fr' to be passed to app
 	lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en'
 	# Security check: if course_code doesn't exist, render not_found.html
-	course_code = utils.validate_course_code(request.args, THIS_YEAR)
+	course_code = utils.validate_course_code(request.args, 'this_year')
 	if not course_code:
 		return render_template('not-found.html')
 	
 	# Instantiate classes
 	course_info = general_queries.CourseInfo(lang, course_code).load()
-	overall_numbers_LY = dashboard_offering_queries.OverallNumbers(LAST_YEAR, course_code).load()
-	overall_numbers_TY = dashboard_offering_queries.OverallNumbers(THIS_YEAR, course_code).load()
-	offering_locations = dashboard_offering_queries.OfferingLocations(lang, THIS_YEAR, course_code).load()
-	learners = dashboard_learner_queries.Learners(lang, THIS_YEAR, course_code).load()
-	map = map_queries.Map(THIS_YEAR, course_code).load()
+	overall_offering_numbers_LY = dashboard_offering_queries.OverallOfferingNumbers('last_year', course_code).load()
+	overall_offering_numbers_TY = dashboard_offering_queries.OverallOfferingNumbers('this_year', course_code).load()
+	offering_locations = dashboard_offering_queries.OfferingLocations(lang, 'this_year', course_code).load()
+	overall_learner_numbers_LY = dashboard_learner_queries.OverallLearnerNumbers('last_year', course_code).load()
+	overall_learner_numbers_TY = dashboard_learner_queries.OverallLearnerNumbers('this_year', course_code).load()
+	learners = dashboard_learner_queries.Learners(lang, 'this_year', course_code).load()
+	map = map_queries.Map('this_year', course_code).load()
 	# ratings = rating_queries.Ratings(lang, course_code).load()
 	comments = comment_queries.Comments(lang, course_code).load()
 	
@@ -57,28 +64,31 @@ def course_result():
 		'course_title': learners.course_title,
 		# General
 		'course_info': course_info.course_info,
-		# Dashboard - offerings
-		'overall_numbers_LY': overall_numbers_LY.counts,
-		'overall_numbers_TY': overall_numbers_TY.counts,
+		# Dashboards - Offerings
+		'overall_offering_numbers_LY': overall_offering_numbers_LY.counts,
+		'overall_offering_numbers_TY': overall_offering_numbers_TY.counts,
 		'region_drilldown': offering_locations.regions,
 		'province_drilldown': offering_locations.provinces,
 		'city_drilldown': offering_locations.cities,
-		'offerings_per_lang_LY': dashboard_offering_queries.offerings_per_lang(LAST_YEAR, course_code),
-		'offerings_per_lang_TY': dashboard_offering_queries.offerings_per_lang(THIS_YEAR, course_code),
-		'offerings_cancelled_global_LY': dashboard_offering_queries.offerings_cancelled_global(LAST_YEAR),
-		'offerings_cancelled_global_TY': dashboard_offering_queries.offerings_cancelled_global(THIS_YEAR),
-		'offerings_cancelled_LY': dashboard_offering_queries.offerings_cancelled(LAST_YEAR, course_code),
-		'offerings_cancelled_TY': dashboard_offering_queries.offerings_cancelled(THIS_YEAR, course_code),
-		'avg_class_size_global_LY': dashboard_offering_queries.avg_class_size_global(LAST_YEAR),
-		'avg_class_size_global_TY': dashboard_offering_queries.avg_class_size_global(THIS_YEAR),
-		'avg_class_size_LY': dashboard_offering_queries.avg_class_size(LAST_YEAR, course_code),
-		'avg_class_size_TY': dashboard_offering_queries.avg_class_size(THIS_YEAR, course_code),
-		'avg_no_shows_global_LY': round(dashboard_offering_queries.avg_no_shows_global(LAST_YEAR), 1),
-		'avg_no_shows_global_TY': round(dashboard_offering_queries.avg_no_shows_global(THIS_YEAR), 1),
-		'avg_no_shows_LY': round(dashboard_offering_queries.avg_no_shows(LAST_YEAR, course_code), 1),
-		'avg_no_shows_TY': round(dashboard_offering_queries.avg_no_shows(THIS_YEAR, course_code), 1),
-		# Dashboard - learners
+		'offerings_per_lang_LY': dashboard_offering_queries.offerings_per_lang('last_year', course_code),
+		'offerings_per_lang_TY': dashboard_offering_queries.offerings_per_lang('this_year', course_code),
+		'offerings_cancelled_global_LY': dashboard_offering_queries.offerings_cancelled_global('last_year'),
+		'offerings_cancelled_global_TY': dashboard_offering_queries.offerings_cancelled_global('this_year'),
+		'offerings_cancelled_LY': dashboard_offering_queries.offerings_cancelled('last_year', course_code),
+		'offerings_cancelled_TY': dashboard_offering_queries.offerings_cancelled('this_year', course_code),
+		'avg_class_size_global_LY': dashboard_offering_queries.avg_class_size_global('last_year'),
+		'avg_class_size_global_TY': dashboard_offering_queries.avg_class_size_global('this_year'),
+		'avg_class_size_LY': dashboard_offering_queries.avg_class_size('last_year', course_code),
+		'avg_class_size_TY': dashboard_offering_queries.avg_class_size('this_year', course_code),
+		'avg_no_shows_global_LY': round(dashboard_offering_queries.avg_no_shows_global('last_year'), 1),
+		'avg_no_shows_global_TY': round(dashboard_offering_queries.avg_no_shows_global('this_year'), 1),
+		'avg_no_shows_LY': round(dashboard_offering_queries.avg_no_shows('last_year', course_code), 1),
+		'avg_no_shows_TY': round(dashboard_offering_queries.avg_no_shows('this_year', course_code), 1),
+		# Dashboards - Learners
+		'overall_learner_numbers_LY': overall_learner_numbers_LY.counts,
+		'overall_learner_numbers_TY': overall_learner_numbers_TY.counts,
 		'regs_per_month': learners.regs_per_month,
+		'no_shows_per_month': learners.no_shows_per_month,
 		'top_5_depts': learners.top_depts,
 		'top_5_classifs': learners.top_classifs,
 		# Maps
@@ -91,7 +101,7 @@ def course_result():
 		'technical_comments': comments.technical,
 		'language_comments': comments.language,
 		'performance_comments': comments.performance,
-		# Categorical and yes/no questions
+		# Comments - Other
 		'reason_to_participate': comments.reason,
 		'technical_issues': comments.technical_bool,
 		'languages_available': comments.language_bool,
@@ -107,6 +117,6 @@ def course_result():
 def explore():
 	# Only allow 'en' and 'fr' to be passed to app
 	lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en'
-	course_list = explore_queries.CourseList(lang, THIS_YEAR).load()
+	course_list = explore_queries.CourseList(lang, 'this_year').load()
 	pass_dict = course_list._get_nested_dicts()
 	return render_template('explore/explore.html', pass_dict=pass_dict)

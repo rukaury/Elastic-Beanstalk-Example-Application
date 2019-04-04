@@ -22,7 +22,7 @@ class Map:
 		"""Returns a list of cities in which offerings took place. Each nested
 		list holds city name, number of offerings, latitude, and longitude.
 		"""
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		# Sort by count so that when overlapping markers are combined by function
 		# _combine_overlapping_cities_hashed, it's the city with the largest count into
 		# which all others all merged
@@ -44,7 +44,7 @@ class Map:
 		"""Returns a list of cities in which learners are located. Each nested
 		list holds city name, number of learners, latitude, and longitude.
 		"""
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		# Sort by count so that when overlapping markers are combined by function
 		# _combine_overlapping_cities_hashed, it's the city with the largest count into
 		# which all others all merged

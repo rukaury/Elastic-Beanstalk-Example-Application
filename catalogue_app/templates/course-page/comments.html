@@ -122,6 +122,8 @@
 								<span class="comment-date">{{ tup[5] }} {{ tup[4] }}</span>
 							</h5>
 							<!-- User comment -->
+							<!-- Don't include filter '| safe' in case user submits an XSS attack in survey and Bob's system
+							doesn't properly escape user inputs -->
 							<p>{{ tup[0] }}</p>
 						</div>
 					</div>

@@ -431,6 +431,13 @@ with position: relative, in this case #selection-and-loader */
 .nav-tabs .active > a {
 	font-weight: bold;
 }
+/* Fatter dropdown on mobile */
+/* Using !important to override Bootstrap defaults */
+@media (max-width: 767px) {
+	.dropdown-menu a {
+		line-height: 2.75rem !important;
+	}
+}
 /***** End report's tabs *****/
 
 

@@ -50,7 +50,7 @@ def download_comments():
 def _create_response(request, query_func, filename):
 	"""Validate args and create file."""
 	# Validate user input
-	course_code = utils.validate_course_code(request.args, Config.THIS_YEAR)
+	course_code = utils.validate_course_code(request.args, 'this_year')
 	# Run query and build file
 	raw_data = _run_query(query_func, course_code)
 	response = _create_file(raw_data, filename)

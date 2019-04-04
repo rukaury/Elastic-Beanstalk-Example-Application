@@ -32,7 +32,7 @@ class OfferingLocations:
 		"""
 		field_name_1 = 'offering_region_{0}'.format(self.lang)
 		field_name_2 = 'offering_province_{0}'.format(self.lang)
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
 			SELECT {0}, {1}, offering_city, COUNT(DISTINCT offering_id)
 			FROM {2}
@@ -101,7 +101,7 @@ class OfferingLocations:
 		return results_processed
 
 
-class OverallNumbers:
+class OverallOfferingNumbers:
 	"""Data for a given fiscal year of the Overall Numbers table."""
 	def __init__(self, fiscal_year, course_code):
 		self.fiscal_year = fiscal_year
@@ -121,7 +121,7 @@ class OverallNumbers:
 	
 	def _offering_status_counts(self):
 		"""Query number of offerings by status for a given fiscal year."""
-		table_name = 'lsr{0}'.format(self.fiscal_year)
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
 			SELECT offering_status, COUNT(DISTINCT offering_id)
 			FROM {0}
@@ -142,37 +142,19 @@ class OverallNumbers:
 	
 	def _offering_additional_counts(self):
 		"""Additional offering counts used by School analysts."""
-		table_name = 'lsr{0}'.format(self.fiscal_year)
-		
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query_client_reqs = """
 			SELECT COUNT(DISTINCT offering_id)
 			FROM {0}
 			WHERE course_code = %s AND client != '' AND offering_status IN ('Open - Normal', 'Delivered - Normal');
 		""".format(table_name)
 		client_reqs = query_mysql(query_client_reqs, (self.course_code,))
-		
-		query_regs = """
-			SELECT COUNT(reg_id)
-			FROM {0}
-			WHERE course_code = %s AND reg_status = 'Confirmed';
-		""".format(table_name)
-		regs = query_mysql(query_regs, (self.course_code,))
-		
-		query_no_shows = """
-			SELECT SUM(no_show)
-			FROM {0}
-			WHERE course_code = %s;
-		""".format(table_name)
-		no_shows = query_mysql(query_no_shows, (self.course_code,))
-		
-		results = [(gettext('Client Requests'), as_int(client_reqs)),
-				   (gettext('Registrations'), as_int(regs)),
-				   (gettext('No-Shows'), as_int(no_shows))]
-		self.counts.extend(results)
+		results = (gettext('Client Requests'), as_int(client_reqs))
+		self.counts.append(results)
 
 
 def offerings_per_lang(fiscal_year, course_code):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT offering_language, COUNT(DISTINCT offering_id)
 		FROM {0}
@@ -193,7 +175,7 @@ def offerings_per_lang(fiscal_year, course_code):
 
 
 def offerings_cancelled(fiscal_year, course_code):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT SUM(a.Mars / b.Mars)
 		FROM
@@ -209,9 +191,8 @@ def offerings_cancelled(fiscal_year, course_code):
 	return as_percent(results)
 
 
-# Need to separate global into separate function as using LIKE '%' too slow
 def offerings_cancelled_global(fiscal_year):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT SUM(a.Mars / b.Mars)
 		FROM
@@ -228,7 +209,7 @@ def offerings_cancelled_global(fiscal_year):
 
 
 def avg_class_size(fiscal_year, course_code):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT AVG(class_size)
 		FROM(
@@ -242,9 +223,8 @@ def avg_class_size(fiscal_year, course_code):
 	return as_int(results)
 
 
-# Need to separate global into separate function as using LIKE '%' too slow
 def avg_class_size_global(fiscal_year):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT AVG(class_size)
 		FROM(
@@ -259,7 +239,7 @@ def avg_class_size_global(fiscal_year):
 
 
 def avg_no_shows(fiscal_year, course_code):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT SUM(a.Mars / b.Mars)
 		FROM
@@ -275,9 +255,8 @@ def avg_no_shows(fiscal_year, course_code):
 	return as_float(results)
 
 
-# Need to separate global into separate function as using LIKE '%' too slow
 def avg_no_shows_global(fiscal_year):
-	table_name = 'lsr{0}'.format(fiscal_year)
+	table_name = 'lsr_{0}'.format(fiscal_year)
 	query = """
 		SELECT SUM(a.Mars / b.Mars)
 		FROM
