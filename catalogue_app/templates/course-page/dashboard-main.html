@@ -1,21 +1,13 @@
 <h1>{{ pass_dict.course_title }}</h1>
 
 <div class="offering-dash hideable">
-	{% include 'course-page/dashboard-offerings.html' %}
+	{% if pass_dict.course_info.get('Business Type', 'Online') == _('Instructor-Led') %}
+		{% include 'course-page/dashboard-offerings.html' %}
+	{% else %}
+		<h4>{{ _('The Offerings section is disabled for online courses as they have no physical location. Try an instructor-led course like D101 to see more.') }}</h4>
+	{% endif %}
 </div>
 
 <div class="learner-dash hideable">
 	{% include 'course-page/dashboard-learners.html' %}
 </div>
-
-<script async>
-	// Add tooltip contents
-	/*
-	$('#online-dashboard-disabled-tooltip').tooltip({
-		placement: 'bottom',
-		title: "{{ _('<h5>Tip:</h5><p>The Offering Data section is disabled for online courses as they have no physical location. Try an instructor-led course like D101 to see more.</p>') }}",
-		animation: true,
-		html: true
-	});
-	*/
-</script>
