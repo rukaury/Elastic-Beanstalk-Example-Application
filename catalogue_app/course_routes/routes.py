@@ -12,12 +12,17 @@ from catalogue_app.course_routes.queries import (
 course = Blueprint('course', __name__)
 
 
-# Make LAST_YEAR and THIS_YEAR available to all templates
+# Make certain config vars available to all templates
 LAST_YEAR = Config.LAST_YEAR
 THIS_YEAR = Config.THIS_YEAR
+GOOGLE_MAPS_API_KEY = Config.GOOGLE_MAPS_API_KEY
 @course.context_processor
 def context_processor():
-	return {'LAST_YEAR': LAST_YEAR.replace('_', '-'), 'THIS_YEAR': THIS_YEAR.replace('_', '-')}
+	return {
+		'LAST_YEAR': LAST_YEAR.replace('_', '-'),
+		'THIS_YEAR': THIS_YEAR.replace('_', '-'),
+		'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY
+	}
 
 
 # Home page with search bar

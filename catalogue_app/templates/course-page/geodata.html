@@ -113,7 +113,7 @@
 
 <!-- Load script from Google and pass API key -->
 {% if lang == 'fr' %}
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA99GCtwUy6QcS3YmzDtelxy8LpwumaCtA&callback=initMaps&language=fr"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&callback=initMaps&language=fr"></script>
 {% else %}
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA99GCtwUy6QcS3YmzDtelxy8LpwumaCtA&callback=initMaps"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&callback=initMaps"></script>
 {% endif %}
