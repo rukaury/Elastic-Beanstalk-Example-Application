@@ -1,7 +1,6 @@
 import csv
 from io import StringIO
 from flask_babel import gettext
-from catalogue_app.config import Config
 from catalogue_app.db import query_mysql
 
 

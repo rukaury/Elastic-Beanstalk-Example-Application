@@ -2,7 +2,6 @@ import datetime
 from flask import Blueprint, make_response, request
 from flask_babel import gettext
 from catalogue_app import auth
-from catalogue_app.config import Config
 from catalogue_app.course_routes import utils
 from catalogue_app.download_routes.queries import download_queries
 
