@@ -19,8 +19,8 @@ GOOGLE_MAPS_API_KEY = Config.GOOGLE_MAPS_API_KEY
 @course.context_processor
 def context_processor():
 	return {
-		'LAST_YEAR': LAST_YEAR.replace('_', '-'),
-		'THIS_YEAR': THIS_YEAR.replace('_', '-'),
+		'LAST_YEAR': LAST_YEAR,
+		'THIS_YEAR': THIS_YEAR,
 		'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY
 	}
 
