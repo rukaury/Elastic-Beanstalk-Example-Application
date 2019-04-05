@@ -1,14 +1,16 @@
 ### CURRENT SPRINT ###
 
-# update hidden content for online, tooltips
-# if online course should ALWAYS be from LSR, never product_list
-	# if online course don't even run extra queries
-	# other queries that could be strategically disabled???
+# dropdown at start should be union of courses in last_year and this_year
+	# source of some queries may need to be changed e.g. title, business_type
+# update tooltips
+
+# also hide inatructor comments, maybe tech comments
+
 # make clear what's for THIS_YEAR and what's not
-# add datatables to depts and classifications
+# add datatables to depts and classifications, make top 25
+# complete UL per month
 # pagination -> reënable A230
 # update FR
-# ETL
 # check mobile e.g. prevent dropdown glyph from being part of what's centered
 	# check spacing e.g. hidden Offerings needs min height
 # rename CSS
@@ -32,7 +34,7 @@
 	# comment things out, make it all run off THIS_YEAR in case there's a revolt
 # update scraper to grab code from title rather than URL
 # load rate (Christine Dionne)
-# a few averages of ratings (Bob)
+# ask Bob what they want to do for Ratings
 # add admin accounts
 	# roll-out very slowly, try with 1 course from Jeremy and 1 from regions
 	# check if upload is dangerous
@@ -42,7 +44,8 @@
 		# maps API route could accept start_date, end_date, offering_lang, etc.
 		# users could select options, map would delete markers and re-add
 		# do same thing for Dashboards tab
-# calendar / table with upcoming offerings + link to GCcampus
+		# especially comments tab, filter by star, classfication, dept, and download it all
+# upcoming offerings; maybe link to GCcampus
 # add offering dates to maps
 # copyright
 # explore by director
@@ -54,3 +57,4 @@
 	https://digital.canada.ca/2019/03/14/putting-your-trust-in-humans-and-robots/
 	https://www.youtube.com/watch?v=1gvvgsTTyqA
 # let Camille edit directly
+# get Highcharts licence
