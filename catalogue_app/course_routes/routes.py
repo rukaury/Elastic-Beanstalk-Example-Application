@@ -62,6 +62,7 @@ def course_result():
 		#Global
 		'course_code': course_code,
 		'course_title': learners.course_title,
+		'business_type': learners.business_type,
 		# General
 		'course_info': course_info.course_info,
 		# Dashboards - Offerings
