@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.9\n"
 "Report-Msgid-Bugs-To: sam.louden@canada.ca\n"
-"POT-Creation-Date: 2019-04-04 17:09-0400\n"
+"POT-Creation-Date: 2019-04-05 01:52-0400\n"
 "PO-Revision-Date: 2019-01-06 13:06-0500\n"
 "Last-Translator: SAM LOUDEN sam.louden@canada.ca\n"
 "Language: fr\n"
@@ -23,79 +23,79 @@ msgstr ""
 msgid "No response"
 msgstr "Aucune réponse"
 
-#: course_routes/queries/dashboard_learner_queries.py:51
-#: templates/course-page/ratings.html:25
+#: course_routes/queries/dashboard_learner_queries.py:53
+#: templates/about.html:20 templates/course-page/ratings.html:25
 msgid "April"
 msgstr "Avril"
 
-#: course_routes/queries/dashboard_learner_queries.py:52
+#: course_routes/queries/dashboard_learner_queries.py:54
 #: templates/course-page/ratings.html:25
 msgid "May"
 msgstr "Mai"
 
-#: course_routes/queries/dashboard_learner_queries.py:53
+#: course_routes/queries/dashboard_learner_queries.py:55
 #: templates/course-page/ratings.html:25
 msgid "June"
 msgstr "Juin"
 
-#: course_routes/queries/dashboard_learner_queries.py:54
+#: course_routes/queries/dashboard_learner_queries.py:56
 #: templates/course-page/ratings.html:26
 msgid "July"
 msgstr "Juillet"
 
-#: course_routes/queries/dashboard_learner_queries.py:55
+#: course_routes/queries/dashboard_learner_queries.py:57
 #: templates/course-page/ratings.html:26
 msgid "August"
 msgstr "Août"
 
-#: course_routes/queries/dashboard_learner_queries.py:56
+#: course_routes/queries/dashboard_learner_queries.py:58
 #: templates/course-page/ratings.html:26
 msgid "September"
 msgstr "Septembre"
 
-#: course_routes/queries/dashboard_learner_queries.py:57
+#: course_routes/queries/dashboard_learner_queries.py:59
 #: templates/course-page/ratings.html:27
 msgid "October"
 msgstr "Octobre"
 
-#: course_routes/queries/dashboard_learner_queries.py:58
+#: course_routes/queries/dashboard_learner_queries.py:60
 #: templates/course-page/ratings.html:27
 msgid "November"
 msgstr "Novembre"
 
-#: course_routes/queries/dashboard_learner_queries.py:59
+#: course_routes/queries/dashboard_learner_queries.py:61
 #: templates/course-page/ratings.html:27
 msgid "December"
 msgstr "Décembre"
 
-#: course_routes/queries/dashboard_learner_queries.py:60
+#: course_routes/queries/dashboard_learner_queries.py:62
 #: templates/course-page/ratings.html:28
 msgid "January"
 msgstr "Janvier"
 
-#: course_routes/queries/dashboard_learner_queries.py:61
+#: course_routes/queries/dashboard_learner_queries.py:63
 #: templates/course-page/ratings.html:28
 msgid "February"
 msgstr "Février"
 
-#: course_routes/queries/dashboard_learner_queries.py:62
-#: templates/about.html:20 templates/course-page/ratings.html:28
+#: course_routes/queries/dashboard_learner_queries.py:64
+#: templates/course-page/ratings.html:28
 msgid "March"
 msgstr "Mars"
 
-#: course_routes/queries/dashboard_learner_queries.py:149
+#: course_routes/queries/dashboard_learner_queries.py:168
 #: templates/course-page/dashboards/learners.html:53
 #: templates/course-page/dashboards/learners.html:76
 #: templates/course-page/dashboards/learners.html:131
 msgid "Registrations"
 msgstr "Inscriptions"
 
-#: course_routes/queries/dashboard_learner_queries.py:162
+#: course_routes/queries/dashboard_learner_queries.py:181
 #: templates/course-page/dashboards/learners.html:18
 msgid "Unique Learners"
 msgstr "Apprenants uniques"
 
-#: course_routes/queries/dashboard_learner_queries.py:175
+#: course_routes/queries/dashboard_learner_queries.py:194
 #: templates/course-page/dashboards/learners.html:135
 msgid "No-Shows"
 msgstr "Absences"
@@ -150,27 +150,27 @@ msgstr "Demandes des clients"
 msgid "<awaiting mapping>"
 msgstr "<en attente de catégorisation>"
 
-#: download_routes/routes.py:17
+#: download_routes/routes.py:16
 msgid "General Tab"
 msgstr "Onglet general"
 
-#: download_routes/routes.py:27
+#: download_routes/routes.py:26
 msgid "Dashboard Tab"
 msgstr "Onglet du tableau de bord"
 
-#: download_routes/routes.py:36
+#: download_routes/routes.py:35
 msgid "Ratings Tab"
 msgstr "Onglet des evaluations"
 
-#: download_routes/routes.py:45
+#: download_routes/routes.py:44
 msgid "Comments Tab"
 msgstr "Onglet des commentaires"
 
-#: download_routes/routes.py:67 templates/not-found.html:6
+#: download_routes/routes.py:66 templates/not-found.html:6
 msgid "Course Not Found"
 msgstr "Cours introuvable"
 
-#: download_routes/queries/download_queries.py:86
+#: download_routes/queries/download_queries.py:85
 msgid "Apologies, this tab contains no data."
 msgstr "Désolé, cet onglet ne contient aucune donnée."
 
@@ -226,6 +226,10 @@ msgstr "API du Catalogue de cours de l'EFPC"
 #: templates/departmental.html:6
 msgid "Coming Soon"
 msgstr "Bientôt disponible"
+
+#: templates/index.html:13
+msgid "Note: Test Version"
+msgstr "Notez : Version test"
 
 #: templates/index.html:16
 msgid "Choose any course to see all of its data."
@@ -525,43 +529,43 @@ msgstr "Général"
 msgid "Dashboards"
 msgstr "Tableaux de bord"
 
-#: templates/course-page/main.html:23 templates/course-page/main.html:35
+#: templates/course-page/main.html:24 templates/course-page/main.html:38
 msgid "Offerings"
 msgstr "Offres"
 
-#: templates/course-page/main.html:24 templates/course-page/main.html:36
+#: templates/course-page/main.html:26 templates/course-page/main.html:40
 msgid "Learners"
 msgstr "Apprenants"
 
-#: templates/course-page/main.html:31
+#: templates/course-page/main.html:33
 msgid "Maps"
 msgstr "Cartes"
 
-#: templates/course-page/main.html:43
+#: templates/course-page/main.html:47
 msgid "Comments"
 msgstr "Commentaires"
 
-#: templates/course-page/main.html:47
+#: templates/course-page/main.html:51
 msgid "Overall"
 msgstr "Global"
 
-#: templates/course-page/main.html:48
+#: templates/course-page/main.html:52
 msgid "Instructor"
 msgstr "Instructeur"
 
-#: templates/course-page/main.html:49
+#: templates/course-page/main.html:53
 msgid "Technical"
 msgstr "Technique"
 
-#: templates/course-page/main.html:50
+#: templates/course-page/main.html:54
 msgid "Language"
 msgstr "Langue"
 
-#: templates/course-page/main.html:51
+#: templates/course-page/main.html:55
 msgid "Performance"
 msgstr "Performance"
 
-#: templates/course-page/main.html:52
+#: templates/course-page/main.html:56
 msgid "Categorical"
 msgstr "Catégorique"
 
@@ -689,11 +693,7 @@ msgstr ""
 "<h5>Indice :</h5><p>Le nombre d'apprenants uniques pourrait être "
 "inférieur au nombre d'inscriptions au cas où on reprend le cours.</p>"
 
-#: templates/course-page/dashboards/main.html:4
-msgid "Instructor-Led"
-msgstr ""
-
-#: templates/course-page/dashboards/main.html:7
+#: templates/course-page/dashboards/main.html:6
 msgid ""
 "The Offerings section is disabled for online courses as they have no "
 "physical location. Try an instructor-led course like D101 to see more."
