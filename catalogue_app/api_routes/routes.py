@@ -1,8 +1,6 @@
 from flask import Blueprint, jsonify, request
 from catalogue_app import auth
-from catalogue_app.config import Config
 from catalogue_app.course_routes import utils
-from catalogue_app.api_routes.queries import comment_clustering_queries
 from catalogue_app.course_routes.queries import comment_queries
 
 # Instantiate blueprint
@@ -77,14 +75,3 @@ def _make_dict(lang, my_tup):
 				  'offering_fiscal_year', 'offering_quarter']	
 	results = {key: val for key, val in zip(labels, my_tup)}
 	return results
-
-
-#@api.route('/api/v1/lda/<string:course_code>')
-#@auth.login_required
-#def lda(course_code):
-#	"""Return clusters as found by LDA and/or NMF and their associated
-#	comments."""
-#	clusters = comment_clustering_queries.get_clusters(course_code)
-#	# Same as Python built-in json.dumps but also creates response and
-#	# adds MIME type
-#	return jsonify(clusters)

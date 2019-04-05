@@ -14,6 +14,7 @@ class Learners:
 		self.top_classifs = None
 		self.top_depts = None
 		self.course_title = None
+		self.business_type = None
 	
 	
 	def load(self):
@@ -22,6 +23,7 @@ class Learners:
 		self._calc_top_classifs()
 		self._calc_top_depts()
 		self._get_course_tile()
+		self._get_business_type()
 		# Return self to allow method chaining
 		return self
 	
@@ -116,6 +118,23 @@ class Learners:
 		results = query_mysql(query, (self.course_code,))
 		results = as_string(results)
 		self.course_title = results
+	
+	
+	def _get_business_type(self):
+		"""Get business type. In this module as should come from
+		the lsr_fiscal_year table rather than the product_info
+		table in case the course has registrations but has yet
+		to be catalogued by CM."""
+		table_name = 'lsr_{0}'.format(self.fiscal_year)
+		query = """
+			SELECT business_type
+			FROM {0}
+			WHERE course_code = %s
+			LIMIT 1;
+		""".format(table_name)
+		results = query_mysql(query, (self.course_code,))
+		results = as_string(results)
+		self.business_type = results
 
 
 class OverallLearnerNumbers:

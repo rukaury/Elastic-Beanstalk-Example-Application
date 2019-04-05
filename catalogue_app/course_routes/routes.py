@@ -19,8 +19,8 @@ GOOGLE_MAPS_API_KEY = Config.GOOGLE_MAPS_API_KEY
 @course.context_processor
 def context_processor():
 	return {
-		'LAST_YEAR': LAST_YEAR.replace('_', '-'),
-		'THIS_YEAR': THIS_YEAR.replace('_', '-'),
+		'LAST_YEAR': LAST_YEAR,
+		'THIS_YEAR': THIS_YEAR,
 		'GOOGLE_MAPS_API_KEY': GOOGLE_MAPS_API_KEY
 	}
 
@@ -62,6 +62,7 @@ def course_result():
 		#Global
 		'course_code': course_code,
 		'course_title': learners.course_title,
+		'business_type': learners.business_type,
 		# General
 		'course_info': course_info.course_info,
 		# Dashboards - Offerings

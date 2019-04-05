@@ -3,8 +3,8 @@ import os
 class Config:
 	DEBUG = False
 	LOCAL_DB = False
-	LAST_YEAR = '2017_18'
-	THIS_YEAR = '2018_19'
+	LAST_YEAR = '2018-19'
+	THIS_YEAR = '2019-20'
 	BABEL_DEFAULT_LOCALE = 'en'
 	# Ensure FR properly displayed when returning JSON
 	JSON_AS_ASCII = False
