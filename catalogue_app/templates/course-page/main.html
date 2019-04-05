@@ -20,7 +20,9 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="#dashboard" data-class="offering-dash">{{ _('Offerings') }}</a></li>
+					{% if pass_dict.business_type == 'Instructor-Led' %}
+						<li><a href="#dashboard" data-class="offering-dash">{{ _('Offerings') }}</a></li>
+					{% endif %}
 					<li><a href="#dashboard" data-class="learner-dash">{{ _('Learners') }}</a></li>
 				</ul>
 			</li>
@@ -32,7 +34,9 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="#geodata" data-class="offering-map">{{ _('Offerings') }}</a></li>
+					{% if pass_dict.business_type == 'Instructor-Led' %}
+						<li><a href="#geodata" data-class="offering-map">{{ _('Offerings') }}</a></li>
+					{% endif %}
 					<li><a href="#geodata" data-class="learner-map">{{ _('Learners') }}</a></li>
 				</ul>
 			</li>
