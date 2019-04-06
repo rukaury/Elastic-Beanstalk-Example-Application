@@ -46,8 +46,9 @@
 		$('#go-button').on('click', function(e) {
 			e.preventDefault();
 			$('#selection-form').hide();
-			$('#outer-loader').show();
-			$('#selection-form form').submit()
+			$('#outer-loader').show(function() {
+				$('#selection-form form').submit();
+			});
 		});
 		
 		// Upon clicking 'Make My Day', select a random course in dropdown

@@ -388,11 +388,11 @@ with position: relative, in this case #selection-and-loader */
 	-webkit-animation-name: loading;
 	-webkit-animation-duration: 0.8s;
 	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-delay: 0.01s;
+	-webkit-animation-delay: 0.1s;
 	animation-name: loading;
 	animation-duration: 0.8s;
 	animation-iteration-count: infinite;
-	animation-delay: 0.01s;
+	animation-delay: 0.1s;
 }
 .obj:nth-child(2) {
 	-webkit-animation-delay: 0.1s;
