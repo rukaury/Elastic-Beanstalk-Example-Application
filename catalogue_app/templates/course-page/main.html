@@ -15,7 +15,7 @@
 			
 			<!-- Dashboards dropdown -->
 			<li class="main-tab dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 					{{ _('Dashboards') }}
 					<span class="caret"></span>
 				</a>
@@ -29,7 +29,7 @@
 			
 			<!-- Maps dropdown -->
 			<li class="main-tab dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 					{{ _('Maps') }}
 					<span class="caret"></span>
 				</a>
@@ -43,14 +43,17 @@
 			
 			<!-- Comments dropdown -->
 			<li class="main-tab dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 					{{ _('Comments') }}
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
 					<li><a href="#comments" data-class="general_comments">{{ _('Overall') }}</a></li>
-					<li><a href="#comments" data-class="instructor_comments">{{ _('Instructor') }}</a></li>
-					<li><a href="#comments" data-class="technical_comments">{{ _('Technical') }}</a></li>
+					{% if pass_dict.business_type == 'Instructor-Led' %}
+						<li><a href="#comments" data-class="instructor_comments">{{ _('Instructor') }}</a></li>
+					{% else %}
+						<li><a href="#comments" data-class="technical_comments">{{ _('Technical') }}</a></li>
+					{% endif %}
 					<li><a href="#comments" data-class="language_comments">{{ _('Language') }}</a></li>
 					<li><a href="#comments" data-class="performance_comments">{{ _('Performance') }}</a></li>
 					<li><a href="#comments" data-class="other">{{ _('Categorical') }}</a></li>
