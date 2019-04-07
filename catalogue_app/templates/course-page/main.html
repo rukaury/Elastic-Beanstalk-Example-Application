@@ -77,7 +77,7 @@
 		<!-- Dashboards -->
 		<section id="dashboard" class="main-section hide">
 			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
-			{% include 'course-page/dashboards/main.html' %}
+			{% include 'course-page/dashboards/dashboards-main.html' %}
 		</section>
 		
 		<!-- Maps -->
@@ -90,7 +90,7 @@
 		<!-- Comments -->
 		<section id="comments" class="main-section hide">
 			{{ download_raw(url_for('downloads.download_comments', course_code=pass_dict.course_code)) }}
-			{% include 'course-page/comments.html' %}
+			{% include 'course-page/comments/comments-main.html' %}
 		</section>
 		
 		<!-- Prep & Admin -->
