@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, render_template, request
 from catalogue_app import auth
 from catalogue_app.course_routes import utils
 from catalogue_app.course_routes.queries import comment_queries
@@ -13,10 +13,9 @@ def comments(comment_type, course_code):
 	"""Return all comments of a given type (e.g. general comments) for a
 	given course code."""
 	# Only allow 'en' and 'fr' to be passed to app
-	VALID_LANGS = ['en', 'fr']
 	query_string_lang = request.args.get('lang', None)
-	if query_string_lang in VALID_LANGS:
-		lang = query_string_lang
+	if query_string_lang == 'fr':
+		lang = 'fr'
 	else:
 		lang = 'en'
 	
@@ -54,7 +53,13 @@ def comments(comment_type, course_code):
 			error_message = 'Error: Comments of this type are not currently collected in our surveys.'
 		return jsonify(error_message), 404
 	results = [_make_dict(lang, result) for result in results]
-	return jsonify(results)
+	
+	# Allow both JSON and a rendered template to be returned
+	return_html = request.args.get('return_html', False)
+	if return_html == 'true':
+		return jsonify(data=render_template('/course-page/comments/comments-generator.html', ajax_comments=results))
+	else:
+		return jsonify(results)
 
 
 def _make_dict(lang, my_tup):
