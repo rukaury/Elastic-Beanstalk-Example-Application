@@ -14,15 +14,9 @@ def comments(comment_type, course_code):
 	given course code."""
 	# Only allow 'en' and 'fr' to be passed to app
 	VALID_LANGS = ['en', 'fr']
-	
-	# Prioritize query string, else cookie user has already set,
-	# else default to English
 	query_string_lang = request.args.get('lang', None)
-	cookie_lang = request.cookies.get('lang', None)
 	if query_string_lang in VALID_LANGS:
 		lang = query_string_lang
-	elif cookie_lang in VALID_LANGS:
-		lang = cookie_lang
 	else:
 		lang = 'en'
 	
