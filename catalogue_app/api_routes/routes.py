@@ -7,53 +7,73 @@ from catalogue_app.course_routes.queries import comment_queries
 api = Blueprint('api', __name__)
 
 
-@api.route('/api/v1/comments/<string:comment_type>/<string:course_code>')
+@api.route('/api/v1/comments/<string:short_question>/<string:course_code>')
 @auth.login_required
-def comments(comment_type, course_code):
+def comments(short_question, course_code):
 	"""Return all comments of a given type (e.g. general comments) for a
 	given course code."""
-	# Only allow 'en' and 'fr' to be passed to app
-	query_string_lang = request.args.get('lang', None)
+	# Get arguments
+	# Lang; only allow 'en' and 'fr' to be passed to app
+	query_string_lang = request.args.get('lang', '')
 	if query_string_lang == 'fr':
 		lang = 'fr'
 	else:
 		lang = 'en'
+	# Fiscal year
+	fiscal_year = request.args.get('fiscal_year', '')
+	# Stars
+	stars = request.args.get('stars', '')
+	# Limit
+	limit = request.args.get('limit', 99_999)
+	# Offset
+	offset = request.args.get('offset', 0)
 	
-	# Validate user input
-	# Avoid use of Flask Babel gettext in this module to allow
-	# query string to override cookie 'lang'
+	# Validate course code
 	course_code = utils.validate_course_code({'course_code': course_code}, 'this_year')
 	if not course_code:
 		if lang == 'fr':
-			error_message = 'Erreur : Cours introuvable'
+			error_message = {'Erreur': 'Cours introuvable'}
 		else:
-			error_message = 'Error: Course Not Found'
+			error_message = {'Error': 'Course Not Found'}
 		return jsonify(error_message)
 	
-	# Instantiate class Comments
-	comments = comment_queries.Comments(lang, course_code).load()
-	if comment_type == 'general':
-		results = comments.general
-	elif comment_type == 'technical':
-		results = comments.technical
-	elif comment_type == 'language':
-		results = comments.language
-	elif comment_type == 'performance':
-		results = comments.performance
-	elif comment_type == 'instructor':
+	# Mapping of API routes to names in DB
+	question_dict = {
+		'general': 'Comment - General',
+		'language': 'Comment - OL',
+		'langue': 'Comment - OL',
+		'performance': 'Comment - Performance',
+		'technical': 'Comment - Technical',
+		'technique': 'Comment - Technical'
+	}
+	
+	# Run query; display error message in case of invalid arguments
+	if short_question in ['instructor', 'instructeur']:
 		if lang == 'fr':
-			error_message = 'Erreur : Les commentaires concernant les instructeurs sont présentement désactivés à cause des restrictions de confidentialité.'
+			error_message = {'Erreur': 'Les commentaires concernant les instructeurs sont présentement désactivés à cause des restrictions de confidentialité.'}
 		else:
-			error_message = 'Error: Comments on instructor performance are currently disabled due to privacy restrictions.'
+			error_message = {'Error': 'Comments on instructor performance are currently disabled due to privacy restrictions.'}
 		return jsonify(error_message), 410
 	else:
-		if lang == 'fr':
-			error_message = 'Erreur : Les commentaires de ce genre ne sont présentement pas recueillis dans nos sondages.'
-		else:
-			error_message = 'Error: Comments of this type are not currently collected in our surveys.'
-		return jsonify(error_message), 404
-	results = [_make_dict(lang, result) for result in results]
+		try:
+			comments = comment_queries.Comments(lang, course_code, question_dict[short_question], fiscal_year, stars, limit, offset).load()
+		except Exception as e:
+			if lang == 'fr':
+				error_message = {'Erreur': 'Les commentaires de ce genre ne sont présentement pas recueillis dans nos sondages.'}
+			else:
+				error_message = {'Error': 'Comments of this type are not currently collected in our surveys.'}
+			return jsonify(error_message), 404
 	
+	# Account for 0 results
+	# If 0 results, comments.processed = False
+	if not comments.processed:
+		if lang == 'fr':
+			error_message = {'Erreur': 'Aucun résultat'}
+		else:
+			error_message = {'Error': 'No Results'}
+		return jsonify(error_message)
+	
+	results = [_make_dict(lang, tup) for tup in comments.processed]
 	# Allow both JSON and a rendered template to be returned
 	return_html = request.args.get('return_html', False)
 	if return_html == 'true':
@@ -67,10 +87,10 @@ def _make_dict(lang, my_tup):
 	an object.
 	"""
 	if lang == 'fr':
-		labels = ['texte_du_commentaire', 'étoiles', 'classification_de_l_apprenant',
-				  'ville_de_l_offre', 'année_fiscale_de_l_offre', 'trimestre_de_l_offre']
+		labels = ['texte_du_commentaire', 'classification_de_l_apprenant', 'ville_de_l_offre',
+				  'année_fiscale_de_l_offre', 'trimestre_de_l_offre', 'étoiles']
 	else:
-		labels = ['comment_text', 'stars', 'learner_classification', 'offering_city',
-				  'offering_fiscal_year', 'offering_quarter']	
+		labels = ['comment_text', 'learner_classification', 'offering_city',
+				  'offering_fiscal_year', 'offering_quarter', 'stars']
 	results = {key: val for key, val in zip(labels, my_tup)}
 	return results
