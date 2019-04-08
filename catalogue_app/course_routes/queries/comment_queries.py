@@ -23,7 +23,6 @@ class Comments:
 		self.raw = self._load_raw()
 		self.processed = self._process_raw()
 		# Return self to allow method chaining
-		print(self.raw)
 		return self
 	
 	
@@ -32,6 +31,7 @@ class Comments:
 		self.course_code.
 		"""
 		field_name = 'offering_city_{0}'.format(self.lang)
+		limit = 'LIMIT 20 OFFSET {0}'.format(self.start_index) if isinstance(self.start_index, int) else ''
 		query = """
 			SELECT text_answer, learner_classif, {0}, fiscal_year, quarter, stars
 			FROM comments
@@ -42,8 +42,9 @@ class Comments:
 				AND
 				(fiscal_year = %s OR %s = '')
 				AND
-				(stars = %s OR %s = '');
-		""".format(field_name)
+				(stars = %s OR %s = '')
+			{1};
+		""".format(field_name, limit)
 		results = query_mysql(query, (self.course_code, self.short_question,
 									  self.fiscal_year, self.fiscal_year,
 									  self.stars, self.stars))
