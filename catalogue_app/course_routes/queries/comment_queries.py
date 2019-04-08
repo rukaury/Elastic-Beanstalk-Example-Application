@@ -45,10 +45,11 @@ class Comments:
 				(stars = %s OR %s = '')
 			LIMIT %s OFFSET %s;
 		""".format(field_name)
-		results = query_mysql(query, (self.course_code, self.short_question,
+		results = query_mysql(query, (self.course_code,
+									  self.short_question,
 									  self.fiscal_year, self.fiscal_year,
 									  self.stars, self.stars,
-									  self.limit, self.offset))
+									  int(self.limit), int(self.offset)))
 		results = pd.DataFrame(results, columns=['text_answer', 'learner_classif', 'offering_city',
 												 'fiscal_year', 'quarter', 'stars'])
 		# Account for learners who didn't submit stars with their comments
