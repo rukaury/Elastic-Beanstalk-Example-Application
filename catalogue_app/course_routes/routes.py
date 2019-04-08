@@ -56,7 +56,7 @@ def course_result():
 	learners = dashboard_learner_queries.Learners(lang, 'this_year', course_code).load()
 	map = map_queries.Map('this_year', course_code).load()
 	# ratings = rating_queries.Ratings(lang, course_code).load()
-	comments = comment_queries.Comments(lang, course_code).load()
+	categorical = comment_queries.Categorical(lang, course_code).load()
 	
 	pass_dict = {
 		#Global
@@ -97,17 +97,12 @@ def course_result():
 		'learner_city_counts': map.learners,
 		# Ratings
 		# 'all_ratings': ratings.all_ratings,
-		# Comments
-		'general_comments': comments.general,
-		'technical_comments': comments.technical,
-		'language_comments': comments.language,
-		'performance_comments': comments.performance,
-		# Comments - Other
-		'reason_to_participate': comments.reason,
-		'technical_issues': comments.technical_bool,
-		'languages_available': comments.language_bool,
-		'tools_used': comments.gccampus_bool,
-		'prepared_by': comments.preparation
+		# Comments - Categorical
+		'reason_to_participate': categorical.reason,
+		'technical_issues': categorical.technical_bool,
+		'languages_available': categorical.language_bool,
+		'tools_used': categorical.gccampus_bool,
+		'prepared_by': categorical.preparation
 	}
 	return render_template('/course-page/main.html', pass_dict=pass_dict)
 
