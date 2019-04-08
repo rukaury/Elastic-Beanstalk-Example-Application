@@ -3,74 +3,88 @@ from flask_babel import gettext
 from catalogue_app.db import query_mysql
 
 
-
-
-def _load_comment(self, question):
-	"""Extract and process results for an individual comment question from
-	the raw data. Returns False if course has received no feedback of that type.
-	"""
-	# Explicitely checking 'if df is False' rather than 'if not df' as
-	# DataFrames do not have a truth value
-	if self.comment_data is False:
-		return False
-	data_filtered = self.comment_data.loc[self.comment_data['short_question'] == question, :]
-	results_processed = []
-	for row in data_filtered.itertuples(index=False):
+class Comments:
+	"""Fetch comments for the API."""
+	def __init__(self, lang, course_code, short_question, stars, fiscal_year, start_index):
+		self.lang = lang
+		self.course_code = course_code
+		self.short_question = short_question
+		self.stars = stars
+		self.fiscal_year = fiscal_year
+		self.start_index = start_index
+		# Raw data returned by query
+		self.raw = None
+		# Processed data
+		self.processed = None
+	
+	
+	def load(self):
+		"""Run query and process raw data."""
+		self.raw = self._load_raw()
+		self.processed = self._process_raw()
+		# Return self to allow method chaining
+		print(self.processed)
+		return self
+	
+	
+	def _load_raw(self):
+		"""Query the DB and extract all comments of a given type for
+		self.course_code.
+		"""
+		field_name = 'offering_city_{0}'.format(self.lang)
+		query = """
+			SELECT text_answer, learner_classif, {0}, fiscal_year, quarter, stars
+			FROM comments
+			WHERE course_code = %s AND short_question = %s
+			LIMIT 20;
+		""".format(field_name)
+		results = query_mysql(query, (self.course_code, self.short_question))
+		results = pd.DataFrame(results, columns=['text_answer', 'learner_classif', 'offering_city',
+												 'fiscal_year', 'quarter', 'stars'])
+		# Account for learners who didn't submit stars with their comments
+		results['stars'].fillna(0, inplace=True)
+		# Return False if course has received no feedback
+		return False if results.empty else results
+	
+	
+	def _process_raw(self):
+		""" Parse raw data with Pandas and process into form required for API.
+		Return False if course has received no comments.
+		"""
+		# Explicitely checking 'if df is False' rather than 'if not df' as
+		# DataFrames do not have a truth value
+		if self.raw is False:
+			return False
+		results_processed = []
 		# Unpack tuple as some fields require customization
-		text_answer = row[1]
-		stars = int(row[2])
-		# Account for 'Unknown' being 'Inconnu' in FR
-		learner_classif = row[3].replace(' - Unknown', '')
-		learner_classif = learner_classif.replace('Unknown', 'Inconnu') if self.lang == 'fr' else learner_classif
-		# Account for English vs French title formatting
-		offering_city = self._format_title(row[4])
-		# Use standard fiscal year format e.g. '2018-19' instead of '2018-2019'
-		fiscal_year = row[5].replace('-20', '-')
-		# Account for e.g. 'Q2' being 'T2' in FR
-		quarter = row[6].replace('Q', 'T') if self.lang == 'fr' else row[6]
-		# Reassemble and append
-		tup = (text_answer, stars, learner_classif, offering_city, fiscal_year, quarter)
-		results_processed.append(tup)
-	return results_processed
-
-
-def _load_all_comments(self):
-	"""Query the DB and extract all comment data for a given course code."""
-	field_name = 'offering_city_{0}'.format(self.lang)
-	query = """
-		SELECT short_question, text_answer, stars, learner_classif, {0}, fiscal_year, quarter
-		FROM comments
-		WHERE
-			course_code = %s
-			AND
-			short_question IN ('Comment - General', 'Comment - Technical', 'Comment - OL', 'Comment - Performance')
-		ORDER BY RAND();
-	""".format(field_name)
-	results = query_mysql(query, (self.course_code,))
-	results = pd.DataFrame(results, columns=['short_question', 'text_answer', 'stars', 'learner_classif',
-											 'offering_city', 'fiscal_year', 'quarter'])
-	# Account for learners who didn't submit stars with their comments
-	results['stars'].fillna(0, inplace=True)
-	# Return False if course has received no feedback
-	self.comment_data = False if results.empty else results
-
-
-def _format_title(self, my_string):
-	"""Correct English and French formatting edge cases."""
-	if self.lang == 'fr':
-		s = my_string.title()
-		s = s.replace('Région De La Capitale Nationale (Rcn)', 'Région de la capitale nationale (RCN)').replace("'S", "'s")
-		return s
-	else:
-		s = my_string.title()
-		s = s.replace('(Ncr)', '(NCR)').replace("'S", "'s")
-		return s
-
-
-
-
-
-
+		for row in self.raw.itertuples(index=False):
+			text_answer = row[0]
+			# Account for 'Unknown' being 'Inconnu' in FR
+			learner_classif = row[1].replace(' - Unknown', '')
+			learner_classif = learner_classif.replace('Unknown', 'Inconnu') if self.lang == 'fr' else learner_classif
+			# Account for English vs French title formatting
+			offering_city = self._format_title(row[2])
+			# Use standard fiscal year format e.g. '2018-19' instead of '2018-2019'
+			fiscal_year = row[3].replace('-20', '-')
+			# Account for e.g. 'Q2' being 'T2' in FR
+			quarter = row[4].replace('Q', 'T') if self.lang == 'fr' else row[4]
+			stars = int(row[5])
+			# Reassemble and append
+			tup = (text_answer, learner_classif, offering_city, fiscal_year, quarter, stars)
+			results_processed.append(tup)
+		return results_processed
+	
+	
+	def _format_title(self, my_string):
+		"""Correct English and French formatting edge cases."""
+		if self.lang == 'fr':
+			s = my_string.title()
+			s = s.replace('Région De La Capitale Nationale (Rcn)', 'Région de la capitale nationale (RCN)').replace("'S", "'s")
+			return s
+		else:
+			s = my_string.title()
+			s = s.replace('(Ncr)', '(NCR)').replace("'S", "'s")
+			return s
 
 
 class Categorical:
