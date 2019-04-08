@@ -5,12 +5,12 @@ from catalogue_app.db import query_mysql
 
 class Comments:
 	"""Fetch comments for the API."""
-	def __init__(self, lang, course_code, short_question, stars, fiscal_year, start_index):
+	def __init__(self, lang, course_code, short_question, fiscal_year, stars, start_index):
 		self.lang = lang
 		self.course_code = course_code
 		self.short_question = short_question
-		self.stars = stars
 		self.fiscal_year = fiscal_year
+		self.stars = stars
 		self.start_index = start_index
 		# Raw data returned by query
 		self.raw = None
@@ -23,7 +23,7 @@ class Comments:
 		self.raw = self._load_raw()
 		self.processed = self._process_raw()
 		# Return self to allow method chaining
-		print(self.processed)
+		print(self.raw)
 		return self
 	
 	
@@ -35,10 +35,18 @@ class Comments:
 		query = """
 			SELECT text_answer, learner_classif, {0}, fiscal_year, quarter, stars
 			FROM comments
-			WHERE course_code = %s AND short_question = %s
-			LIMIT 20;
+			WHERE
+				course_code = %s
+				AND
+				short_question = %s
+				AND
+				(fiscal_year = %s OR %s = '')
+				AND
+				(stars = %s OR %s = '');
 		""".format(field_name)
-		results = query_mysql(query, (self.course_code, self.short_question))
+		results = query_mysql(query, (self.course_code, self.short_question,
+									  self.fiscal_year, self.fiscal_year,
+									  self.stars, self.stars))
 		results = pd.DataFrame(results, columns=['text_answer', 'learner_classif', 'offering_city',
 												 'fiscal_year', 'quarter', 'stars'])
 		# Account for learners who didn't submit stars with their comments
@@ -104,7 +112,7 @@ class Categorical:
 	
 	def load(self):
 		"""Run query and process raw data."""
-		self._load_all_categorical()
+		self.categorical_data = self._load_all_categorical()
 		# Parse with Pandas and process into form required by Highcharts
 		self.reason = self._load_categorical('Reason to Participate')
 		self.technical_bool = self._load_categorical('Technical Issues')
@@ -113,6 +121,25 @@ class Categorical:
 		self.preparation = self._load_categorical('Prep')
 		# Return self to allow method chaining
 		return self
+	
+	
+	def _load_all_categorical(self):
+		"""Query the DB and extract all categorical question data for a given course code."""
+		field_name = 'text_answer_fr' if self.lang == 'fr' else 'text_answer'
+		query = """
+			SELECT short_question, {0}, COUNT({0})
+			FROM comments
+			WHERE
+				course_code = %s
+				AND
+				short_question IN ('Reason to Participate', 'Technical Issues', 'OL Available', 'GCcampus Tools Used', 'Prep')
+			GROUP BY short_question, {0}
+			ORDER BY 1 ASC;
+		""".format(field_name)
+		results = query_mysql(query, (self.course_code,))
+		results = pd.DataFrame(results, columns=['short_question', 'text_answer', 'count'])
+		# Return False if course has received no feedback
+		return False if results.empty else results
 	
 	
 	def _load_categorical(self, question):
@@ -133,22 +160,3 @@ class Categorical:
 			dict_ = {'name': answer, 'y': count}
 			results_processed.append(dict_)
 		return results_processed if results_processed else [{'name': gettext('No response'), 'y': 1}]
-	
-	
-	def _load_all_categorical(self):
-		"""Query the DB and extract all categorical question data for a given course code."""
-		field_name = 'text_answer_fr' if self.lang == 'fr' else 'text_answer'
-		query = """
-			SELECT short_question, {0}, COUNT({0})
-			FROM comments
-			WHERE
-				course_code = %s
-				AND
-				short_question IN ('Reason to Participate', 'Technical Issues', 'OL Available', 'GCcampus Tools Used', 'Prep')
-			GROUP BY short_question, {0}
-			ORDER BY 1 ASC;
-		""".format(field_name)
-		results = query_mysql(query, (self.course_code,))
-		results = pd.DataFrame(results, columns=['short_question', 'text_answer', 'count'])
-		# Return False if course has received no feedback
-		self.categorical_data = False if results.empty else results
