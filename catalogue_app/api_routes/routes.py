@@ -12,7 +12,7 @@ api = Blueprint('api', __name__)
 def comments(short_question, course_code):
 	"""Return all comments of a given type (e.g. general comments) for a
 	given course code."""
-	# Get arguments
+	# Unpack arguments
 	# Lang; only allow 'en' and 'fr' to be passed to app
 	query_string_lang = request.args.get('lang', '')
 	if query_string_lang == 'fr':
