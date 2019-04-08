@@ -5,13 +5,14 @@ from catalogue_app.db import query_mysql
 
 class Comments:
 	"""Fetch comments for the API."""
-	def __init__(self, lang, course_code, short_question, fiscal_year, stars, start_index):
+	def __init__(self, lang, course_code, short_question, fiscal_year, stars, limit, offset):
 		self.lang = lang
 		self.course_code = course_code
 		self.short_question = short_question
 		self.fiscal_year = fiscal_year
 		self.stars = stars
-		self.start_index = start_index
+		self.limit = limit
+		self.offset = offset
 		# Raw data returned by query
 		self.raw = None
 		# Processed data
@@ -31,7 +32,6 @@ class Comments:
 		self.course_code.
 		"""
 		field_name = 'offering_city_{0}'.format(self.lang)
-		limit = 'LIMIT 20 OFFSET {0}'.format(self.start_index) if isinstance(self.start_index, int) else ''
 		query = """
 			SELECT text_answer, learner_classif, {0}, fiscal_year, quarter, stars
 			FROM comments
@@ -43,11 +43,12 @@ class Comments:
 				(fiscal_year = %s OR %s = '')
 				AND
 				(stars = %s OR %s = '')
-			{1};
-		""".format(field_name, limit)
+			LIMIT %s OFFSET %s;
+		""".format(field_name)
 		results = query_mysql(query, (self.course_code, self.short_question,
 									  self.fiscal_year, self.fiscal_year,
-									  self.stars, self.stars))
+									  self.stars, self.stars,
+									  self.limit, self.offset))
 		results = pd.DataFrame(results, columns=['text_answer', 'learner_classif', 'offering_city',
 												 'fiscal_year', 'quarter', 'stars'])
 		# Account for learners who didn't submit stars with their comments
