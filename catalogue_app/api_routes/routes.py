@@ -75,8 +75,8 @@ def comments(short_question, course_code):
 	
 	results = [_make_dict(lang, tup) for tup in comments.processed]
 	# Allow both JSON and a rendered template to be returned
-	return_html = request.args.get('return_html', False)
-	if return_html == 'true':
+	html = request.args.get('html', False)
+	if html == 'true':
 		return jsonify(data=render_template('/course-page/comments/comments-generator.html', ajax_comments=results))
 	else:
 		return jsonify(results)
