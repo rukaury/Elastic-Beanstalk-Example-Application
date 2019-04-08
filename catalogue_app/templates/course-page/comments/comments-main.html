@@ -1,14 +1,65 @@
-<h1>Mars</h1>
+<h1>{{ pass_dict.course_title }}</h1>
 
-<div id="mars"></div>
+<section class="general_comments hideable">
+	<!-- Dropdown to filter by star -->
+	<div class="star-filter">
+		<p>{{ _('Stars: ') }}</p>
+		<select data-target="general_comments">
+			<option value="">{{ _('All') }}</option>
+			<option value=".star-5">{{ _('Five') }}</option>
+			<option value=".star-4">{{ _('Four') }}</option>
+			<option value=".star-3">{{ _('Three') }}</option>
+			<option value=".star-2">{{ _('Two') }}</option>
+			<option value=".star-1">{{ _('One') }}</option>
+		</select>
+	</div>
+	
+	<!-- Div to hold comments -->
+	<div class="ajax"></div>
+	<!-- Button to load more comments via AJAX and append to document -->
+	<div class="mars" style="text-align: center">
+		<button id="more-button" class="btn btn-primary" style="margin-bottom: 2rem">{{ _('Load More') }}</button>
+	</div>
+</section>
 
-<!-- is this escaped tho to prevent XSS -->
-<script>
-	$.ajax({
-		url: '/api/v1/comments/general/{{ pass_dict.course_code }}?lang=en&return_html=true',
-		type: 'GET',
-		success: function(resp) {
-			$('#mars').append(resp.data);
-		}
+<script async>
+	// Function to load, append n comments via AJAX
+	var currentIndex = 0;
+	const stepSize = 2;
+	
+	var mars;
+	
+	function getComments(append) {
+		$.ajax({
+			url: '/api/v1/comments/performance/{{ pass_dict.course_code }}?lang=en&limit=' + stepSize +  '&offset=' + currentIndex + '&html=true',
+			type: 'GET',
+			success: function(resp) {
+				if (!resp.Error) {
+					if (append) {
+						$('.general_comments div.ajax').append(resp.data);
+					} else {
+						$('.general_comments div.ajax').html(resp.data);
+					}
+					currentIndex = currentIndex + stepSize;
+				} else {
+					if (currentIndex == 0) {
+						$('.general_comments div.ajax').append('Sorry, none of this type');
+						$('#more-button').prop('disabled', true);
+					} else {
+						$('.general_comments div.ajax').append('End of comments');
+						$('#more-button').prop('disabled', true);
+					}
+					
+				}
+			}
+		});
+	}
+	
+	// Load first n comments
+	getComments(append=false);
+	
+	// Load another n comments upon clicking the 'Load More' button
+	$('#more-button').on('click', function() {
+		getComments(append=true);
 	});
 </script>
