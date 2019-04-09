@@ -98,6 +98,53 @@ class Comments:
 			return s
 
 
+class CommentCounts:
+	"""Fetch number of comments by star for a given course code, question,
+	and fiscal year for the API.
+	"""
+	def __init__(self, course_code, short_question, fiscal_year):
+		self.course_code = course_code
+		self.short_question = short_question
+		self.fiscal_year = fiscal_year
+		# Raw data returned by query
+		self.raw = None
+		# Processed data
+		self.processed = None
+	
+	
+	def load(self):
+		"""Run query and process raw data."""
+		self.raw = self._load_raw()
+		self.processed = self._process_raw()
+		# Return self to allow method chaining
+		return self
+	
+	
+	def _load_raw(self):
+		"""Query the DB and extract number of comments by star."""
+		query = """
+			SELECT stars, COUNT(survey_id)
+			FROM comments
+			WHERE
+				course_code = %s
+				AND
+				short_question = %s
+				AND
+				(fiscal_year = %s OR %s = '')
+			GROUP BY stars;
+		"""
+		results = query_mysql(query, (self.course_code, self.short_question,
+									  self.fiscal_year, self.fiscal_year))
+		return dict(results)
+	
+	
+	def _process_raw(self):
+		"""Ensure all stars from 1-5 present in dict."""
+		stars = range(1, 6)
+		results_processed = {star: self.raw.get(star, 0) for star in stars}
+		return results_processed
+
+
 class Categorical:
 	"""Data for the Categorical section of the Comments tab."""
 	def __init__(self, lang, course_code):

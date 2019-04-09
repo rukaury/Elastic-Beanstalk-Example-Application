@@ -1,17 +1,44 @@
 from flask import Blueprint, jsonify, render_template, request
 from catalogue_app import auth
-from catalogue_app.course_routes import utils
 from catalogue_app.course_routes.queries import comment_queries
 
 # Instantiate blueprint
 api = Blueprint('api', __name__)
+
+# Mapping of API routes to names in DB
+question_dict = {
+	'general': 'Comment - General',
+	'language': 'Comment - OL',
+	'langue': 'Comment - OL',
+	'performance': 'Comment - Performance',
+	'technical': 'Comment - Technical',
+	'technique': 'Comment - Technical'
+}
+
+
+@api.route('/api/v1/counts/<string:short_question>/<string:course_code>')
+@auth.login_required
+def counts(short_question, course_code):
+	"""Return number of comments by star for a given course code, question,
+	and fiscal year.
+	"""
+	# Unpack arguments
+	fiscal_year = request.args.get('fiscal_year', '')
+	
+	# Run query; return dict of 0s in case of invalid arguments
+	try:
+		counts = comment_queries.CommentCounts(course_code, question_dict[short_question], fiscal_year).load()
+	except Exception as e:
+		return jsonify({1: 0, 2: 0, 3: 0, 4: 0, 5: 0})
+	return jsonify(counts.processed)
 
 
 @api.route('/api/v1/comments/<string:short_question>/<string:course_code>')
 @auth.login_required
 def comments(short_question, course_code):
 	"""Return all comments of a given type (e.g. general comments) for a
-	given course code."""
+	given course code.
+	"""
 	# Unpack arguments
 	# Lang; only allow 'en' and 'fr' to be passed to app
 	query_string_lang = request.args.get('lang', '')
@@ -27,25 +54,6 @@ def comments(short_question, course_code):
 	limit = request.args.get('limit', 999_999)
 	# Offset
 	offset = request.args.get('offset', 0)
-	
-	# Validate course code
-	course_code = utils.validate_course_code({'course_code': course_code}, 'this_year')
-	if not course_code:
-		if lang == 'fr':
-			error_message = {'Erreur': 'Cours introuvable'}
-		else:
-			error_message = {'Error': 'Course Not Found'}
-		return jsonify(error_message)
-	
-	# Mapping of API routes to names in DB
-	question_dict = {
-		'general': 'Comment - General',
-		'language': 'Comment - OL',
-		'langue': 'Comment - OL',
-		'performance': 'Comment - Performance',
-		'technical': 'Comment - Technical',
-		'technique': 'Comment - Technical'
-	}
 	
 	# Run query; display error message in case of invalid arguments
 	if short_question in ['instructor', 'instructeur']:
