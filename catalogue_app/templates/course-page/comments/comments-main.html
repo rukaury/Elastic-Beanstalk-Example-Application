@@ -1,10 +1,10 @@
 <h1>{{ pass_dict.course_title }}</h1>
 
-<section class="general_comments hideable">
+<section class="general-comments hideable">
 	<!-- Dropdown to filter by star -->
 	<div class="star-filter">
 		<p>{{ _('Stars: ') }}</p>
-		<select data-target=".general_comments">
+		<select data-target=".general-comments" data-type="general">
 			<option value="">{{ _('All') }}</option>
 			<option value="5">{{ _('Five') }}</option>
 			<option value="4">{{ _('Four') }}</option>
@@ -17,7 +17,7 @@
 	<!-- Dropdown to filter by fiscal year -->
 	<div class="year-filter">
 		<p>{{ _('Fiscal Year: ') }}</p>
-		<select data-target=".general_comments">
+		<select data-target=".general-comments" data-type="general">
 			<option value="">{{ _('All') }}</option>
 			<option value="2015-2016">2015-16</option>
 			<option value="2016-2017">2016-17</option>
@@ -31,32 +31,12 @@
 	<div class="ajax"></div>
 	<!-- Button to load more comments via AJAX and append to document -->
 	<div class="mars" style="text-align: center">
-		<button id="more-button" class="btn btn-primary" style="margin-bottom: 2rem">{{ _('Load More') }}</button>
+		<button class="btn btn-primary more-button" data-target=".general-comments" data-type="general" style="margin-bottom: 2rem">{{ _('Load More') }}</button>
 	</div>
 </section>
 
 <script async>
-	// move this func to end when done
-	
-	// Add functionality to 'Star' and 'Fiscal Year' dropdowns
-	$('.star-filter select, .year-filter select').on('change', function(e) {
-		e.preventDefault();
-		
-		// Get div in which to load comments
-		var currentSection = $(this).attr('data-target');
-		var targetDiv = $(currentSection + ' div.ajax');
-		
-		// Get dropdown selections
-		dropdownVals = getDropdownVals('.general_comments');
-		
-		// Load comments via AJAX; overwrite contents of targetDiv
-		// Reset counter and button
-		currentIndex = 0;
-		$('#more-button').prop('disabled', false);
-		getComments(append=false, stars=dropdownVals.stars, fiscalYear=dropdownVals.fiscalYear);
-	});
-	
-	// Get values in dropdowns
+	// Func to get dropdown selections
 	function getDropdownVals(currentSection) {
 		var dropdowns = $(currentSection + ' select');
 		return {
@@ -65,46 +45,83 @@
 		};
 	}
 	
-	// Function to load, append n comments via AJAX
+	// Func to load and append n comments via AJAX
 	var currentIndex = 0;
-	const stepSize = 5;
-	function getComments(append, stars, fiscalYear) {
-		var currentSection = '.general_comments div.ajax'
+	const STEP_SIZE = 20;
+	function getComments(commentType, append, targetSection, stars, fiscalYear) {
 		$.ajax({
-			url: '/api/v1/comments/general/{{ pass_dict.course_code }}?lang=en&limit=' + stepSize +
-					'&offset=' + currentIndex + '&stars=' + stars + '&fiscal_year=' +
-					fiscalYear + '&html=true',
+			url: '/api/v1/comments/' + commentType + '/{{ pass_dict.course_code }}?lang=en&limit=' +
+				STEP_SIZE + '&offset=' + currentIndex + '&stars=' + stars + '&fiscal_year=' +
+				fiscalYear + '&html=true',
 			type: 'GET',
 			success: function(resp) {
 				if (resp.Error) {
 					if (append) {
-						$(currentSection).append('End of comments');
-						$('#more-button').prop('disabled', true);
+						$(targetSection + ' div.ajax').append("{{ _('End of comments') }}");
 					} else {
-						$(currentSection).html('End of comments');
-						$('#more-button').prop('disabled', true);
+						$(targetSection + ' div.ajax').html("{{ _('End of comments') }}");
 					}
+					$(targetSection + ' button.more-button').prop('disabled', true);
 				} else {
 					if (append) {
-						$(currentSection).append(resp.data);
+						$(targetSection + ' div.ajax').append(resp.data);
 					} else {
-						$(currentSection).html(resp.data);
+						$(targetSection + ' div.ajax').html(resp.data);
 					}
-					currentIndex = currentIndex + stepSize;
+					currentIndex = currentIndex + STEP_SIZE;
 				}
 			}
 		});
 	}
 	
-	// Load first n comments
-	getComments(append=false, stars='', fiscalYear='');
-	
-	// Load another n comments upon clicking the 'Load More' button
-	$('#more-button').on('click', function() {
-		dropdownVals = getDropdownVals('.general_comments');
-		getComments(append=true, stars=dropdownVals.stars, fiscalYear=dropdownVals.fiscalYear);
+	// Add listener to dropdowns: Load comments via AJAX to match criteria
+	$('.star-filter select, .year-filter select').on('change', function(e) {
+		e.preventDefault();
+		
+		// Get section in which to load comments
+		var targetSection = $(this).attr('data-target');
+		
+		// Get type of comments to load
+		var commentType = $(this).attr('data-type');
+		
+		// Get dropdown selections
+		dropdownVals = getDropdownVals(targetSection);
+		
+		// Load comments via AJAX and overwrite contents of targetSection
+		// Reset counter and button
+		currentIndex = 0;
+		$(targetSection + ' button.more-button').prop('disabled', false);
+		getComments(commentType=commentType, append=false, targetSection=targetSection,
+					stars=dropdownVals.stars, fiscalYear=dropdownVals.fiscalYear);
 	});
 	
-	// could probably remove classes like .star-5, .FY2018-19
+	// Add listener to 'Load More' buttons: Load another n comments
+	$('.more-button').on('click', function(e) {
+		e.preventDefault();
+		
+		// Get section in which to load comments
+		var targetSection = $(this).attr('data-target');
+		
+		// Get type of comments to load
+		var commentType = $(this).attr('data-type');
+		
+		// Get dropdown selections
+		dropdownVals = getDropdownVals(targetSection);
+		
+		// Load comments via AJAX and append to contents of targetSection
+		getComments(commentType=commentType, append=true, targetSection=targetSection,
+					stars=dropdownVals.stars, fiscalYear=dropdownVals.fiscalYear);
+	});
+	
+	// EVERYTHING BEYOND THIS POINT IN FOR LOOP
+	
+	// Load first n comments
+	getComments(commentType='general', append=false, targetSection='.general-comments', stars='', fiscalYear='');
+	
+	
+	
+	// could remove classes like .star-5, .FY2018-19
+	
+	
 	
 </script>
