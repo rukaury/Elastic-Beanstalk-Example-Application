@@ -74,27 +74,27 @@
 		<!-- Tabs' contents -->
 		<!-- General -->
 		<section id="general" class="main-section active">
-			{{ download_raw(url_for('downloads.download_general', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/general.html' %}
+			{{ download_raw(url_for('downloads.download_general', course_code=pass_dict.course_code)) }}
 		</section>
 		
 		<!-- Dashboards -->
 		<section id="dashboard" class="main-section hide">
-			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/dashboards/dashboards-main.html' %}
+			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 		</section>
 		
 		<!-- Maps -->
 		<section id="geodata" class="main-section hide">
 			<!-- Dashboard and Maps tabs built from same table -->
-			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/geodata.html' %}
+			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 		</section>
 		
 		<!-- Comments -->
 		<section id="comments" class="main-section hide">
-			{{ download_raw(url_for('downloads.download_comments', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/comments/comments-main.html' %}
+			{{ download_raw(url_for('downloads.download_comments', course_code=pass_dict.course_code)) }}
 		</section>
 		
 		<!-- Prep & Admin -->
