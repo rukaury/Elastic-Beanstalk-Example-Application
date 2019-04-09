@@ -4,13 +4,26 @@
 	<!-- Dropdown to filter by star -->
 	<div class="star-filter">
 		<p>{{ _('Stars: ') }}</p>
-		<select data-target="general_comments">
+		<select data-target=".general_comments">
 			<option value="">{{ _('All') }}</option>
-			<option value=".star-5">{{ _('Five') }}</option>
-			<option value=".star-4">{{ _('Four') }}</option>
-			<option value=".star-3">{{ _('Three') }}</option>
-			<option value=".star-2">{{ _('Two') }}</option>
-			<option value=".star-1">{{ _('One') }}</option>
+			<option value="5">{{ _('Five') }}</option>
+			<option value="4">{{ _('Four') }}</option>
+			<option value="3">{{ _('Three') }}</option>
+			<option value="2">{{ _('Two') }}</option>
+			<option value="1">{{ _('One') }}</option>
+		</select>
+	</div>
+	
+	<!-- Dropdown to filter by fiscal year -->
+	<div class="year-filter">
+		<p>{{ _('Fiscal Year: ') }}</p>
+		<select data-target=".general_comments">
+			<option value="">{{ _('All') }}</option>
+			<option value="2015-2016">2015-16</option>
+			<option value="2016-2017">2016-17</option>
+			<option value="2017-2018">2017-18</option>
+			<option value="2018-2019">2018-19</option>
+			<option value="2019-2020">2019-20</option>
 		</select>
 	</div>
 	
@@ -23,43 +36,75 @@
 </section>
 
 <script async>
+	// move this func to end when done
+	
+	// Add functionality to 'Star' and 'Fiscal Year' dropdowns
+	$('.star-filter select, .year-filter select').on('change', function(e) {
+		e.preventDefault();
+		
+		// Get div in which to load comments
+		var currentSection = $(this).attr('data-target');
+		var targetDiv = $(currentSection + ' div.ajax');
+		
+		// Get dropdown selections
+		dropdownVals = getDropdownVals('.general_comments');
+		
+		// Load comments via AJAX; overwrite contents of targetDiv
+		// Reset counter and button
+		currentIndex = 0;
+		$('#more-button').prop('disabled', false);
+		getComments(append=false, stars=dropdownVals.stars, fiscalYear=dropdownVals.fiscalYear);
+	});
+	
+	// Get values in dropdowns
+	function getDropdownVals(currentSection) {
+		var dropdowns = $(currentSection + ' select');
+		return {
+			'stars': dropdowns[0].value,
+			'fiscalYear': dropdowns[1].value,
+		};
+	}
+	
 	// Function to load, append n comments via AJAX
 	var currentIndex = 0;
-	const stepSize = 2;
-	
-	var mars;
-	
-	function getComments(append) {
+	const stepSize = 5;
+	function getComments(append, stars, fiscalYear) {
+		var currentSection = '.general_comments div.ajax'
 		$.ajax({
-			url: '/api/v1/comments/performance/{{ pass_dict.course_code }}?lang=en&limit=' + stepSize +  '&offset=' + currentIndex + '&html=true',
+			url: '/api/v1/comments/general/{{ pass_dict.course_code }}?lang=en&limit=' + stepSize +
+					'&offset=' + currentIndex + '&stars=' + stars + '&fiscal_year=' +
+					fiscalYear + '&html=true',
 			type: 'GET',
 			success: function(resp) {
-				if (!resp.Error) {
+				if (resp.Error) {
 					if (append) {
-						$('.general_comments div.ajax').append(resp.data);
+						$(currentSection).append('End of comments');
+						$('#more-button').prop('disabled', true);
 					} else {
-						$('.general_comments div.ajax').html(resp.data);
+						$(currentSection).html('End of comments');
+						$('#more-button').prop('disabled', true);
+					}
+				} else {
+					if (append) {
+						$(currentSection).append(resp.data);
+					} else {
+						$(currentSection).html(resp.data);
 					}
 					currentIndex = currentIndex + stepSize;
-				} else {
-					if (currentIndex == 0) {
-						$('.general_comments div.ajax').append('Sorry, none of this type');
-						$('#more-button').prop('disabled', true);
-					} else {
-						$('.general_comments div.ajax').append('End of comments');
-						$('#more-button').prop('disabled', true);
-					}
-					
 				}
 			}
 		});
 	}
 	
 	// Load first n comments
-	getComments(append=false);
+	getComments(append=false, stars='', fiscalYear='');
 	
 	// Load another n comments upon clicking the 'Load More' button
 	$('#more-button').on('click', function() {
-		getComments(append=true);
+		dropdownVals = getDropdownVals('.general_comments');
+		getComments(append=true, stars=dropdownVals.stars, fiscalYear=dropdownVals.fiscalYear);
 	});
+	
+	// could probably remove classes like .star-5, .FY2018-19
+	
 </script>
