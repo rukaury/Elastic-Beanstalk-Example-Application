@@ -117,6 +117,24 @@
 					stars=dropdownVals.stars, fiscalYear=dropdownVals.fiscalYear);
 	});
 	
+	// Add listener to fiscal year dropdown: Update barchart
+	// Listener can't be in file 'comments-barchart.html' as <select> elem not yet created
+	$('.year-filter select').on('change', function(e) {
+		e.preventDefault();
+		
+		// Get section in which to load comments
+		var tabName = $(this).attr('data-target');
+		
+		// Get type of comments to load
+		var commentType = $(this).attr('data-type');
+		
+		// Get dropdown selection
+		var fiscalYear = $(this)[0].value;
+		
+		// Load comments via AJAX and update barchart
+		getCounts(commentType=commentType, fiscalYear=fiscalYear, tabName=tabName);
+	});
+	
 	// EVERYTHING BEYOND THIS POINT IN FOR LOOP
 	
 	// Load first n comments

@@ -134,7 +134,7 @@
 		if (fiscalYear == '') {
 			$(tabName + ' .stars-bar-chart thead h3 span').text(totalComments + titleNoun + ' ' + "{{ _('in Total') }}");
 		} else {
-			$(tabName + ' .stars-bar-chart thead h3 span').text(totalComments + titleNoun + ' ' + titlePrep + ' ' + fiscalYearSelected.replace('-20', '-'));
+			$(tabName + ' .stars-bar-chart thead h3 span').text(totalComments + titleNoun + ' ' + titlePrep + ' ' + fiscalYear.replace('-20', '-'));
 		}
 	}
 	
@@ -146,7 +146,6 @@
 				fiscalYear,
 			type: 'GET',
 			success: function(resp) {
-				console.log(resp)
 				updateBarChart(tabName=tabName, data=resp, fiscalYear=fiscalYear);
 			}
 		});
