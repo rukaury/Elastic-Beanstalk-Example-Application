@@ -89,7 +89,7 @@
 		var commentType = $(this).attr('data-type');
 		
 		// Get dropdown selections
-		dropdownVals = getDropdownVals(targetSection);
+		var dropdownVals = getDropdownVals(targetSection);
 		
 		// Load comments via AJAX and overwrite contents of targetSection
 		// Reset counter and button
@@ -110,7 +110,7 @@
 		var commentType = $(this).attr('data-type');
 		
 		// Get dropdown selections
-		dropdownVals = getDropdownVals(targetSection);
+		var dropdownVals = getDropdownVals(targetSection);
 		
 		// Load comments via AJAX and append to contents of targetSection
 		getComments(commentType=commentType, append=true, targetSection=targetSection,
