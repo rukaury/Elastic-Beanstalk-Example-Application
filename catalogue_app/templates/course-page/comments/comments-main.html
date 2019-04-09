@@ -1,6 +1,10 @@
 <h1>{{ pass_dict.course_title }}</h1>
 
 <section class="general-comments hideable">
+	
+	<!-- CSS barchart showing percentages for 5 stars, 4 stars, etc. -->
+	{% include 'course-page/comments/comments-barchart.html' %}
+	
 	<!-- Dropdown to filter by star -->
 	<div class="star-filter">
 		<p>{{ _('Stars: ') }}</p>
@@ -117,11 +121,4 @@
 	
 	// Load first n comments
 	getComments(commentType='general', append=false, targetSection='.general-comments', stars='', fiscalYear='');
-	
-	
-	
-	// could remove classes like .star-5, .FY2018-19
-	
-	
-	
 </script>
