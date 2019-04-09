@@ -24,7 +24,7 @@ def comments(short_question, course_code):
 	# Stars
 	stars = request.args.get('stars', '')
 	# Limit
-	limit = request.args.get('limit', 99_999)
+	limit = request.args.get('limit', 999_999)
 	# Offset
 	offset = request.args.get('offset', 0)
 	
