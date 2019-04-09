@@ -1,24 +1,33 @@
 ### CURRENT SPRINT ###
 
+# sorry, no feedback
+# instructor message
+# categorical
+# fix download routes
+# check spacing e.g. min-height of a comment section, button
+# update FR
+# rename CSS
+# check all browsers and push
+	# send GA test traffic
+
+
 # dropdown at start should be union of courses in last_year and this_year
 	# source of some queries may need to be changed e.g. title, business_type
 	# validation would also need to be updated
+	# also Explore
 # add datatables to depts and classifications, make top 25
 # complete UL per month
-# add export as PDF
-# pagination -> reënable A230
 # check mobile e.g. prevent dropdown glyph from being part of what's centered
 	# check spacing
-
 # update FR
 # rename CSS
+# next ETL: order comments by fiscal_year desc;
+	# update scraper to grab code from title rather than URL
 # name change + launch V1!
 	# email to everyone who was at DGC
 	# ask if you like 12 month rolling or two fiscal
 	# data will be updated wednesdays
-	# send GA test traffic
-# hatav: ask depts what they'd want to see on website
-# get desired ratings from taylor
+
 
 
 
@@ -26,18 +35,16 @@
 
 ### BACKLOG ###
 
-# solve old Google Maps API issue
-# clear out use of google nlp api
-# delete use of API key on GCDocs, GH
-# check all indices
-# IDEA: # rip out 2 fiscal years, do 12 month rolling window (or 16 months to include future for planned offerings), but do so in separate branch
-	# comment things out, make it all run off THIS_YEAR in case there's a revolt
-# update scraper to grab code from title rather than URL
-# load rate (Christine Dionne)
-# ask Bob what they want to do for Ratings
+# add Bob ratings
+# check all DB indices
 # add admin accounts
 	# roll-out very slowly, try with 1 course from Jeremy and 1 from regions
 	# check if upload is dangerous
+
+# solve old Google Maps API issue
+	# clear out use of google nlp api
+	# delete use of API key on GCDocs, GH
+# IDEA: rip out 2 fiscal years, do 12 month rolling window (or 16 months to include future for planned offerings), but do so in separate branch
 # decouple frontend and backend
 	# check out flask-restful
 	# Maps tab could get a lot better if decoupled
@@ -52,7 +59,6 @@
 	# show flags e.g. regs gone down, copyright expired, no prep and admin, bad sentiment scores, open offerings from last year
 	# email director the problems for delegation
 # add dept usage
-# focus groups w/ users, brainstorm for new KPIs
 # unit testing
 	https://digital.canada.ca/2019/03/14/putting-your-trust-in-humans-and-robots/
 	https://www.youtube.com/watch?v=1gvvgsTTyqA
