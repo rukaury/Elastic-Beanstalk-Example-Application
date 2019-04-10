@@ -94,11 +94,10 @@ def _make_dict(lang, my_tup):
 	"""Make tuple in a dictionary so can be jsonified into
 	an object.
 	"""
-	if lang == 'fr':
-		labels = ['texte_du_commentaire', 'classification_de_l_apprenant', 'ville_de_l_offre',
-				  'année_fiscale_de_l_offre', 'trimestre_de_l_offre', 'étoiles']
-	else:
-		labels = ['comment_text', 'learner_classification', 'offering_city',
-				  'offering_fiscal_year', 'offering_quarter', 'stars']
+	# if lang == 'fr':
+	# 	labels = ['texte_du_commentaire', 'classification_de_l_apprenant', 'ville_de_l_offre',
+	# 			  'année_fiscale_de_l_offre', 'trimestre_de_l_offre', 'étoiles']
+	labels = ['comment_text', 'learner_classification', 'offering_city',
+			  'offering_fiscal_year', 'offering_quarter', 'stars']
 	results = {key: val for key, val in zip(labels, my_tup)}
 	return results
