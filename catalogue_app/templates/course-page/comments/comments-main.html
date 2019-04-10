@@ -55,6 +55,14 @@
 <!-- Funcs for AJAX comments -->
 <!-- More elegant to move to separate .js file, but Jinja2 requires everyting in same file -->
 <script async>
+	// Object to store a counter for each comment section
+	var currentIndex = {
+		'general': 0,
+		'technical': 0,
+		'language': 0,
+		'performance': 0
+	};
+	
 	// Func to get dropdown selections
 	function getDropdownVals(currentSection) {
 		var dropdowns = $(currentSection + ' select');
@@ -65,13 +73,12 @@
 	}
 	
 	// Func to load and append n comments via AJAX
-	var currentIndex = 0;
 	const STEP_SIZE = 20;
 	function getComments(commentType, append, targetSection, stars, fiscalYear) {
 		$.ajax({
 			{% set lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en' %}
 			url: '/api/v1/comments/' + commentType + '/{{ pass_dict.course_code }}?lang={{ lang }}&limit=' +
-				STEP_SIZE + '&offset=' + currentIndex + '&stars=' + stars + '&fiscal_year=' +
+				STEP_SIZE + '&offset=' + currentIndex[commentType] + '&stars=' + stars + '&fiscal_year=' +
 				fiscalYear + '&html=true',
 			type: 'GET',
 			success: function(resp) {
@@ -88,7 +95,7 @@
 					} else {
 						$(targetSection + ' div.ajax').html(resp.data);
 					}
-					currentIndex = currentIndex + STEP_SIZE;
+					currentIndex[commentType] = currentIndex[commentType] + STEP_SIZE;
 				}
 			}
 		});
@@ -109,7 +116,7 @@
 		
 		// Load comments via AJAX and overwrite contents of targetSection
 		// Reset counter and button
-		currentIndex = 0;
+		currentIndex[commentType] = 0;
 		$(targetSection + ' button.more-button').prop('disabled', false);
 		getComments(commentType=commentType, append=false, targetSection=targetSection,
 					stars=dropdownVals.stars, fiscalYear=dropdownVals.fiscalYear);
@@ -269,7 +276,6 @@
 <!-- Load first n comments for each section -->
 {% for comment_name in comment_names %}
 	<script async>
-		currentIndex = 0;
 		getComments(commentType='{{ comment_name }}', append=false, targetSection='.{{ comment_name }}-comments', stars='', fiscalYear='');
 		
 		// Load initial barchart
