@@ -222,6 +222,11 @@
 			type: 'GET',
 			success: function(resp) {
 				updateBarChart(tabName=tabName, data=resp, fiscalYear=fiscalYear);
+				// Display message if no feedback in all fiscal years
+				var sumComments = resp[1] + resp[2] + resp[3] + resp[4] + resp[5];
+				if (fiscalYear == '' && sumComments == 0) {
+					$(tabName).html("<h4>{{ _('Apologies, this course has yet to receive any feedback of this type.') }}</h4>");
+				}
 			}
 		});
 	}
