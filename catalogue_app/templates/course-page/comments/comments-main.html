@@ -132,6 +132,22 @@
 		getComments(commentType=commentType, append=true, targetSection=targetSection,
 					stars=dropdownVals.stars, fiscalYear=dropdownVals.fiscalYear);
 	});
+	
+	// Add listener to barchart: Click to trigger .star-filter
+	$('.stars-bar-chart a').on('click', function(e) {
+		e.stopImmediatePropagation();
+		e.preventDefault();
+		
+		// Get section in which to trigger dropdown
+		var targetSection = $(this).attr('data-target');
+		
+		// Get type of comments to load
+		var clickedVal = $(this).attr('data-value');
+		
+		// Set dropdown to clickedVal
+		$(targetSection + ' .star-filter select').val(clickedVal).change();
+		return false;
+	});
 </script>
 
 
