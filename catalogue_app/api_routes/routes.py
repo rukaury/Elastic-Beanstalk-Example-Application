@@ -1,77 +1,103 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, render_template, request
 from catalogue_app import auth
-from catalogue_app.course_routes import utils
 from catalogue_app.course_routes.queries import comment_queries
 
 # Instantiate blueprint
 api = Blueprint('api', __name__)
 
+# Mapping of API routes to names in DB
+question_dict = {
+	'general': 'Comment - General',
+	'language': 'Comment - OL',
+	'langue': 'Comment - OL',
+	'performance': 'Comment - Performance',
+	'technical': 'Comment - Technical',
+	'technique': 'Comment - Technical'
+}
 
-@api.route('/api/v1/comments/<string:comment_type>/<string:course_code>')
+
+@api.route('/api/v1/counts/<string:short_question>/<string:course_code>')
 @auth.login_required
-def comments(comment_type, course_code):
-	"""Return all comments of a given type (e.g. general comments) for a
-	given course code."""
-	# Only allow 'en' and 'fr' to be passed to app
-	VALID_LANGS = ['en', 'fr']
+def counts(short_question, course_code):
+	"""Return number of comments by star for a given course code, question,
+	and fiscal year.
+	"""
+	# Unpack arguments
+	fiscal_year = request.args.get('fiscal_year', '')
 	
-	# Prioritize query string, else cookie user has already set,
-	# else default to English
-	query_string_lang = request.args.get('lang', None)
-	cookie_lang = request.cookies.get('lang', None)
-	if query_string_lang in VALID_LANGS:
-		lang = query_string_lang
-	elif cookie_lang in VALID_LANGS:
-		lang = cookie_lang
+	# Run query; return dict of 0s in case of invalid arguments
+	try:
+		counts = comment_queries.CommentCounts(course_code, question_dict[short_question], fiscal_year).load()
+	except Exception as e:
+		return jsonify({1: 0, 2: 0, 3: 0, 4: 0, 5: 0})
+	return jsonify(counts.processed)
+
+
+@api.route('/api/v1/comments/<string:short_question>/<string:course_code>')
+@auth.login_required
+def comments(short_question, course_code):
+	"""Return all comments of a given type (e.g. general comments) for a
+	given course code.
+	"""
+	# Unpack arguments
+	# Lang; only allow 'en' and 'fr' to be passed to app
+	query_string_lang = request.args.get('lang', '')
+	if query_string_lang == 'fr':
+		lang = 'fr'
 	else:
 		lang = 'en'
+	# Fiscal year
+	fiscal_year = request.args.get('fiscal_year', '')
+	# Stars
+	stars = request.args.get('stars', '')
+	# Limit
+	limit = request.args.get('limit', 999_999)
+	# Offset
+	offset = request.args.get('offset', 0)
 	
-	# Validate user input
-	# Avoid use of Flask Babel gettext in this module to allow
-	# query string to override cookie 'lang'
-	course_code = utils.validate_course_code({'course_code': course_code}, 'this_year')
-	if not course_code:
+	# Run query; display error message in case of invalid arguments
+	if short_question in ['instructor', 'instructeur']:
 		if lang == 'fr':
-			error_message = 'Erreur : Cours introuvable'
+			error_message = {'Erreur': 'Les commentaires concernant les instructeurs sont présentement désactivés à cause des restrictions de confidentialité.'}
 		else:
-			error_message = 'Error: Course Not Found'
-		return jsonify(error_message)
-	
-	# Instantiate class Comments
-	comments = comment_queries.Comments(lang, course_code).load()
-	if comment_type == 'general':
-		results = comments.general
-	elif comment_type == 'technical':
-		results = comments.technical
-	elif comment_type == 'language':
-		results = comments.language
-	elif comment_type == 'performance':
-		results = comments.performance
-	elif comment_type == 'instructor':
-		if lang == 'fr':
-			error_message = 'Erreur : Les commentaires concernant les instructeurs sont présentement désactivés à cause des restrictions de confidentialité.'
-		else:
-			error_message = 'Error: Comments on instructor performance are currently disabled due to privacy restrictions.'
+			error_message = {'Error': 'Comments on instructor performance are currently disabled due to privacy restrictions.'}
 		return jsonify(error_message), 410
 	else:
+		try:
+			comments = comment_queries.Comments(lang, course_code, question_dict[short_question], fiscal_year, stars, limit, offset).load()
+		except Exception as e:
+			if lang == 'fr':
+				error_message = {'Erreur': 'Les commentaires de ce genre ne sont présentement pas recueillis dans nos sondages.'}
+			else:
+				error_message = {'Error': 'Comments of this type are not currently collected in our surveys.'}
+			return jsonify(error_message), 404
+	
+	# Account for 0 results
+	# If 0 results, comments.processed = False
+	if not comments.processed:
 		if lang == 'fr':
-			error_message = 'Erreur : Les commentaires de ce genre ne sont présentement pas recueillis dans nos sondages.'
+			error_message = {'Erreur': 'Aucun résultat'}
 		else:
-			error_message = 'Error: Comments of this type are not currently collected in our surveys.'
-		return jsonify(error_message), 404
-	results = [_make_dict(lang, result) for result in results]
-	return jsonify(results)
+			error_message = {'Error': 'No Results'}
+		return jsonify(error_message)
+	
+	results = [_make_dict(lang, tup) for tup in comments.processed]
+	# Allow both JSON and a rendered template to be returned
+	html = request.args.get('html', False)
+	if html == 'true':
+		return jsonify(data=render_template('/course-page/comments/comments-generator.html', ajax_comments=results))
+	else:
+		return jsonify(results)
 
 
 def _make_dict(lang, my_tup):
 	"""Make tuple in a dictionary so can be jsonified into
 	an object.
 	"""
-	if lang == 'fr':
-		labels = ['texte_du_commentaire', 'étoiles', 'classification_de_l_apprenant',
-				  'ville_de_l_offre', 'année_fiscale_de_l_offre', 'trimestre_de_l_offre']
-	else:
-		labels = ['comment_text', 'stars', 'learner_classification', 'offering_city',
-				  'offering_fiscal_year', 'offering_quarter']	
+	# if lang == 'fr':
+	# 	labels = ['texte_du_commentaire', 'classification_de_l_apprenant', 'ville_de_l_offre',
+	# 			  'année_fiscale_de_l_offre', 'trimestre_de_l_offre', 'étoiles']
+	labels = ['comment_text', 'learner_classification', 'offering_city',
+			  'offering_fiscal_year', 'offering_quarter', 'stars']
 	results = {key: val for key, val in zip(labels, my_tup)}
 	return results

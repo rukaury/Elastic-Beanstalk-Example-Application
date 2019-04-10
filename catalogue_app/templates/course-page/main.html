@@ -48,14 +48,14 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="#comments" data-class="general_comments">{{ _('Overall') }}</a></li>
+					<li><a href="#comments" data-class="general-comments">{{ _('Overall') }}</a></li>
 					{% if pass_dict.business_type == 'Instructor-Led' %}
-						<li><a href="#comments" data-class="instructor_comments">{{ _('Instructor') }}</a></li>
+						<li><a href="#comments" data-class="instructor-comments">{{ _('Instructor') }}</a></li>
 					{% else %}
-						<li><a href="#comments" data-class="technical_comments">{{ _('Technical') }}</a></li>
+						<li><a href="#comments" data-class="technical-comments">{{ _('Technical') }}</a></li>
 					{% endif %}
-					<li><a href="#comments" data-class="language_comments">{{ _('Language') }}</a></li>
-					<li><a href="#comments" data-class="performance_comments">{{ _('Performance') }}</a></li>
+					<li><a href="#comments" data-class="language-comments">{{ _('Language') }}</a></li>
+					<li><a href="#comments" data-class="performance-comments">{{ _('Performance') }}</a></li>
 					<li><a href="#comments" data-class="other">{{ _('Categorical') }}</a></li>
 				</ul>
 			</li>
@@ -70,27 +70,27 @@
 		<!-- Tabs' contents -->
 		<!-- General -->
 		<section id="general" class="main-section active">
-			{{ download_raw(url_for('downloads.download_general', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/general.html' %}
+			{{ download_raw(url_for('downloads.download_general', course_code=pass_dict.course_code)) }}
 		</section>
 		
 		<!-- Dashboards -->
 		<section id="dashboard" class="main-section hide">
+			{% include 'course-page/dashboards/dashboards-main.html' %}
 			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
-			{% include 'course-page/dashboards/main.html' %}
 		</section>
 		
 		<!-- Maps -->
 		<section id="geodata" class="main-section hide">
 			<!-- Dashboard and Maps tabs built from same table -->
-			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 			{% include 'course-page/geodata.html' %}
+			{{ download_raw(url_for('downloads.download_dashboard', course_code=pass_dict.course_code)) }}
 		</section>
 		
 		<!-- Comments -->
 		<section id="comments" class="main-section hide">
+			{% include 'course-page/comments/comments-main.html' %}
 			{{ download_raw(url_for('downloads.download_comments', course_code=pass_dict.course_code)) }}
-			{% include 'course-page/comments.html' %}
 		</section>
 		
 		<!-- Prep & Admin -->

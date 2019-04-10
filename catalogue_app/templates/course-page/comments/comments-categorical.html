@@ -1,0 +1,67 @@
+<!-- Categorical Questions -->
+<section class="other hideable">
+	<!-- Display categorical comments if any, else error message -->
+	{% if any ([pass_dict.reason_to_participate, pass_dict.technical_issues,
+				pass_dict.languages_available, pass_dict.tools_used, pass_dict.prepared_by]) %}
+		<!-- Highcharts: Pie charts for categorical and yes/no questions -->
+		<div class="row">
+			<div id="reason-to-participate" class="col-xs-12"></div>
+		</div>
+		<div class="row">
+			<div id="technical-issues" class="col-xs-12 col-md-6"></div>
+			<div id="languages-available" class="col-xs-12 col-md-6"></div>
+		</div>
+		<div class="row">
+			<div id="tools-used" class="col-xs-12 col-md-6"></div>
+			<div id="prepared-by" class="col-xs-12 col-md-6"></div>
+		</div>
+	{% else %}
+		<h4>{{ _('Apologies, this course has yet to receive any feedback of this type.') }}</h4>
+	{% endif %}
+</section>
+
+<script async>
+	function createPieChart(myDiv, title, data) {
+		$(myDiv).highcharts({
+			chart: {type: 'pie'},
+			title: {text: title, style: {fontWeight: 'bold'}},
+			tooltip: {
+				formatter: function() {
+					var sliceName = this.key;
+					if (sliceName == 'No response') {
+						return "{{ _('<strong>Number of Responses:</strong> 0') }}";
+					} else {
+						return "{{ _('<strong>Number of Responses:</strong> ') }}" + this.y;
+					}
+				}
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					dataLabels: {
+						enabled: true,
+						format: '<b>{point.name}</b>: {point.percentage:.0f}%',
+						style: {color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'}
+					}
+				}
+			},
+			credits: {text: ''},
+			series: [{
+				name: '',
+				colorByPoint: true,
+				data: data
+			}]
+		});
+	}
+	
+	// Only attempt to create pie charts if data exists
+	{% if any ([pass_dict.reason_to_participate, pass_dict.technical_issues,
+				pass_dict.languages_available, pass_dict.tools_used, pass_dict.prepared_by]) %}
+		createPieChart('#reason-to-participate', "{{ _('Reason to Participate') }}", {{ pass_dict.reason_to_participate | safe }});
+		createPieChart('#technical-issues', "{{ _('Did You Experience Technical Issues?') }}", {{ pass_dict.technical_issues | safe }});
+		createPieChart('#languages-available', "{{ _('The Course Was Available in the Official Language of My Choice') }}", {{ pass_dict.languages_available | safe }});
+		createPieChart('#tools-used', "{{ _('Did the Course Make Use of GCcampus Tools?') }}", {{ pass_dict.tools_used | safe }});
+		createPieChart('#prepared-by', "{{ _('Method of Preparing for the Course') }}", {{ pass_dict.prepared_by | safe }});
+	{% endif %}
+</script>

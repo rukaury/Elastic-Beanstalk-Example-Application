@@ -551,6 +551,14 @@ with position: relative, in this case #selection-and-loader */
 
 
 /***** Comments *****/
+/* Load More button */
+.more-button-outer {
+	text-align: center;
+}
+.more-button {
+	margin-bottom: 2rem;
+}
+
 /* Filters */
 .star-filter,
 .year-filter {
@@ -582,7 +590,7 @@ with position: relative, in this case #selection-and-loader */
 	border-color: #066169 !important;
 }
 /* Error message for instructor comments */
-.instructor_comments p {
+.instructor-comments p {
 	margin: 1.25rem 0;
 }
 /* Stars */

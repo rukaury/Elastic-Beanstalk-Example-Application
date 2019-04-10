@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.9\n"
 "Report-Msgid-Bugs-To: sam.louden@canada.ca\n"
-"POT-Creation-Date: 2019-04-05 01:52-0400\n"
+"POT-Creation-Date: 2019-04-09 21:04-0400\n"
 "PO-Revision-Date: 2019-01-06 13:06-0500\n"
 "Last-Translator: SAM LOUDEN sam.louden@canada.ca\n"
 "Language: fr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: course_routes/queries/comment_queries.py:94
+#: course_routes/queries/comment_queries.py:212
 msgid "No response"
 msgstr "Aucune réponse"
 
@@ -243,7 +243,7 @@ msgstr "Aller"
 msgid "Make My Day"
 msgstr "Surprends-moi"
 
-#: templates/index.html:66
+#: templates/index.html:68
 msgid "No results"
 msgstr "Aucun résultat"
 
@@ -262,137 +262,6 @@ msgstr "Haut de la page"
 #: templates/layout.html:57
 msgid "GoC Logo"
 msgstr "Logo du GC"
-
-#: templates/course-page/comments.html:17
-#: templates/course-page/dashboards/learners.html:21
-#: templates/course-page/dashboards/offerings.html:25
-#: templates/course-page/dashboards/offerings.html:30
-#: templates/course-page/dashboards/offerings.html:48
-#: templates/course-page/general.html:46 templates/course-page/ratings.html:3
-#: templates/course-page/ratings.html:15
-msgid "Tooltip"
-msgstr "Infobulle"
-
-#: templates/course-page/comments.html:24
-#: templates/course-page/comments.html:77
-msgid "Five"
-msgstr "Cinq"
-
-#: templates/course-page/comments.html:34
-#: templates/course-page/comments.html:78
-msgid "Four"
-msgstr "Quatre"
-
-#: templates/course-page/comments.html:43
-#: templates/course-page/comments.html:79
-msgid "Three"
-msgstr "Trois"
-
-#: templates/course-page/comments.html:52
-#: templates/course-page/comments.html:80
-msgid "Two"
-msgstr "Deux"
-
-#: templates/course-page/comments.html:61
-#: templates/course-page/comments.html:81
-msgid "One"
-msgstr "Une"
-
-#: templates/course-page/comments.html:74
-msgid "Stars: "
-msgstr "Étoiles : "
-
-#: templates/course-page/comments.html:76
-#: templates/course-page/comments.html:89
-#: templates/course-page/comments.html:244
-msgid "All"
-msgstr "Toutes"
-
-#: templates/course-page/comments.html:87
-msgid "Fiscal Year: "
-msgstr "Année fiscale : "
-
-#: templates/course-page/comments.html:103
-msgid "Avatar"
-msgstr "Avatar"
-
-#: templates/course-page/comments.html:110
-msgid "Sentiment Score: "
-msgstr "Classement calculé : "
-
-#: templates/course-page/comments.html:133
-msgid ""
-"Comments on instructor performance are currently disabled due to privacy "
-"restrictions."
-msgstr ""
-"Les commentaires concernant les instructeurs sont présentement désactivés"
-" à cause des restrictions de confidentialité."
-
-#: templates/course-page/comments.html:135
-#: templates/course-page/comments.html:158
-#: templates/course-page/ratings.html:49
-msgid "Apologies, this course has yet to receive any feedback of this type."
-msgstr "Désolé, ce cours n'a pas encore reçu de rétroactions de ce type."
-
-#: templates/course-page/comments.html:167
-msgid ""
-"<h5>Tip:</h5><p>Learners explain why they feel the training won't improve"
-" their job performance.</p>"
-msgstr ""
-"<h5>Indice :</h5><p>Les apprenants expliquent pourquoi ils ne croient pas"
-" que la formation va améliorer leur rendement au travail.</p>"
-
-#: templates/course-page/comments.html:174
-msgid ""
-"<h5>Tip:</h5><p>Comments are assigned a sentiment score between 1 (most "
-"negative) and 5 (most positive) using machine learning.</p>"
-msgstr ""
-"<h5>Indice :</h5><p>Les commentaires sont classés entre 1 (très négatif) "
-"et 5 (très positif) par le biais de l'apprentissage automatique.</p>"
-
-#: templates/course-page/comments.html:241
-msgid " Comment "
-msgstr " commentaire"
-
-#: templates/course-page/comments.html:241
-msgid " Comments"
-msgstr " commentaires"
-
-#: templates/course-page/comments.html:242
-msgid "in"
-msgstr "en"
-
-#: templates/course-page/comments.html:245
-msgid "in Total"
-msgstr "en total"
-
-#: templates/course-page/comments.html:301
-msgid "<strong>Number of Responses:</strong> 0"
-msgstr "<strong>Numéro de réponses :</strong> 0"
-
-#: templates/course-page/comments.html:303
-msgid "<strong>Number of Responses:</strong> "
-msgstr "<strong>Numéro de réponses :</strong>"
-
-#: templates/course-page/comments.html:330
-msgid "Reason to Participate"
-msgstr "Raison principale pour prendre part"
-
-#: templates/course-page/comments.html:331
-msgid "Did You Experience Technical Issues?"
-msgstr "Avez-vous éprouvé des difficultés techniques?"
-
-#: templates/course-page/comments.html:332
-msgid "The Course Was Available in the Official Language of My Choice"
-msgstr "Le cours était offert dans la langue officielle de mon choix."
-
-#: templates/course-page/comments.html:333
-msgid "Did the Course Make Use of GCcampus Tools?"
-msgstr "Utilisation d'outils supplémentaires provenant de GCcampus?"
-
-#: templates/course-page/comments.html:334
-msgid "Method of Preparing for the Course"
-msgstr "Méthode de préparation au cours"
 
 #: templates/course-page/general.html:11
 msgid "Apologies, this course is currently catalogued without a description."
@@ -426,6 +295,17 @@ msgstr "Ligne d'affaires"
 #: templates/course-page/general.html:45
 msgid "Displayed on GCcampus"
 msgstr "Affiché sur GCcampus"
+
+#: templates/course-page/comments/comments-barchart.html:8
+#: templates/course-page/comments/comments-main-old.html:17
+#: templates/course-page/dashboards/learners.html:21
+#: templates/course-page/dashboards/offerings.html:25
+#: templates/course-page/dashboards/offerings.html:30
+#: templates/course-page/dashboards/offerings.html:48
+#: templates/course-page/general.html:46 templates/course-page/ratings.html:3
+#: templates/course-page/ratings.html:15
+msgid "Tooltip"
+msgstr "Infobulle"
 
 #: templates/course-page/general.html:62
 msgid "Additional Info"
@@ -549,23 +429,23 @@ msgstr "Commentaires"
 msgid "Overall"
 msgstr "Global"
 
-#: templates/course-page/main.html:52
+#: templates/course-page/main.html:53
 msgid "Instructor"
 msgstr "Instructeur"
 
-#: templates/course-page/main.html:53
+#: templates/course-page/main.html:55
 msgid "Technical"
 msgstr "Technique"
 
-#: templates/course-page/main.html:54
+#: templates/course-page/main.html:57
 msgid "Language"
 msgstr "Langue"
 
-#: templates/course-page/main.html:55
+#: templates/course-page/main.html:58
 msgid "Performance"
 msgstr "Performance"
 
-#: templates/course-page/main.html:56
+#: templates/course-page/main.html:59
 msgid "Categorical"
 msgstr "Catégorique"
 
@@ -649,6 +529,14 @@ msgstr "Numéro de réponses : "
 msgid "Full Question:"
 msgstr "Question complète :"
 
+#: templates/course-page/comments/comments-categorical.html:19
+#: templates/course-page/comments/comments-main-old.html:135
+#: templates/course-page/comments/comments-main-old.html:158
+#: templates/course-page/comments/comments-main.html:228
+#: templates/course-page/ratings.html:49
+msgid "Apologies, this course has yet to receive any feedback of this type."
+msgstr "Désolé, ce cours n'a pas encore reçu de rétroactions de ce type."
+
 #: templates/course-page/ratings.html:57
 msgid ""
 "<h5>Tip:</h5><p>Ratings on instructor performance are currently disabled "
@@ -657,6 +545,168 @@ msgstr ""
 "<h5>Indice :</h5><p>Les évaluations concernant la performance des "
 "instructeurs sont présentement désactivées à cause des restrictions de "
 "confidentialité.</p>"
+
+#: templates/course-page/comments/comments-barchart.html:15
+#: templates/course-page/comments/comments-main-old.html:24
+#: templates/course-page/comments/comments-main-old.html:77
+#: templates/course-page/comments/comments-main.html:14
+msgid "Five"
+msgstr "Cinq"
+
+#: templates/course-page/comments/comments-barchart.html:25
+#: templates/course-page/comments/comments-main-old.html:34
+#: templates/course-page/comments/comments-main-old.html:78
+#: templates/course-page/comments/comments-main.html:15
+msgid "Four"
+msgstr "Quatre"
+
+#: templates/course-page/comments/comments-barchart.html:34
+#: templates/course-page/comments/comments-main-old.html:43
+#: templates/course-page/comments/comments-main-old.html:79
+#: templates/course-page/comments/comments-main.html:16
+msgid "Three"
+msgstr "Trois"
+
+#: templates/course-page/comments/comments-barchart.html:43
+#: templates/course-page/comments/comments-main-old.html:52
+#: templates/course-page/comments/comments-main-old.html:80
+#: templates/course-page/comments/comments-main.html:17
+msgid "Two"
+msgstr "Deux"
+
+#: templates/course-page/comments/comments-barchart.html:52
+#: templates/course-page/comments/comments-main-old.html:61
+#: templates/course-page/comments/comments-main-old.html:81
+#: templates/course-page/comments/comments-main.html:18
+msgid "One"
+msgstr "Une"
+
+#: templates/course-page/comments/comments-categorical.html:32
+#: templates/course-page/comments/comments-main-old.html:301
+msgid "<strong>Number of Responses:</strong> 0"
+msgstr "<strong>Numéro de réponses :</strong> 0"
+
+#: templates/course-page/comments/comments-categorical.html:34
+#: templates/course-page/comments/comments-main-old.html:303
+msgid "<strong>Number of Responses:</strong> "
+msgstr "<strong>Numéro de réponses :</strong>"
+
+#: templates/course-page/comments/comments-categorical.html:61
+#: templates/course-page/comments/comments-main-old.html:330
+msgid "Reason to Participate"
+msgstr "Raison principale pour prendre part"
+
+#: templates/course-page/comments/comments-categorical.html:62
+#: templates/course-page/comments/comments-main-old.html:331
+msgid "Did You Experience Technical Issues?"
+msgstr "Avez-vous éprouvé des difficultés techniques?"
+
+#: templates/course-page/comments/comments-categorical.html:63
+#: templates/course-page/comments/comments-main-old.html:332
+msgid "The Course Was Available in the Official Language of My Choice"
+msgstr "Le cours était offert dans la langue officielle de mon choix."
+
+#: templates/course-page/comments/comments-categorical.html:64
+#: templates/course-page/comments/comments-main-old.html:333
+msgid "Did the Course Make Use of GCcampus Tools?"
+msgstr "Utilisation d'outils supplémentaires provenant de GCcampus?"
+
+#: templates/course-page/comments/comments-categorical.html:65
+#: templates/course-page/comments/comments-main-old.html:334
+msgid "Method of Preparing for the Course"
+msgstr "Méthode de préparation au cours"
+
+#: templates/course-page/comments/comments-generator.html:6
+#: templates/course-page/comments/comments-main-old.html:103
+msgid "Avatar"
+msgstr "Avatar"
+
+#: templates/course-page/comments/comments-generator.html:13
+#: templates/course-page/comments/comments-main-old.html:110
+msgid "Sentiment Score: "
+msgstr "Classement calculé : "
+
+#: templates/course-page/comments/comments-main-old.html:74
+#: templates/course-page/comments/comments-main.html:11
+msgid "Stars: "
+msgstr "Étoiles : "
+
+#: templates/course-page/comments/comments-main-old.html:76
+#: templates/course-page/comments/comments-main-old.html:89
+#: templates/course-page/comments/comments-main-old.html:244
+#: templates/course-page/comments/comments-main.html:13
+#: templates/course-page/comments/comments-main.html:26
+msgid "All"
+msgstr "Toutes"
+
+#: templates/course-page/comments/comments-main-old.html:87
+#: templates/course-page/comments/comments-main.html:24
+msgid "Fiscal Year: "
+msgstr "Année fiscale : "
+
+#: templates/course-page/comments/comments-main-old.html:133
+#: templates/course-page/comments/comments-main.html:47
+msgid ""
+"Comments on instructor performance are currently disabled due to privacy "
+"restrictions."
+msgstr ""
+"Les commentaires concernant les instructeurs sont présentement désactivés"
+" à cause des restrictions de confidentialité."
+
+#: templates/course-page/comments/comments-main-old.html:167
+msgid ""
+"<h5>Tip:</h5><p>Learners explain why they feel the training won't improve"
+" their job performance.</p>"
+msgstr ""
+"<h5>Indice :</h5><p>Les apprenants expliquent pourquoi ils ne croient pas"
+" que la formation va améliorer leur rendement au travail.</p>"
+
+#: templates/course-page/comments/comments-main-old.html:174
+#: templates/course-page/comments/comments-main.html:143
+msgid ""
+"<h5>Tip:</h5><p>Comments are assigned a sentiment score between 1 (most "
+"negative) and 5 (most positive) using machine learning.</p>"
+msgstr ""
+"<h5>Indice :</h5><p>Les commentaires sont classés entre 1 (très négatif) "
+"et 5 (très positif) par le biais de l'apprentissage automatique.</p>"
+
+#: templates/course-page/comments/comments-main-old.html:241
+#: templates/course-page/comments/comments-main.html:207
+msgid " Comment "
+msgstr " commentaire"
+
+#: templates/course-page/comments/comments-main-old.html:241
+#: templates/course-page/comments/comments-main.html:207
+msgid " Comments"
+msgstr " commentaires"
+
+#: templates/course-page/comments/comments-main-old.html:242
+#: templates/course-page/comments/comments-main.html:208
+msgid "in"
+msgstr "en"
+
+#: templates/course-page/comments/comments-main-old.html:245
+#: templates/course-page/comments/comments-main.html:210
+msgid "in Total"
+msgstr "en total"
+
+#: templates/course-page/comments/comments-main.html:39
+msgid "Load More"
+msgstr "Voir plus"
+
+#: templates/course-page/comments/comments-main.html:79
+#: templates/course-page/comments/comments-main.html:81
+msgid "End of comments"
+msgstr "Fin des commentaires"
+
+#: templates/course-page/dashboards/dashboards-main.html:6
+msgid ""
+"The Offerings section is disabled for online courses as they have no "
+"physical location. Try an instructor-led course like D101 to see more."
+msgstr ""
+"La section « Offres » est désactivée pour les cours en ligne car ils "
+"n'ont pas d'emplacement physique. Veuillez essayer un cours livré en "
+"salle de classe comme le D101 pour en voir plus."
 
 #: templates/course-page/dashboards/learners.html:5
 #: templates/course-page/dashboards/offerings.html:5
@@ -692,15 +742,6 @@ msgid ""
 msgstr ""
 "<h5>Indice :</h5><p>Le nombre d'apprenants uniques pourrait être "
 "inférieur au nombre d'inscriptions au cas où on reprend le cours.</p>"
-
-#: templates/course-page/dashboards/main.html:6
-msgid ""
-"The Offerings section is disabled for online courses as they have no "
-"physical location. Try an instructor-led course like D101 to see more."
-msgstr ""
-"La section « Offres » est désactivée pour les cours en ligne car ils "
-"n'ont pas d'emplacement physique. Veuillez essayer un cours livré en "
-"salle de classe comme le D101 pour en voir plus."
 
 #: templates/course-page/dashboards/offerings.html:47
 msgid "Offerings per Region"
@@ -799,3 +840,4 @@ msgstr "Naviguer"
 #: templates/includes/_navbar.html:36
 msgid "Departments"
 msgstr "Ministères"
+
