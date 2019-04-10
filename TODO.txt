@@ -1,16 +1,7 @@
 ### CURRENT SPRINT ###
 
-# sorry, no feedback
-# instructor message
-# categorical
-# fix download routes
-# check spacing e.g. min-height of a comment section, button
-# update FR
-# rename CSS
-# check all browsers and push
-	# send GA test traffic
-
-
+# check all browsers
+# send GA test traffic
 # dropdown at start should be union of courses in last_year and this_year
 	# source of some queries may need to be changed e.g. title, business_type
 	# validation would also need to be updated
@@ -31,7 +22,7 @@
 
 
 
-
+# Lyne : AU ajoutés et il ne devrait plus y avoir de lag, juste 20 commentaires à la fois asteur
 
 ### BACKLOG ###
 
