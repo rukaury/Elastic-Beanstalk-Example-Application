@@ -69,7 +69,8 @@
 	const STEP_SIZE = 20;
 	function getComments(commentType, append, targetSection, stars, fiscalYear) {
 		$.ajax({
-			url: '/api/v1/comments/' + commentType + '/{{ pass_dict.course_code }}?lang=en&limit=' +
+			{% set lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en' %}
+			url: '/api/v1/comments/' + commentType + '/{{ pass_dict.course_code }}?lang={{ lang }}&limit=' +
 				STEP_SIZE + '&offset=' + currentIndex + '&stars=' + stars + '&fiscal_year=' +
 				fiscalYear + '&html=true',
 			type: 'GET',
