@@ -35,8 +35,8 @@
 		<!-- Div to hold comments -->
 		<div class="ajax"></div>
 		<!-- Button to load more comments via AJAX and append to document -->
-		<div class="mars" style="text-align: center">
-			<button class="btn btn-primary more-button" data-target=".{{ comment_name }}-comments" data-type="{{ comment_name }}" style="margin-bottom: 2rem">{{ _('Load More') }}</button>
+		<div class="more-button-outer">
+			<button class="btn btn-primary more-button" data-target=".{{ comment_name }}-comments" data-type="{{ comment_name }}">{{ _('Load More') }}</button>
 		</div>
 	</section>
 {% endfor %}
