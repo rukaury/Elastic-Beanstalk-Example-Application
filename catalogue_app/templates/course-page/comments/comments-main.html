@@ -75,7 +75,7 @@
 				fiscalYear + '&html=true',
 			type: 'GET',
 			success: function(resp) {
-				if (resp.Error) {
+				if (resp.Error || resp.Erreur) {
 					if (append) {
 						$(targetSection + ' div.ajax').append("{{ _('End of comments') }}");
 					} else {
@@ -266,10 +266,10 @@
 	});
 </script>
 
-
+<!-- Load first n comments for each section -->
 {% for comment_name in comment_names %}
 	<script async>
-		// Load first n comments
+		currentIndex = 0;
 		getComments(commentType='{{ comment_name }}', append=false, targetSection='.{{ comment_name }}-comments', stars='', fiscalYear='');
 		
 		// Load initial barchart
