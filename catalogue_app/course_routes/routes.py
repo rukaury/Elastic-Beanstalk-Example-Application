@@ -31,7 +31,7 @@ def context_processor():
 def home():
 	# Only allow 'en' and 'fr' to be passed to app
 	lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en'
-	form = course_form(lang, 'this_year')()
+	form = course_form(lang)()
 	return render_template('index.html', form=form)
 
 
@@ -42,7 +42,7 @@ def course_result():
 	# Only allow 'en' and 'fr' to be passed to app
 	lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en'
 	# Security check: if course_code doesn't exist, render not_found.html
-	course_code = utils.validate_course_code(request.args, 'this_year')
+	course_code = utils.validate_course_code(request.args)
 	if not course_code:
 		return render_template('not-found.html')
 	
