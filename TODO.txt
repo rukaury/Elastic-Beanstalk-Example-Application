@@ -1,32 +1,27 @@
 ### CURRENT SPRINT ###
 
-# check all browsers
-# send GA test traffic
 # dropdown at start should be union of courses in last_year and this_year
 	# source of some queries may need to be changed e.g. title, business_type
 	# validation would also need to be updated
 	# also Explore
+# send GA test traffic, check out error in firefox
 # add datatables to depts and classifications, make top 25
 # complete UL per month
-# check mobile e.g. prevent dropdown glyph from being part of what's centered
-	# check spacing
 # update FR
 # rename CSS
-# next ETL: order comments by fiscal_year desc;
-	# update scraper to grab code from title rather than URL
 # name change + launch V1!
 	# email to everyone who was at DGC
-	# ask if you like 12 month rolling or two fiscal
 	# data will be updated wednesdays
+	# Lyne : AU ajoutés et il ne devrait plus y avoir de lag, juste 20 commentaires à la fois asteur
 
 
 
 
-# Lyne : AU ajoutés et il ne devrait plus y avoir de lag, juste 20 commentaires à la fois asteur
 
 ### BACKLOG ###
 
 # add Bob ratings
+# add 'use strict';
 # check all DB indices
 # add admin accounts
 	# roll-out very slowly, try with 1 course from Jeremy and 1 from regions

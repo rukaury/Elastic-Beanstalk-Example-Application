@@ -53,7 +53,8 @@ def course_result():
 	offering_locations = dashboard_offering_queries.OfferingLocations(lang, 'this_year', course_code).load()
 	overall_learner_numbers_LY = dashboard_learner_queries.OverallLearnerNumbers('last_year', course_code).load()
 	overall_learner_numbers_TY = dashboard_learner_queries.OverallLearnerNumbers('this_year', course_code).load()
-	learners = dashboard_learner_queries.Learners(lang, 'this_year', course_code).load()
+	learners_LY = dashboard_learner_queries.Learners(lang, 'last_year', course_code).load()
+	learners_TY = dashboard_learner_queries.Learners(lang, 'this_year', course_code).load()
 	map = map_queries.Map('this_year', course_code).load()
 	# ratings = rating_queries.Ratings(lang, course_code).load()
 	categorical = comment_queries.Categorical(lang, course_code).load()
@@ -61,8 +62,8 @@ def course_result():
 	pass_dict = {
 		#Global
 		'course_code': course_code,
-		'course_title': learners.course_title,
-		'business_type': learners.business_type,
+		'course_title': learners_TY.course_title,
+		'business_type': learners_TY.business_type,
 		# General
 		'course_info': course_info.course_info,
 		# Dashboards - Offerings
@@ -88,10 +89,12 @@ def course_result():
 		# Dashboards - Learners
 		'overall_learner_numbers_LY': overall_learner_numbers_LY.counts,
 		'overall_learner_numbers_TY': overall_learner_numbers_TY.counts,
-		'regs_per_month': learners.regs_per_month,
-		'no_shows_per_month': learners.no_shows_per_month,
-		'top_5_depts': learners.top_depts,
-		'top_5_classifs': learners.top_classifs,
+		'regs_per_month_TY': learners_TY.regs_per_month,
+		'regs_per_month_LY': learners_LY.regs_per_month,
+		'no_shows_per_month_TY': learners_TY.no_shows_per_month,
+		'no_shows_per_month_LY': learners_LY.no_shows_per_month,
+		'top_5_depts': learners_TY.top_depts,
+		'top_5_classifs': learners_TY.top_classifs,
 		# Maps
 		'offering_city_counts': map.offerings,
 		'learner_city_counts': map.learners,
