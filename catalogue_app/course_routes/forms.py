@@ -15,8 +15,7 @@ def course_form(lang):
 			UNION
 			SELECT DISTINCT course_code, {0}
 			FROM lsr_this_year
-			)
-		AS a
+		) AS a
 		ORDER BY 1 ASC;
 	""".format(field_name)
 	results = query_mysql(query)
