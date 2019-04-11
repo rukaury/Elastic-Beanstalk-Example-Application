@@ -34,10 +34,16 @@
 	</tbody>
 </table>
 
-<!-- Registrations per Month -->
+<!-- Registrations per Month, THIS_YEAR -->
 <div class="row dashboard-chart">
 	<h4 class= "dashboard-chart-title">{{ _('No-Shows and Confirmed Registrations per Month') }}, {{ THIS_YEAR }}</h4>
-	<div id="regs-per-month" class="col-xs-12"></div>
+	<div id="regs-per-month-this-year" class="col-xs-12"></div>
+</div>
+
+<!-- Registrations per Month, LAST_YEAR -->
+<div class="row dashboard-chart">
+	<h4 class= "dashboard-chart-title">{{ _('No-Shows and Confirmed Registrations per Month') }}, {{ LAST_YEAR }}</h4>
+	<div id="regs-per-month-last-year" class="col-xs-12"></div>
 </div>
 
 <div class="row dashboard-chart">
@@ -98,43 +104,57 @@
 	});
 	
 	// No-Shows and Confirmed Registrations per Month
-	$('#regs-per-month').highcharts({
-		chart: {type: 'column'},
-		title: {text: ''},
-		xAxis: {type: 'category'},
-		plotOptions: {
-			column: {
-				stacking: 'normal',
-				dataLabels: {enabled: false}
-			}
-		},
-		legend: {enabled: false},
-		credits: {text: ''},
-		yAxis: {
+	function regsPerMonth(myDiv, regs, noShows) {
+		$(myDiv).highcharts({
+			chart: {type: 'column'},
 			title: {text: ''},
-			allowDecimals: false,
-			min: 0,
-			reversedStacks: false
-		},
-		// Display tooltip to right of top center of column
-		// Displays above said point by default
-		tooltip: {
-			positioner: function(labelWidth, labelHeight, point) {
-				return {
-					x: point.plotX + (labelWidth / 2),
-					y: point.plotY
-				};
-			}
-		},
-        series: [
-			{
-				name: "{{ _('Registrations') }}",
-				data: {{ pass_dict.regs_per_month | safe }}
+			xAxis: {type: 'category'},
+			plotOptions: {
+				column: {
+					stacking: 'normal',
+					dataLabels: {enabled: false}
+				}
 			},
-			{
-				name: "{{ _('No-Shows') }}",
-				data: {{ pass_dict.no_shows_per_month | safe }}
-			}
-		]
-	});
+			legend: {enabled: false},
+			credits: {text: ''},
+			yAxis: {
+				title: {text: ''},
+				allowDecimals: false,
+				min: 0,
+				reversedStacks: false
+			},
+			// Display tooltip to right of top center of column
+			// Displays above said point by default
+			tooltip: {
+				positioner: function(labelWidth, labelHeight, point) {
+					return {
+						x: point.plotX + (labelWidth / 2),
+						y: point.plotY
+					};
+				}
+			},
+			series: [
+				{
+					name: "{{ _('Registrations') }}",
+					data: regs
+				},
+				{
+					name: "{{ _('No-Shows') }}",
+					data: noShows
+				}
+			]
+		});
+	}
+	
+	regsPerMonth(
+		'#regs-per-month-this-year',
+		{{ pass_dict.regs_per_month_TY | safe }},
+		{{ pass_dict.no_shows_per_month_TY | safe }}
+	);
+	regsPerMonth(
+		'#regs-per-month-last-year',
+		{{ pass_dict.regs_per_month_LY | safe }},
+		{{ pass_dict.no_shows_per_month_LY | safe }}
+	);
+	
 </script>
