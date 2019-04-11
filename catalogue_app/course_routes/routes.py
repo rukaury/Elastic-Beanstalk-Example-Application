@@ -116,6 +116,6 @@ def course_result():
 def explore():
 	# Only allow 'en' and 'fr' to be passed to app
 	lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en'
-	course_list = explore_queries.CourseList(lang, 'this_year').load()
+	course_list = explore_queries.CourseList(lang).load()
 	pass_dict = course_list._get_nested_dicts()
 	return render_template('explore/explore.html', pass_dict=pass_dict)
