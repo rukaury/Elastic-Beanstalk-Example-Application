@@ -86,34 +86,32 @@
 	function offeringsClosure() {
 		
 		// Offerings per Region
-		function createOfferingsPerRegion() {
-			$('#offerings-per-region').highcharts({
-				chart: {type: 'column'},
-				title: {text: ''},
-				xAxis: {type: 'category'},
-				yAxis: {title: {text: ''}, allowDecimals: false, min: 0},
-				legend: {enabled: false},
-				credits: {text: ''},
-				series: [{
-					name: 'Offerings',
-					colorByPoint: true,
-					data: {{ pass_dict.region_drilldown | safe }}
-				}],
-				drilldown: {
-					series: [
-						// Province drilldowns
-						{% for region, provinces in pass_dict.province_drilldown.items() %}
-							{name: "{{ region | safe }}", id: "{{ region | safe }}", data: {{ provinces | safe }}},
-						{% endfor %}
-						
-						// City drilldowns
-						{% for province, cities in pass_dict.city_drilldown.items() %}
-							{name: "{{ province | safe }}", id: "{{ province | safe }}", data: {{ cities | safe }}},
-						{% endfor %}
-					]
-				}
-			});
-		}
+		$('#offerings-per-region').highcharts({
+			chart: {type: 'column'},
+			title: {text: ''},
+			xAxis: {type: 'category'},
+			yAxis: {title: {text: ''}, allowDecimals: false, min: 0},
+			legend: {enabled: false},
+			credits: {text: ''},
+			series: [{
+				name: 'Offerings',
+				colorByPoint: true,
+				data: {{ pass_dict.region_drilldown | safe }}
+			}],
+			drilldown: {
+				series: [
+					// Province drilldowns
+					{% for region, provinces in pass_dict.province_drilldown.items() %}
+						{name: "{{ region | safe }}", id: "{{ region | safe }}", data: {{ provinces | safe }}},
+					{% endfor %}
+					
+					// City drilldowns
+					{% for province, cities in pass_dict.city_drilldown.items() %}
+						{name: "{{ province | safe }}", id: "{{ province | safe }}", data: {{ cities | safe }}},
+					{% endfor %}
+				]
+			}
+		});
 		
 		// Offerings per Language
 		$('#offerings-per-lang').highcharts({
