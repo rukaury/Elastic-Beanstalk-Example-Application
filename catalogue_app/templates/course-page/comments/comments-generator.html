@@ -10,7 +10,7 @@
 				<h4>{{ my_dict.learner_classification }}, <em>{{ my_dict.offering_city }}</em></h4>
 				<!-- Display user overall satisfaction with stars -->
 				<h5>
-					{{ _('Sentiment Score: ') }}
+					{{ _('Overall Satisfaction: ') }}
 					{% if my_dict.stars == 5 %}
 						{% for _ in range(5) %}<span class="glyphicon glyphicon-star"></span>{% endfor %}{% for _ in range(0) %}<span class="glyphicon glyphicon-star-empty"></span>{% endfor %}
 					{% elif my_dict.stars == 4 %}

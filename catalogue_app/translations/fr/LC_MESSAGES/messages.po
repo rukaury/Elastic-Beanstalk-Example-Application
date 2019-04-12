@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.9\n"
 "Report-Msgid-Bugs-To: sam.louden@canada.ca\n"
-"POT-Creation-Date: 2019-04-09 21:04-0400\n"
+"POT-Creation-Date: 2019-04-12 19:08-0400\n"
 "PO-Revision-Date: 2019-01-06 13:06-0500\n"
 "Last-Translator: SAM LOUDEN sam.louden@canada.ca\n"
 "Language: fr\n"
@@ -23,80 +23,82 @@ msgstr ""
 msgid "No response"
 msgstr "Aucune réponse"
 
-#: course_routes/queries/dashboard_learner_queries.py:53
+#: course_routes/queries/dashboard_learner_queries.py:55
 #: templates/about.html:20 templates/course-page/ratings.html:25
 msgid "April"
 msgstr "Avril"
 
-#: course_routes/queries/dashboard_learner_queries.py:54
+#: course_routes/queries/dashboard_learner_queries.py:56
 #: templates/course-page/ratings.html:25
 msgid "May"
 msgstr "Mai"
 
-#: course_routes/queries/dashboard_learner_queries.py:55
+#: course_routes/queries/dashboard_learner_queries.py:57
 #: templates/course-page/ratings.html:25
 msgid "June"
 msgstr "Juin"
 
-#: course_routes/queries/dashboard_learner_queries.py:56
+#: course_routes/queries/dashboard_learner_queries.py:58
 #: templates/course-page/ratings.html:26
 msgid "July"
 msgstr "Juillet"
 
-#: course_routes/queries/dashboard_learner_queries.py:57
+#: course_routes/queries/dashboard_learner_queries.py:59
 #: templates/course-page/ratings.html:26
 msgid "August"
 msgstr "Août"
 
-#: course_routes/queries/dashboard_learner_queries.py:58
+#: course_routes/queries/dashboard_learner_queries.py:60
 #: templates/course-page/ratings.html:26
 msgid "September"
 msgstr "Septembre"
 
-#: course_routes/queries/dashboard_learner_queries.py:59
+#: course_routes/queries/dashboard_learner_queries.py:61
 #: templates/course-page/ratings.html:27
 msgid "October"
 msgstr "Octobre"
 
-#: course_routes/queries/dashboard_learner_queries.py:60
+#: course_routes/queries/dashboard_learner_queries.py:62
 #: templates/course-page/ratings.html:27
 msgid "November"
 msgstr "Novembre"
 
-#: course_routes/queries/dashboard_learner_queries.py:61
+#: course_routes/queries/dashboard_learner_queries.py:63
 #: templates/course-page/ratings.html:27
 msgid "December"
 msgstr "Décembre"
 
-#: course_routes/queries/dashboard_learner_queries.py:62
+#: course_routes/queries/dashboard_learner_queries.py:64
 #: templates/course-page/ratings.html:28
 msgid "January"
 msgstr "Janvier"
 
-#: course_routes/queries/dashboard_learner_queries.py:63
+#: course_routes/queries/dashboard_learner_queries.py:65
 #: templates/course-page/ratings.html:28
 msgid "February"
 msgstr "Février"
 
-#: course_routes/queries/dashboard_learner_queries.py:64
+#: course_routes/queries/dashboard_learner_queries.py:66
 #: templates/course-page/ratings.html:28
 msgid "March"
 msgstr "Mars"
 
-#: course_routes/queries/dashboard_learner_queries.py:168
-#: templates/course-page/dashboards/learners.html:53
-#: templates/course-page/dashboards/learners.html:76
-#: templates/course-page/dashboards/learners.html:131
+#: course_routes/queries/dashboard_learner_queries.py:170
+#: templates/course-page/dashboards/learners.html:59
+#: templates/course-page/dashboards/learners.html:82
+#: templates/course-page/dashboards/learners.html:107
+#: templates/course-page/dashboards/learners.html:130
+#: templates/course-page/dashboards/learners.html:176
 msgid "Registrations"
 msgstr "Inscriptions"
 
-#: course_routes/queries/dashboard_learner_queries.py:181
+#: course_routes/queries/dashboard_learner_queries.py:183
 #: templates/course-page/dashboards/learners.html:18
 msgid "Unique Learners"
 msgstr "Apprenants uniques"
 
-#: course_routes/queries/dashboard_learner_queries.py:194
-#: templates/course-page/dashboards/learners.html:135
+#: course_routes/queries/dashboard_learner_queries.py:196
+#: templates/course-page/dashboards/learners.html:180
 msgid "No-Shows"
 msgstr "Absences"
 
@@ -145,8 +147,8 @@ msgstr "Offres annulées"
 msgid "Client Requests"
 msgstr "Demandes des clients"
 
-#: course_routes/queries/explore_queries.py:48
-#: course_routes/queries/explore_queries.py:56
+#: course_routes/queries/explore_queries.py:55
+#: course_routes/queries/explore_queries.py:63
 msgid "<awaiting mapping>"
 msgstr "<en attente de catégorisation>"
 
@@ -157,10 +159,6 @@ msgstr "Onglet general"
 #: download_routes/routes.py:26
 msgid "Dashboard Tab"
 msgstr "Onglet du tableau de bord"
-
-#: download_routes/routes.py:35
-msgid "Ratings Tab"
-msgstr "Onglet des evaluations"
 
 #: download_routes/routes.py:44
 msgid "Comments Tab"
@@ -227,23 +225,19 @@ msgstr "API du Catalogue de cours de l'EFPC"
 msgid "Coming Soon"
 msgstr "Bientôt disponible"
 
-#: templates/index.html:13
-msgid "Note: Test Version"
-msgstr "Notez : Version test"
-
-#: templates/index.html:16
+#: templates/index.html:15
 msgid "Choose any course to see all of its data."
 msgstr "Choisissez n'importe quel cours pour voir toutes ses données."
 
-#: templates/index.html:24
+#: templates/index.html:23
 msgid "Go"
 msgstr "Aller"
 
-#: templates/index.html:25
+#: templates/index.html:24
 msgid "Make My Day"
 msgstr "Surprends-moi"
 
-#: templates/index.html:68
+#: templates/index.html:67
 msgid "No results"
 msgstr "Aucun résultat"
 
@@ -296,7 +290,6 @@ msgstr "Ligne d'affaires"
 msgid "Displayed on GCcampus"
 msgstr "Affiché sur GCcampus"
 
-#: templates/course-page/comments/comments-barchart.html:8
 #: templates/course-page/comments/comments-main-old.html:17
 #: templates/course-page/dashboards/learners.html:21
 #: templates/course-page/dashboards/offerings.html:25
@@ -532,7 +525,7 @@ msgstr "Question complète :"
 #: templates/course-page/comments/comments-categorical.html:19
 #: templates/course-page/comments/comments-main-old.html:135
 #: templates/course-page/comments/comments-main-old.html:158
-#: templates/course-page/comments/comments-main.html:228
+#: templates/course-page/comments/comments-main.html:254
 #: templates/course-page/ratings.html:49
 msgid "Apologies, this course has yet to receive any feedback of this type."
 msgstr "Désolé, ce cours n'a pas encore reçu de rétroactions de ce type."
@@ -546,35 +539,35 @@ msgstr ""
 "instructeurs sont présentement désactivées à cause des restrictions de "
 "confidentialité.</p>"
 
-#: templates/course-page/comments/comments-barchart.html:15
+#: templates/course-page/comments/comments-barchart.html:17
 #: templates/course-page/comments/comments-main-old.html:24
 #: templates/course-page/comments/comments-main-old.html:77
 #: templates/course-page/comments/comments-main.html:14
 msgid "Five"
 msgstr "Cinq"
 
-#: templates/course-page/comments/comments-barchart.html:25
+#: templates/course-page/comments/comments-barchart.html:27
 #: templates/course-page/comments/comments-main-old.html:34
 #: templates/course-page/comments/comments-main-old.html:78
 #: templates/course-page/comments/comments-main.html:15
 msgid "Four"
 msgstr "Quatre"
 
-#: templates/course-page/comments/comments-barchart.html:34
+#: templates/course-page/comments/comments-barchart.html:36
 #: templates/course-page/comments/comments-main-old.html:43
 #: templates/course-page/comments/comments-main-old.html:79
 #: templates/course-page/comments/comments-main.html:16
 msgid "Three"
 msgstr "Trois"
 
-#: templates/course-page/comments/comments-barchart.html:43
+#: templates/course-page/comments/comments-barchart.html:45
 #: templates/course-page/comments/comments-main-old.html:52
 #: templates/course-page/comments/comments-main-old.html:80
 #: templates/course-page/comments/comments-main.html:17
 msgid "Two"
 msgstr "Deux"
 
-#: templates/course-page/comments/comments-barchart.html:52
+#: templates/course-page/comments/comments-barchart.html:54
 #: templates/course-page/comments/comments-main-old.html:61
 #: templates/course-page/comments/comments-main-old.html:81
 #: templates/course-page/comments/comments-main.html:18
@@ -622,9 +615,8 @@ msgid "Avatar"
 msgstr "Avatar"
 
 #: templates/course-page/comments/comments-generator.html:13
-#: templates/course-page/comments/comments-main-old.html:110
-msgid "Sentiment Score: "
-msgstr "Classement calculé : "
+msgid "Overall Satisfaction: "
+msgstr "Satisfaction globale : "
 
 #: templates/course-page/comments/comments-main-old.html:74
 #: templates/course-page/comments/comments-main.html:11
@@ -644,6 +636,10 @@ msgstr "Toutes"
 msgid "Fiscal Year: "
 msgstr "Année fiscale : "
 
+#: templates/course-page/comments/comments-main-old.html:110
+msgid "Sentiment Score: "
+msgstr "Classement calculé : "
+
 #: templates/course-page/comments/comments-main-old.html:133
 #: templates/course-page/comments/comments-main.html:47
 msgid ""
@@ -662,7 +658,7 @@ msgstr ""
 " que la formation va améliorer leur rendement au travail.</p>"
 
 #: templates/course-page/comments/comments-main-old.html:174
-#: templates/course-page/comments/comments-main.html:143
+#: templates/course-page/comments/comments-main.html:168
 msgid ""
 "<h5>Tip:</h5><p>Comments are assigned a sentiment score between 1 (most "
 "negative) and 5 (most positive) using machine learning.</p>"
@@ -671,22 +667,22 @@ msgstr ""
 "et 5 (très positif) par le biais de l'apprentissage automatique.</p>"
 
 #: templates/course-page/comments/comments-main-old.html:241
-#: templates/course-page/comments/comments-main.html:207
+#: templates/course-page/comments/comments-main.html:233
 msgid " Comment "
 msgstr " commentaire"
 
 #: templates/course-page/comments/comments-main-old.html:241
-#: templates/course-page/comments/comments-main.html:207
+#: templates/course-page/comments/comments-main.html:233
 msgid " Comments"
 msgstr " commentaires"
 
 #: templates/course-page/comments/comments-main-old.html:242
-#: templates/course-page/comments/comments-main.html:208
+#: templates/course-page/comments/comments-main.html:234
 msgid "in"
 msgstr "en"
 
 #: templates/course-page/comments/comments-main-old.html:245
-#: templates/course-page/comments/comments-main.html:210
+#: templates/course-page/comments/comments-main.html:236
 msgid "in Total"
 msgstr "en total"
 
@@ -694,8 +690,8 @@ msgstr "en total"
 msgid "Load More"
 msgstr "Voir plus"
 
-#: templates/course-page/comments/comments-main.html:79
-#: templates/course-page/comments/comments-main.html:81
+#: templates/course-page/comments/comments-main.html:87
+#: templates/course-page/comments/comments-main.html:89
 msgid "End of comments"
 msgstr "Fin des commentaires"
 
@@ -719,23 +715,28 @@ msgid "Fiscal Year"
 msgstr "Année fiscale"
 
 #: templates/course-page/dashboards/learners.html:39
+#: templates/course-page/dashboards/learners.html:45
 msgid "No-Shows and Confirmed Registrations per Month"
 msgstr "Absences et inscriptions confirmées par mois"
 
-#: templates/course-page/dashboards/learners.html:49
+#: templates/course-page/dashboards/learners.html:55
+#: templates/course-page/dashboards/learners.html:103
 msgid "Top 5 Departments"
 msgstr "Top 5 des ministères"
 
-#: templates/course-page/dashboards/learners.html:52
-#: templates/course-page/dashboards/learners.html:75
+#: templates/course-page/dashboards/learners.html:58
+#: templates/course-page/dashboards/learners.html:81
+#: templates/course-page/dashboards/learners.html:106
+#: templates/course-page/dashboards/learners.html:129
 msgid "Name"
 msgstr "Nom"
 
-#: templates/course-page/dashboards/learners.html:72
+#: templates/course-page/dashboards/learners.html:78
+#: templates/course-page/dashboards/learners.html:126
 msgid "Top 5 Classifications"
 msgstr "Top 5 des classifications"
 
-#: templates/course-page/dashboards/learners.html:95
+#: templates/course-page/dashboards/learners.html:149
 msgid ""
 "<h5>Tip:</h5><p>There may be fewer unique learners than registrations if "
 "one or more people retook the course.</p>"
@@ -763,38 +764,38 @@ msgstr ""
 "<h5>Indice :</h5><p>Ce graphique est interactif est présente les offres "
 "par région, province, et ville.</p>"
 
-#: templates/course-page/dashboards/offerings.html:118
+#: templates/course-page/dashboards/offerings.html:119
 msgid "Open & Delivered Offerings per Language"
 msgstr "Offres ouvertes & livrées par langue"
 
-#: templates/course-page/dashboards/offerings.html:124
+#: templates/course-page/dashboards/offerings.html:125
 msgid "English"
 msgstr "Anglais"
 
-#: templates/course-page/dashboards/offerings.html:125
+#: templates/course-page/dashboards/offerings.html:126
 msgid "French"
 msgstr "Français"
 
-#: templates/course-page/dashboards/offerings.html:126
+#: templates/course-page/dashboards/offerings.html:127
 msgid "Bilingual"
 msgstr "Bilingue"
 
-#: templates/course-page/dashboards/offerings.html:133
+#: templates/course-page/dashboards/offerings.html:134
 #, python-format
 msgid "%% of Offerings Cancelled"
 msgstr "%% d'offres annulées"
 
-#: templates/course-page/dashboards/offerings.html:145
-#: templates/course-page/dashboards/offerings.html:158
-#: templates/course-page/dashboards/offerings.html:170
+#: templates/course-page/dashboards/offerings.html:146
+#: templates/course-page/dashboards/offerings.html:159
+#: templates/course-page/dashboards/offerings.html:171
 msgid "Average All"
 msgstr "Moyenne globale"
 
-#: templates/course-page/dashboards/offerings.html:153
+#: templates/course-page/dashboards/offerings.html:154
 msgid "Average Class Size"
 msgstr "Effectif de classe moyen"
 
-#: templates/course-page/dashboards/offerings.html:165
+#: templates/course-page/dashboards/offerings.html:166
 msgid "Average No-Shows per Offering"
 msgstr "Absences moyennes par offre"
 
@@ -840,4 +841,10 @@ msgstr "Naviguer"
 #: templates/includes/_navbar.html:36
 msgid "Departments"
 msgstr "Ministères"
+
+#~ msgid "Ratings Tab"
+#~ msgstr "Onglet des evaluations"
+
+#~ msgid "Note: Test Version"
+#~ msgstr "Notez : Version test"
 
