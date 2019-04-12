@@ -194,15 +194,18 @@
 		});
 	}
 	
-	regsPerMonth(
-		'#regs-per-month-this-year',
-		{{ pass_dict.regs_per_month_TY | safe }},
-		{{ pass_dict.no_shows_per_month_TY | safe }}
-	);
-	regsPerMonth(
-		'#regs-per-month-last-year',
-		{{ pass_dict.regs_per_month_LY | safe }},
-		{{ pass_dict.no_shows_per_month_LY | safe }}
-	);
-	
+	// Wrap Highcharts functions so can be called only upon activating parent div
+	var learnersChartsFlag = 0;
+	function learnersClosure() {
+		regsPerMonth(
+			'#regs-per-month-this-year',
+			{{ pass_dict.regs_per_month_TY | safe }},
+			{{ pass_dict.no_shows_per_month_TY | safe }}
+		);
+		regsPerMonth(
+			'#regs-per-month-last-year',
+			{{ pass_dict.regs_per_month_LY | safe }},
+			{{ pass_dict.no_shows_per_month_LY | safe }}
+		);
+	}
 </script>

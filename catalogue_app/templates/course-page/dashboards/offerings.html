@@ -81,93 +81,97 @@
 		html: true
 	});
 	
-	// Offerings per Region
-	var offeringPerRegionCreatedFlag = 0
-	function createOfferingsPerRegion() {
-		$('#offerings-per-region').highcharts({
+	// Wrap Highcharts functions so can be called only upon activating parent div
+	var offeringsChartsFlag = 0;
+	function offeringsClosure() {
+		
+		// Offerings per Region
+		function createOfferingsPerRegion() {
+			$('#offerings-per-region').highcharts({
+				chart: {type: 'column'},
+				title: {text: ''},
+				xAxis: {type: 'category'},
+				yAxis: {title: {text: ''}, allowDecimals: false, min: 0},
+				legend: {enabled: false},
+				credits: {text: ''},
+				series: [{
+					name: 'Offerings',
+					colorByPoint: true,
+					data: {{ pass_dict.region_drilldown | safe }}
+				}],
+				drilldown: {
+					series: [
+						// Province drilldowns
+						{% for region, provinces in pass_dict.province_drilldown.items() %}
+							{name: "{{ region | safe }}", id: "{{ region | safe }}", data: {{ provinces | safe }}},
+						{% endfor %}
+						
+						// City drilldowns
+						{% for province, cities in pass_dict.city_drilldown.items() %}
+							{name: "{{ province | safe }}", id: "{{ province | safe }}", data: {{ cities | safe }}},
+						{% endfor %}
+					]
+				}
+			});
+		}
+		
+		// Offerings per Language
+		$('#offerings-per-lang').highcharts({
 			chart: {type: 'column'},
-			title: {text: ''},
-			xAxis: {type: 'category'},
+			title: {text: "{{ _('Open & Delivered Offerings per Language') }}", style: {fontWeight: 'bold'}},
+			xAxis: {categories: ['{{ LAST_YEAR }}', '{{ THIS_YEAR }}']},
 			yAxis: {title: {text: ''}, allowDecimals: false, min: 0},
-			legend: {enabled: false},
+			legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'},
 			credits: {text: ''},
-			series: [{
-				name: 'Offerings',
-				colorByPoint: true,
-				data: {{ pass_dict.region_drilldown | safe }}
-			}],
-			drilldown: {
-				series: [
-					// Province drilldowns
-					{% for region, provinces in pass_dict.province_drilldown.items() %}
-						{name: "{{ region | safe }}", id: "{{ region | safe }}", data: {{ provinces | safe }}},
-					{% endfor %}
-					
-					// City drilldowns
-					{% for province, cities in pass_dict.city_drilldown.items() %}
-						{name: "{{ province | safe }}", id: "{{ province | safe }}", data: {{ cities | safe }}},
-					{% endfor %}
-				]
-			}
+			series: [
+				{name: "{{ _('English') }}", data: [{{ pass_dict.offerings_per_lang_LY['English'] }}, {{ pass_dict.offerings_per_lang_TY['English'] }}]},
+				{name: "{{ _('French') }}", data: [{{ pass_dict.offerings_per_lang_LY['French'] }}, {{ pass_dict.offerings_per_lang_TY['French'] }}]},
+				{name: "{{ _('Bilingual') }}", data: [{{ pass_dict.offerings_per_lang_LY['Bilingual'] }}, {{ pass_dict.offerings_per_lang_TY['Bilingual'] }}]}
+			]
+		});
+		
+		// Offerings Cancelled
+		$('#offerings-cancelled').highcharts({
+			chart: {type: 'column'},
+			title: {text: "{{ _('%% of Offerings Cancelled') }}", style: {fontWeight: 'bold'}},
+			xAxis: {categories: ['{{ LAST_YEAR }}', '{{ THIS_YEAR }}']},
+			yAxis: {title: {text: ''}, allowDecimals: true,	min: 0,
+					labels: {formatter: function() {return String(this.value) + "%";}}},
+			tooltip: {
+				valueDecimals: 0,
+				valuePrefix: '',
+				valueSuffix: '%'
+			},
+			legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'},
+			credits: {text: ''},
+			series: [
+				{name: "{{ _('Average All') }}", data: [{{ pass_dict.offerings_cancelled_global_LY }}, {{ pass_dict.offerings_cancelled_global_TY }}]},
+				{name: '{{ pass_dict.course_code }}', data: [{{ pass_dict.offerings_cancelled_LY }}, {{ pass_dict.offerings_cancelled_TY }}]}
+			]
+		});
+		
+		// Average Class Size
+		$('#avg-class-size').highcharts({
+			chart: {type: 'column'},
+			title: {text: "{{ _('Average Class Size') }}", style: {fontWeight: 'bold'}},
+			xAxis: {categories: ['{{ LAST_YEAR }}', '{{ THIS_YEAR }}']},
+			yAxis: {title: {text: ''}, allowDecimals: false, min: 0},
+			legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'},
+			credits: {text: ''},
+			series: [{name: "{{ _('Average All') }}", data: [{{ pass_dict.avg_class_size_global_LY }}, {{ pass_dict.avg_class_size_global_TY }}]},
+					 {name: '{{ pass_dict.course_code }}', data: [{{ pass_dict.avg_class_size_LY }}, {{ pass_dict.avg_class_size_TY }}]}]
+		});
+		
+		// Average No-Shows per Offering
+		$('#avg-no-shows').highcharts({
+			chart: {type: 'column'},
+			title: {text: "{{ _('Average No-Shows per Offering') }}", style: {fontWeight: 'bold'}},
+			xAxis: {categories: ['{{ LAST_YEAR }}', '{{ THIS_YEAR }}']},
+			yAxis: {title: {text: ''}, allowDecimals: false, min: 0},
+			legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'},
+			credits: {text: ''},
+			series: [{name: "{{ _('Average All') }}", data: [{{ pass_dict.avg_no_shows_global_LY }}, {{ pass_dict.avg_no_shows_global_TY }}]},
+					 {name: '{{ pass_dict.course_code }}', data: [{{ pass_dict.avg_no_shows_LY }}, {{ pass_dict.avg_no_shows_TY }}]}]
 		});
 	}
-	
-	// Offerings per Language
-	$('#offerings-per-lang').highcharts({
-		chart: {type: 'column'},
-		title: {text: "{{ _('Open & Delivered Offerings per Language') }}", style: {fontWeight: 'bold'}},
-		xAxis: {categories: ['{{ LAST_YEAR }}', '{{ THIS_YEAR }}']},
-		yAxis: {title: {text: ''}, allowDecimals: false, min: 0},
-		legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'},
-		credits: {text: ''},
-		series: [
-			{name: "{{ _('English') }}", data: [{{ pass_dict.offerings_per_lang_LY['English'] }}, {{ pass_dict.offerings_per_lang_TY['English'] }}]},
-			{name: "{{ _('French') }}", data: [{{ pass_dict.offerings_per_lang_LY['French'] }}, {{ pass_dict.offerings_per_lang_TY['French'] }}]},
-			{name: "{{ _('Bilingual') }}", data: [{{ pass_dict.offerings_per_lang_LY['Bilingual'] }}, {{ pass_dict.offerings_per_lang_TY['Bilingual'] }}]}
-		]
-	});
-	
-	// Offerings Cancelled
-	$('#offerings-cancelled').highcharts({
-		chart: {type: 'column'},
-		title: {text: "{{ _('%% of Offerings Cancelled') }}", style: {fontWeight: 'bold'}},
-		xAxis: {categories: ['{{ LAST_YEAR }}', '{{ THIS_YEAR }}']},
-		yAxis: {title: {text: ''}, allowDecimals: true,	min: 0,
-				labels: {formatter: function() {return String(this.value) + "%";}}},
-		tooltip: {
-			valueDecimals: 0,
-			valuePrefix: '',
-			valueSuffix: '%'
-		},
-		legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'},
-		credits: {text: ''},
-		series: [
-			{name: "{{ _('Average All') }}", data: [{{ pass_dict.offerings_cancelled_global_LY }}, {{ pass_dict.offerings_cancelled_global_TY }}]},
-			{name: '{{ pass_dict.course_code }}', data: [{{ pass_dict.offerings_cancelled_LY }}, {{ pass_dict.offerings_cancelled_TY }}]}
-		]
-	});
-	
-	// Average Class Size
-	$('#avg-class-size').highcharts({
-		chart: {type: 'column'},
-		title: {text: "{{ _('Average Class Size') }}", style: {fontWeight: 'bold'}},
-		xAxis: {categories: ['{{ LAST_YEAR }}', '{{ THIS_YEAR }}']},
-		yAxis: {title: {text: ''}, allowDecimals: false, min: 0},
-		legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'},
-		credits: {text: ''},
-		series: [{name: "{{ _('Average All') }}", data: [{{ pass_dict.avg_class_size_global_LY }}, {{ pass_dict.avg_class_size_global_TY }}]},
-				 {name: '{{ pass_dict.course_code }}', data: [{{ pass_dict.avg_class_size_LY }}, {{ pass_dict.avg_class_size_TY }}]}]
-	});
-	
-	// Average No-Shows per Offering
-	$('#avg-no-shows').highcharts({
-		chart: {type: 'column'},
-		title: {text: "{{ _('Average No-Shows per Offering') }}", style: {fontWeight: 'bold'}},
-		xAxis: {categories: ['{{ LAST_YEAR }}', '{{ THIS_YEAR }}']},
-		yAxis: {title: {text: ''}, allowDecimals: false, min: 0},
-		legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'},
-		credits: {text: ''},
-		series: [{name: "{{ _('Average All') }}", data: [{{ pass_dict.avg_no_shows_global_LY }}, {{ pass_dict.avg_no_shows_global_TY }}]},
-				 {name: '{{ pass_dict.course_code }}', data: [{{ pass_dict.avg_no_shows_LY }}, {{ pass_dict.avg_no_shows_TY }}]}]
-	});
 </script>

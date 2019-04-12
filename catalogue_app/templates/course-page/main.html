@@ -103,15 +103,6 @@
 		// Set font for Highcharts
 		Highcharts.setOptions({chart: {style: {fontFamily: 'Helvetica'}}});
 		
-		// IE11 bug: Charts created in hidden div assigned incorrect width
-		function resizeHighcharts(mySection) {
-			var currentHighcharts = $(mySection + ' div[data-highcharts-chart]');
-			// Loop through charts and resize
-			for (var i = 0; i < currentHighcharts.length; i++) {
-				$('#' + currentHighcharts[i].id).highcharts().reflow();
-			}
-		}
-		
 		// For tabs' on click, show / hide appropriate sections
 		$('.nav-tabs li a').not('.dropdown-toggle').click(function(e) {
 			e.preventDefault();
@@ -134,14 +125,16 @@
 				$('.' + show_class).show();
 			}
 			
-			/* IE11 bug: Create Offerings per Region chart only after its parent
-			div is activated, else drilldown functionality won't work */
-			if (new_section === '#dashboard' && !offeringPerRegionCreatedFlag) {
-				createOfferingsPerRegion();
-				offeringPerRegionCreatedFlag++;
+			/* IE11 bug: Create charts only after their parent div is activated,
+			else problems with width and drilldown functionality */
+			if (show_class === 'offering-dash' && !offeringsChartsFlag) {
+				offeringsClosure();
+				offeringsChartsFlag++;
 			}
-			
-			resizeHighcharts(new_section);
+			if (show_class === 'learner-dash' && !learnersChartsFlag) {
+				learnersClosure();
+				learnersChartsFlag++;
+			}
 		});
 	</script>
 {% endblock body %}
