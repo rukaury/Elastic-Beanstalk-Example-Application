@@ -28,13 +28,13 @@ def download_dashboard():
 	return response
 
 
-@downloads.route('/download-ratings')
-@auth.login_required
-def download_ratings():
-	query_func = download_queries.ratings_tab
-	filename = gettext('Ratings Tab')
-	response = _create_response(request, query_func, filename)
-	return response
+# @downloads.route('/download-ratings')
+# @auth.login_required
+# def download_ratings():
+# 	query_func = download_queries.ratings_tab
+# 	filename = gettext('Ratings Tab')
+# 	response = _create_response(request, query_func, filename)
+# 	return response
 
 
 @downloads.route('/download-comments')
