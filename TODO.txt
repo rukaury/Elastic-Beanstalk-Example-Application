@@ -1,20 +1,10 @@
 ### CURRENT SPRINT ###
 
-# dropdown at start should be union of courses in last_year and this_year
-	# source of some queries may need to be changed e.g. title, business_type
-	# validation would also need to be updated
-	# also Explore
-# send GA test traffic, check out error in firefox
-# add datatables to depts and classifications, make top 25
-# complete UL per month
-# update FR
-# rename CSS
 # name change + launch V1!
+	# quickly crunch a few courses manually to validate
+	# check on all browsers, devices
 	# email to everyone who was at DGC
-	# data will be updated wednesdays
-	# Lyne : AU ajoutés et il ne devrait plus y avoir de lag, juste 20 commentaires à la fois asteur
-
-
+	# please send us requests, data will be updated wednesdays
 
 
 
@@ -24,20 +14,14 @@
 # add 'use strict';
 # check all DB indices
 # add admin accounts
-	# roll-out very slowly, try with 1 course from Jeremy and 1 from regions
+	# roll-out slowly, try with 1 course from Jeremy and 1 from regions
 	# check if upload is dangerous
-
 # solve old Google Maps API issue
 	# clear out use of google nlp api
 	# delete use of API key on GCDocs, GH
-# IDEA: rip out 2 fiscal years, do 12 month rolling window (or 16 months to include future for planned offerings), but do so in separate branch
-# decouple frontend and backend
-	# check out flask-restful
-	# Maps tab could get a lot better if decoupled
-		# maps API route could accept start_date, end_date, offering_lang, etc.
-		# users could select options, map would delete markers and re-add
-		# do same thing for Dashboards tab
-		# especially comments tab, filter by star, classfication, dept, and download it all
+# maps improvements
+	# filter by start_date, end_date, offering_lang, etc.
+	# users could select options, map would delete markers and re-add
 # upcoming offerings; maybe link to GCcampus
 # add offering dates to maps
 # copyright

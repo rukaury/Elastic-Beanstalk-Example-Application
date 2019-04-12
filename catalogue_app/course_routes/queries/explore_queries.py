@@ -8,9 +8,8 @@ class CourseList:
 	"""Data for the Explore page, purpose of which is to allow users to 
 	search by Business Line and Provider.
 	"""
-	def __init__(self, lang, fiscal_year):
+	def __init__(self, lang):
 		self.lang = lang
-		self.fiscal_year = fiscal_year
 		self.data = None
 		self.business_lines = None
 		self.providers = None
@@ -29,14 +28,22 @@ class CourseList:
 		"""Query the DB and store results in DataFrame."""
 		# Get course codes from LSR to ensure course has usage and will
 		# therefore have an entry in the catalogue i.e. no dead links
-		table_name = 'lsr_{0}'.format(self.fiscal_year)
 		query = """
-			SELECT DISTINCT b.provider_{0}, b.business_line_{0}, a.course_code, a.course_title_{0}
-			FROM {1} AS a
-			LEFT OUTER JOIN product_info AS b
-			ON a.course_code = b.course_code
+			SELECT DISTINCT c.provider_{0}, c.business_line_{0}, b.course_code, b.course_title_{0}
+			FROM (
+				SELECT a.course_code, a.course_title_{0}
+				FROM (
+					SELECT DISTINCT course_code, course_title_{0}
+					FROM lsr_last_year
+					UNION
+					SELECT DISTINCT course_code, course_title_{0}
+					FROM lsr_this_year
+				) AS a
+			) AS b
+			LEFT OUTER JOIN product_info AS c
+			ON b.course_code = c.course_code
 			ORDER BY BINARY 1, 2, 3 ASC;
-		""".format(self.lang, table_name)
+		""".format(self.lang)
 		results = query_mysql(query)
 		results = pd.DataFrame(results, columns=['provider', 'business_line', 'course_code', 'course_title'])
 		self.data = results

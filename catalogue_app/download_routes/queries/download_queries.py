@@ -44,19 +44,19 @@ def dashboard_tab(course_code):
 	return file
 
 
-def ratings_tab(course_code):
-	"""Query raw data used for the Ratings tab."""
-	query = """
-		SELECT *
-		FROM ratings
-		WHERE course_code = %s;
-	"""
-	# Run query
-	results = query_mysql(query, (course_code,), dict_=True)
-	results_processed = _dicts_to_lists(results)
-	# Create file
-	file = _create_file(results_processed)
-	return file
+# def ratings_tab(course_code):
+# 	"""Query raw data used for the Ratings tab."""
+# 	query = """
+# 		SELECT *
+# 		FROM ratings
+# 		WHERE course_code = %s;
+# 	"""
+# 	# Run query
+# 	results = query_mysql(query, (course_code,), dict_=True)
+# 	results_processed = _dicts_to_lists(results)
+# 	# Create file
+# 	file = _create_file(results_processed)
+# 	return file
 
 
 def comments_tab(course_code):
