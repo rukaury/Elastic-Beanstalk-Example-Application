@@ -34,10 +34,12 @@ class Learners:
 		"""
 		field_name = 'month_{0}'.format(self.lang)
 		table_name = 'lsr_{0}'.format(self.fiscal_year)
+		# Cast SUM to dtype unsigned to prevent MySQL Python connector from
+		# returning dtype decimal
 		query = """
 			SELECT 
 				{0},
-				COUNT(DISTINCT CASE WHEN (reg_status = 'Confirmed') THEN reg_id END),
+				COUNT(CASE WHEN (reg_status = 'Confirmed') THEN reg_id END),
 				CAST(SUM(no_show) AS UNSIGNED)
 			FROM {1}
 			WHERE course_code = %s
