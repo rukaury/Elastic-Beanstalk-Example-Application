@@ -171,16 +171,6 @@
 				min: 0,
 				reversedStacks: false
 			},
-			// Display tooltip to right of top center of column
-			// Displays above said point by default
-			tooltip: {
-				positioner: function(labelWidth, labelHeight, point) {
-					return {
-						x: point.plotX + (labelWidth / 2),
-						y: point.plotY
-					};
-				}
-			},
 			series: [
 				{
 					name: "{{ _('Registrations') }}",
