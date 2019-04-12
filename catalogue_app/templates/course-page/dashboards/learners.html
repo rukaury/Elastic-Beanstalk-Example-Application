@@ -47,7 +47,7 @@
 </div>
 
 <div class="row dashboard-chart">
-	<!-- Top 5 Departments -->
+	<!-- Top 5 Departments, THIS_YEAR -->
 	<div class="col-xs-12 col-md-6">
 		<table class="table table-hover">
 			<thead>
@@ -60,17 +60,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for tuple in pass_dict.top_5_depts %}
+				{% for tup in pass_dict.top_5_depts_TY %}
 					<tr>
-						<td>{{ tuple[0] }}</td>
-						<td class="text-right">{{ tuple[1] }}</td>
+						<td>{{ tup[0] }}</td>
+						<td class="text-right">{{ tup[1] }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 	</div>
 	
-	<!-- Top 5 Classifications -->
+	<!-- Top 5 Classifications, THIS_YEAR -->
 	<div class="col-xs-12 col-md-6">
 		<table class="table table-hover">
 			<thead>
@@ -83,10 +83,58 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for tuple in pass_dict.top_5_classifs %}
+				{% for tup in pass_dict.top_5_classifs_TY %}
 					<tr>
-						<td>{{ tuple[0] }}</td>
-						<td class="text-right">{{ tuple[1] }}</td>
+						<td>{{ tup[0] }}</td>
+						<td class="text-right">{{ tup[1] }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="row dashboard-chart">
+	<!-- Top 5 Departments, LAST_YEAR -->
+	<div class="col-xs-12 col-md-6">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td class="text-center" colspan="2"><h4><strong>{{ _('Top 5 Departments') }}, {{ LAST_YEAR }}</strong></h4></td>
+				</tr>
+				<tr>
+					<td><strong>{{ _('Name') }}</strong></td>
+					<td class="text-right"><strong>{{ _('Registrations') }}</strong></td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for tup in pass_dict.top_5_depts_LY %}
+					<tr>
+						<td>{{ tup[0] }}</td>
+						<td class="text-right">{{ tup[1] }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	
+	<!-- Top 5 Classifications, LAST_YEAR -->
+	<div class="col-xs-12 col-md-6">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<td class="text-center" colspan="2"><h4><strong>{{ _('Top 5 Classifications') }}, {{ LAST_YEAR }}</strong></h4></td>
+				</tr>
+				<tr>
+					<td><strong>{{ _('Name') }}</strong></td>
+					<td class="text-right"><strong>{{ _('Registrations') }}</strong></td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for tup in pass_dict.top_5_classifs_LY %}
+					<tr>
+						<td>{{ tup[0] }}</td>
+						<td class="text-right">{{ tup[1] }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>
