@@ -62,8 +62,8 @@ def course_result():
 	pass_dict = {
 		#Global
 		'course_code': course_code,
-		'course_title': learners_TY.course_title,
-		'business_type': learners_TY.business_type,
+		'course_title': learners_TY.course_title if learners_TY.course_title else learners_LY.course_title,
+		'business_type': learners_TY.business_type if learners_TY.business_type else learners_LY.business_type,
 		# General
 		'course_info': course_info.course_info,
 		# Dashboards - Offerings
@@ -93,8 +93,10 @@ def course_result():
 		'regs_per_month_LY': learners_LY.regs_per_month,
 		'no_shows_per_month_TY': learners_TY.no_shows_per_month,
 		'no_shows_per_month_LY': learners_LY.no_shows_per_month,
-		'top_5_depts': learners_TY.top_depts,
-		'top_5_classifs': learners_TY.top_classifs,
+		'top_5_depts_TY': learners_TY.top_depts,
+		'top_5_classifs_TY': learners_TY.top_classifs,
+		'top_5_depts_LY': learners_LY.top_depts,
+		'top_5_classifs_LY': learners_LY.top_classifs,
 		# Maps
 		'offering_city_counts': map.offerings,
 		'learner_city_counts': map.learners,
