@@ -1,6 +1,7 @@
 ### CURRENT SPRINT ###
 
 # name change + launch V1!
+	# reënable sentiment analysis before launch
 	# quickly crunch a few courses manually to validate
 	# check on all browsers, devices
 	# email to everyone who was at DGC
@@ -11,7 +12,7 @@
 ### BACKLOG ###
 
 # add Bob ratings
-# add 'use strict';
+# add 'use strict'; use const wherever possible
 # check all DB indices
 # add admin accounts
 	# roll-out slowly, try with 1 course from Jeremy and 1 from regions
