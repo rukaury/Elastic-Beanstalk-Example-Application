@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-12 19:08-0400\n"
+"POT-Creation-Date: 2019-04-24 14:28-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -181,19 +181,19 @@ msgid "Acknowledgments:"
 msgstr ""
 
 #: templates/about.html:8
-msgid "Curriculum Management"
+msgid "Application Management"
 msgstr ""
 
 #: templates/about.html:9
-msgid "Digital Academy"
+msgid "Curriculum Management"
 msgstr ""
 
 #: templates/about.html:10
-msgid "Learning Evaluation Unit"
+msgid "Digital Academy"
 msgstr ""
 
 #: templates/about.html:11
-msgid "Application Management"
+msgid "Learning Evaluation Unit"
 msgstr ""
 
 #: templates/about.html:12
@@ -208,10 +208,6 @@ msgstr ""
 
 #: templates/about.html:22
 msgid "Weekly data update performed: "
-msgstr ""
-
-#: templates/api.html:6
-msgid "CSPS Course Catalogue API"
 msgstr ""
 
 #: templates/departmental.html:6
@@ -239,7 +235,7 @@ msgid "DA Logo"
 msgstr ""
 
 #: templates/includes/_head.html:5 templates/layout.html:40
-msgid "CSPS Course Catalogue"
+msgid "CSPS Data Explorer"
 msgstr ""
 
 #: templates/layout.html:54
@@ -763,7 +759,7 @@ msgid "Average No-Shows per Offering"
 msgstr ""
 
 #: templates/explore/explore.html:5
-msgid "Explore courses by business line and provider."
+msgid "Browse courses by business line and provider."
 msgstr ""
 
 #: templates/explore/explore.html:6
@@ -794,7 +790,7 @@ msgid "About"
 msgstr ""
 
 #: templates/includes/_navbar.html:35
-msgid "Explore"
+msgid "Browse"
 msgstr ""
 
 #: templates/includes/_navbar.html:36

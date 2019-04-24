@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.9\n"
 "Report-Msgid-Bugs-To: sam.louden@canada.ca\n"
-"POT-Creation-Date: 2019-04-12 19:08-0400\n"
+"POT-Creation-Date: 2019-04-24 14:28-0400\n"
 "PO-Revision-Date: 2019-01-06 13:06-0500\n"
 "Last-Translator: SAM LOUDEN sam.louden@canada.ca\n"
 "Language: fr\n"
@@ -185,20 +185,20 @@ msgid "Acknowledgments:"
 msgstr "Remerciements :"
 
 #: templates/about.html:8
+msgid "Application Management"
+msgstr "Gestion des applications"
+
+#: templates/about.html:9
 msgid "Curriculum Management"
 msgstr "Gestion du curriculum"
 
-#: templates/about.html:9
+#: templates/about.html:10
 msgid "Digital Academy"
 msgstr "Académie du numérique"
 
-#: templates/about.html:10
+#: templates/about.html:11
 msgid "Learning Evaluation Unit"
 msgstr "Évaluation de l'apprentissage"
-
-#: templates/about.html:11
-msgid "Application Management"
-msgstr "Gestion des applications"
 
 #: templates/about.html:12
 msgid "Learning Solutions"
@@ -216,10 +216,6 @@ msgstr ""
 #: templates/about.html:22
 msgid "Weekly data update performed: "
 msgstr "Date de la dernière mise à jour hebdomadaire : "
-
-#: templates/api.html:6
-msgid "CSPS Course Catalogue API"
-msgstr "API du Catalogue de cours de l'EFPC"
 
 #: templates/departmental.html:6
 msgid "Coming Soon"
@@ -246,8 +242,8 @@ msgid "DA Logo"
 msgstr "Logo de l'AN"
 
 #: templates/includes/_head.html:5 templates/layout.html:40
-msgid "CSPS Course Catalogue"
-msgstr "Catalogue de cours de l'EFPC"
+msgid "CSPS Data Explorer"
+msgstr "Explorateur de données de l'EFPC"
 
 #: templates/layout.html:54
 msgid "Top of page"
@@ -800,7 +796,7 @@ msgid "Average No-Shows per Offering"
 msgstr "Absences moyennes par offre"
 
 #: templates/explore/explore.html:5
-msgid "Explore courses by business line and provider."
+msgid "Browse courses by business line and provider."
 msgstr "Naviguer les cours par ligne d'affaires et fournisseur."
 
 #: templates/explore/explore.html:6
@@ -835,7 +831,7 @@ msgid "About"
 msgstr "À propos"
 
 #: templates/includes/_navbar.html:35
-msgid "Explore"
+msgid "Browse"
 msgstr "Naviguer"
 
 #: templates/includes/_navbar.html:36
@@ -844,7 +840,3 @@ msgstr "Ministères"
 
 #~ msgid "Ratings Tab"
 #~ msgstr "Onglet des evaluations"
-
-#~ msgid "Note: Test Version"
-#~ msgstr "Notez : Version test"
-
