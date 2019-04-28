@@ -108,3 +108,6 @@ CREATE INDEX idx_cc_rs_lc_llat_llng_lid ON lsr_this_year(course_code, reg_status
 # Index for regs per month
 CREATE INDEX idx_cc_rs_mnen ON lsr_this_year(course_code, reg_status, month_en);
 CREATE INDEX idx_cc_rs_mnfr ON lsr_this_year(course_code, reg_status, month_fr);
+
+# Index for REGISTHOR: class roster
+CREATE INDEX idx_oid_rs_lid ON lsr_this_year(offering_id, reg_status, learner_id);
