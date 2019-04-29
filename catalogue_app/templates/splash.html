@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 9]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
 	<head>
 		{% include 'includes/_head.html' %}
-		<link rel="stylesheet" href="https://www.csps-efpc.gc.ca/css/wet-boew.min.css" />
 		<link rel="stylesheet" href="https://www.csps-efpc.gc.ca/css/theme-sp-pe.min.css" />
-		<noscript><link rel="stylesheet" href="https://www.csps-efpc.gc.ca/css/noscript.min.css" /></noscript>
+		<link rel="stylesheet" href="https://www.csps-efpc.gc.ca/GCWeb/css/theme.min.css" />
+		<noscript><link rel="stylsheet" href="https://www.csps-efpc.gc.ca/wet-boew/css/noscript.min.css" /></noscript>
 	</head>
-	<body>
+	<body vocab="http://schema.org/" typeof="WebPage">
 		<header role="banner">
 			<div id="wb-bnr" class="container">
 				<object id="gcwu-sig" type="image/svg+xml" tabindex="-1" role="img" data="https://www.csps-efpc.gc.ca/assets/sig-alt-en.svg" aria-label="Government of Canada"></object>
@@ -14,12 +17,12 @@
 		</header>
 		<main role="main" property="mainContentOfPage" class="container">
 			<div class="col-md-12">
-				<h1>Welcome / Bienvenue</h1>
+				<h1>Welcome / <span lang="fr">Bienvenue</span></h1>
 				<section class="col-md-6">
 					<h2>CSPS<br />Data Explorer</h2>
 					<a class="btn btn-lg btn-primary btn-block" href="{{ url_for('main.setlang', lang='en') }}">English</a>
 				</section>
-				<section class="col-md-6">
+				<section class="col-md-6" lang="fr">
 					<h2>Explorateur de données<br />de l'EFPC</h2>
 					<a class="btn btn-lg btn-primary btn-block" href="{{ url_for('main.setlang', lang='fr') }}">Français</a>
 				</section>
