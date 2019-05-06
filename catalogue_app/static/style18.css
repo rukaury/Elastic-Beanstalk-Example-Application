@@ -147,7 +147,7 @@ ensure displays properly on IE11 */
 	margin: 1.25rem;
 }
 #banner img {
-	width: 20rem;
+	height: 11rem;
 }
 /* Center and shrink logo on mobile */
 @media (max-width: 767px) {
@@ -155,7 +155,7 @@ ensure displays properly on IE11 */
 		flex-direction: column;
 	}
 	#banner img {
-		width: 15rem;
+		height: 9rem;
 	}
 }
 /* Transition links on hover */
