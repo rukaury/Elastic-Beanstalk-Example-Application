@@ -30,12 +30,15 @@
 				<div id="banner">
 					<div class="container">
 						<!-- Digital Academy logo -->
-						{% set lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en' %}
-						{% if lang == 'fr' %}
-							<img src="{{ url_for('static', filename='FIPs/csps_fr.png') }}" alt="{{ _('DA Logo') }}" />
-						{% else %}
-							<img src="{{ url_for('static', filename='FIPs/csps_en.png') }}" alt="{{ _('DA Logo') }}" />
-						{% endif %}
+						<!-- Logo removed until usage approved by comms -->
+						<!--
+						set lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en'
+						if lang == 'fr'
+							<img src=" url_for('static', filename='FIPs/csps_fr.png') " alt=" _('DA Logo') " />
+						else
+							<img src=" url_for('static', filename='FIPs/csps_en.png') " alt=" _('DA Logo') " />
+						endif
+						-->
 						<!-- Intro text -->
 						<h1>{{ _('CSPS Data Explorer') }}</h1>
 					</div>
