@@ -5,14 +5,14 @@
 <!--<![endif]-->
 	<head>
 		{% include 'includes/_head.html' %}
-		<link rel="stylesheet" href="https://www.csps-efpc.gc.ca/css/theme-sp-pe.min.css" />
-		<link rel="stylesheet" href="https://www.csps-efpc.gc.ca/GCWeb/css/theme.min.css" />
-		<noscript><link rel="stylsheet" href="https://www.csps-efpc.gc.ca/wet-boew/css/noscript.min.css" /></noscript>
+		<link rel="stylesheet" href= "{{ url_for('static', filename='splash/theme-sp-pe.min.css') }}" />
+		<link rel="stylesheet" href= "{{ url_for('static', filename='splash/theme.min.css') }}" />
+		<noscript><link rel="stylesheet" href= "{{ url_for('static', filename='splash/noscript.min.css') }}" /></noscript>
 	</head>
 	<body vocab="http://schema.org/" typeof="WebPage">
 		<header role="banner">
 			<div id="wb-bnr" class="container">
-				<object id="gcwu-sig" type="image/svg+xml" tabindex="-1" role="img" data="https://www.csps-efpc.gc.ca/assets/sig-alt-en.svg" aria-label="Government of Canada"></object>
+				<object id="gcwu-sig" type="image/svg+xml" tabindex="-1" role="img" data="{{ url_for('static', filename='splash/sig-alt-en.svg') }}" aria-label="Government of Canada"></object>
 			</div>
 		</header>
 		<main role="main" property="mainContentOfPage" class="container">
