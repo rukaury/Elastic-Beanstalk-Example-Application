@@ -8,6 +8,7 @@
 # add testing
 	# https://digital.canada.ca/2019/03/14/putting-your-trust-in-humans-and-robots/
 	# https://www.youtube.com/watch?v=1gvvgsTTyqA
+# check out let's encrypt and add semi-monthly cron job to azure
 
 
 
