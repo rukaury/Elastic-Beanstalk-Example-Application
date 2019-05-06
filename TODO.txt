@@ -1,11 +1,13 @@
 ### CURRENT SPRINT ###
 
-# name change + launch V1!
-	# reënable sentiment analysis before launch
-	# quickly crunch a few courses manually to validate
-	# check on all browsers, devices
-	# email to everyone who was at DGC
-	# please send us requests, data will be updated wednesdays
+# automate ETL
+# possibly add back certain ratings
+# solve old Google Maps API issue
+	# clear out use of google nlp api
+	# delete use of API key on GCDocs, GH
+# add testing
+	# https://digital.canada.ca/2019/03/14/putting-your-trust-in-humans-and-robots/
+	# https://www.youtube.com/watch?v=1gvvgsTTyqA
 
 
 
@@ -17,9 +19,7 @@
 # add admin accounts
 	# roll-out slowly, try with 1 course from Jeremy and 1 from regions
 	# check if upload is dangerous
-# solve old Google Maps API issue
-	# clear out use of google nlp api
-	# delete use of API key on GCDocs, GH
+
 # maps improvements
 	# filter by start_date, end_date, offering_lang, etc.
 	# users could select options, map would delete markers and re-add
@@ -29,9 +29,13 @@
 # explore by director
 	# show flags e.g. regs gone down, copyright expired, no prep and admin, bad sentiment scores, open offerings from last year
 	# email director the problems for delegation
-# add dept usage
-# unit testing
-	https://digital.canada.ca/2019/03/14/putting-your-trust-in-humans-and-robots/
-	https://www.youtube.com/watch?v=1gvvgsTTyqA
 # let Camille edit directly
 # get Highcharts licence
+
+
+### DEPARTMENTS ###
+- login: dropdown, select dept name
+	- input machine generated access token
+		- simple script to send to all depts, then they can pass it around amongst themselves, as staff changes
+- pipeline: linda hears about dept name change, merge, etc. -> DIS inbox for updating
+- depts could enter info we want e.g. what courses do you consider mandatory
