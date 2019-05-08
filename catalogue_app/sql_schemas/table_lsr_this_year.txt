@@ -109,5 +109,12 @@ CREATE INDEX idx_cc_rs_lc_llat_llng_lid ON lsr_this_year(course_code, reg_status
 CREATE INDEX idx_cc_rs_mnen ON lsr_this_year(course_code, reg_status, month_en);
 CREATE INDEX idx_cc_rs_mnfr ON lsr_this_year(course_code, reg_status, month_fr);
 
-# Index for REGISTHOR: class roster
-CREATE INDEX idx_oid_rs_lid ON lsr_this_year(offering_id, reg_status, learner_id);
+# Index for REGISTHOR: learner_city and learner_province
+CREATE INDEX idx_lc_lp ON lsr_this_year(learner_city, learner_province);
+
+# Index for REGISTHOR: learner_classif
+CREATE INDEX idx_lclassif ON lsr_this_year(learner_classif);
+
+# Index for REGISTHOR: billing_dept_name
+CREATE INDEX idx_bdnen ON lsr_this_year(billing_dept_name_en);
+CREATE INDEX idx_bdnfr ON lsr_this_year(billing_dept_name_fr);
