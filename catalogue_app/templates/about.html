@@ -17,8 +17,8 @@
 		<h4>
 			{% set lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en' %}
 			{% set year = '2019' %}
-			{% set month = _('April') %}
-			{% set day = '24' %}
+			{% set month = _('May') %}
+			{% set day = '08' %}
 			{{ _('Weekly data update performed: ') }}<span id="last-updated">{{ day }} {{ month|lower if lang == 'fr' else month }} {{ year }}</span>
 		</h4>
 	</div>
