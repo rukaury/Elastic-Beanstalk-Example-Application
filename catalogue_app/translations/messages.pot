@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-24 14:28-0400\n"
+"POT-Creation-Date: 2019-05-17 11:18-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,12 +22,12 @@ msgid "No response"
 msgstr ""
 
 #: course_routes/queries/dashboard_learner_queries.py:55
-#: templates/about.html:20 templates/course-page/ratings.html:25
+#: templates/course-page/ratings.html:25
 msgid "April"
 msgstr ""
 
 #: course_routes/queries/dashboard_learner_queries.py:56
-#: templates/course-page/ratings.html:25
+#: templates/about.html:20 templates/course-page/ratings.html:25
 msgid "May"
 msgstr ""
 
@@ -230,19 +230,15 @@ msgstr ""
 msgid "No results"
 msgstr ""
 
-#: templates/layout.html:35 templates/layout.html:37
-msgid "DA Logo"
-msgstr ""
-
-#: templates/includes/_head.html:5 templates/layout.html:40
+#: templates/includes/_head.html:5 templates/layout.html:43
 msgid "CSPS Data Explorer"
 msgstr ""
 
-#: templates/layout.html:54
+#: templates/layout.html:57
 msgid "Top of page"
 msgstr ""
 
-#: templates/layout.html:57
+#: templates/layout.html:60
 msgid "GoC Logo"
 msgstr ""
 
@@ -615,7 +611,6 @@ msgid "Sentiment Score: "
 msgstr ""
 
 #: templates/course-page/comments/comments-main-old.html:133
-#: templates/course-page/comments/comments-main.html:47
 msgid ""
 "Comments on instructor performance are currently disabled due to privacy "
 "restrictions."
@@ -656,6 +651,15 @@ msgstr ""
 
 #: templates/course-page/comments/comments-main.html:39
 msgid "Load More"
+msgstr ""
+
+#: templates/course-page/comments/comments-main.html:47
+msgid ""
+"Comments on instructor performance are currently disabled due to privacy "
+"restrictions. If you would like to consult this feedback, please contact "
+"the <a href=\"mailto:csps.facultyfeedback-"
+"retroactionfaculte.efpc@canada.ca\">Quality Assurance and Data Analysis "
+"(QADA)</a> team."
 msgstr ""
 
 #: templates/course-page/comments/comments-main.html:87
