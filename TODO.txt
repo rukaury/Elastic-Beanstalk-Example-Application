@@ -1,26 +1,25 @@
 ### CURRENT SPRINT ###
 
+# check Azure logs, silently throwing error we don't even know about?
+# make own CSS file for splash
 # automate ETL
-# possibly add back certain ratings
-# solve old Google Maps API issue
-	# clear out use of google nlp api
-	# delete use of API key on GCDocs, GH
 # add testing
 	# https://digital.canada.ca/2019/03/14/putting-your-trust-in-humans-and-robots/
 	# https://www.youtube.com/watch?v=1gvvgsTTyqA
 # check out let's encrypt and add semi-monthly cron job to azure
+# travis, docker, kubernetes, aws
+# set D101 to dropdown default
 
 
 
-### BACKLOG ###
+### BACKLOG / MAYBE ###
 
-# add Bob ratings
-# add 'use strict'; use const wherever possible
-# check all DB indices
+# decouple, only use Registhor API
+# use ES6, make modular, 'use strict'
+# possibly add back certain ratings
 # add admin accounts
 	# roll-out slowly, try with 1 course from Jeremy and 1 from regions
 	# check if upload is dangerous
-
 # maps improvements
 	# filter by start_date, end_date, offering_lang, etc.
 	# users could select options, map would delete markers and re-add
@@ -32,6 +31,7 @@
 	# email director the problems for delegation
 # let Camille edit directly
 # get Highcharts licence
+
 
 
 ### DEPARTMENTS ###
