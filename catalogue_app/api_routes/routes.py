@@ -22,6 +22,7 @@ def counts(short_question, course_code):
 	"""Return number of comments by star for a given course code, question,
 	and fiscal year.
 	"""
+	course_code = course_code.upper()
 	# Unpack arguments
 	fiscal_year = request.args.get('fiscal_year', '')
 	
@@ -39,6 +40,7 @@ def comments(short_question, course_code):
 	"""Return all comments of a given type (e.g. general comments) for a
 	given course code.
 	"""
+	course_code = course_code.upper()
 	# Unpack arguments
 	# Lang; only allow 'en' and 'fr' to be passed to app
 	query_string_lang = request.args.get('lang', '')
