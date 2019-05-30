@@ -8,9 +8,9 @@
 			<div class="media-body">
 				<!-- User classification and offering city -->
 				<h4>{{ my_dict.learner_classification }}, <em>{{ my_dict.offering_city }}</em></h4>
-				<!-- Display user overall satisfaction with stars -->
+				<!-- Display sentiment score with stars -->
 				<h5>
-					{{ _('Overall Satisfaction: ') }}
+					{{ _('Sentiment Score: ') }}
 					{% if my_dict.stars == 5 %}
 						{% for _ in range(5) %}<span class="glyphicon glyphicon-star"></span>{% endfor %}{% for _ in range(0) %}<span class="glyphicon glyphicon-star-empty"></span>{% endfor %}
 					{% elif my_dict.stars == 4 %}
