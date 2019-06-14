@@ -41,8 +41,8 @@ TERMINATED BY ','
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES
 (course_title_en, course_title_fr, course_code, business_type, offering_id, @temp_start_date, @temp_end_date, month_en, month_fr, client, offering_status, offering_language, offering_region_en, offering_region_fr, offering_province_en, offering_province_fr, offering_city, offering_lat, offering_lng, learner_province, learner_city, learner_lat, learner_lng, reg_id, reg_status, no_show, learner_id, learner_language, learner_classif, billing_dept_name_en, billing_dept_name_fr)
-SET start_date = STR_TO_DATE(@temp_start_date, '%d/%m/%Y %T'),
-end_date = STR_TO_DATE(@temp_end_date, '%d/%m/%Y %T');
+SET start_date = STR_TO_DATE(@temp_start_date, '%Y-%m-%d %T'),
+end_date = STR_TO_DATE(@temp_end_date, '%Y-%m-%d %T');
 
 
 
