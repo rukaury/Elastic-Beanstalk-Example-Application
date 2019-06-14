@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, request
-from catalogue_app import auth
-from catalogue_app.config import Config
-from catalogue_app.course_routes import utils
-from catalogue_app.course_routes.forms import course_form
-from catalogue_app.course_routes.queries import (
+from data_explorer import auth
+from data_explorer.config import Config
+from data_explorer.course_routes import utils
+from data_explorer.course_routes.forms import course_form
+from data_explorer.course_routes.queries import (
 	comment_queries, dashboard_learner_queries, dashboard_offering_queries,
 	explore_queries, general_queries, map_queries, rating_queries
 )
@@ -35,7 +35,7 @@ def home():
 	return render_template('index.html', form=form)
 
 
-# Catalogue's entry for a given course: the meat & potatoes of the app
+# Data Explorer's entry for a given course: the meat & potatoes of the app
 @course.route('/course-result')
 @auth.login_required
 def course_result():

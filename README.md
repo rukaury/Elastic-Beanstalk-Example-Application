@@ -1,2 +1,2 @@
-# CSPS-Course-Catalogue
-Live course catalogue in Flask
+# CSPS-Data-Explorer
+Live course info in Flask

@@ -1,7 +1,7 @@
 import pandas as pd
 from flask_babel import gettext
-from catalogue_app.db import query_mysql
-from catalogue_app.course_routes.utils import as_float, as_int, as_percent
+from data_explorer.db import query_mysql
+from data_explorer.course_routes.utils import as_float, as_int, as_percent
 
 
 class OfferingLocations:

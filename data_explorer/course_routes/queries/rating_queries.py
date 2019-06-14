@@ -1,5 +1,5 @@
 import pandas as pd
-from catalogue_app.db import query_mysql
+from data_explorer.db import query_mysql
 
 
 class Ratings:

@@ -1,4 +1,4 @@
-Note: Run these commands from the 'catalogue_app' directory
+Note: Run these commands from the 'data_explorer' directory
 
 First extract:
 pybabel extract -F translations/babel.cfg -o translations/messages.pot .

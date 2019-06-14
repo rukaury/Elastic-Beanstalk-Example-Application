@@ -1,9 +1,9 @@
 import datetime
 from flask import Blueprint, make_response, request
 from flask_babel import gettext
-from catalogue_app import auth
-from catalogue_app.course_routes import utils
-from catalogue_app.download_routes.queries import download_queries
+from data_explorer import auth
+from data_explorer.course_routes import utils
+from data_explorer.download_routes.queries import download_queries
 
 # Instantiate blueprint
 downloads = Blueprint('downloads', __name__)

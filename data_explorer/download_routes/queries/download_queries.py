@@ -1,7 +1,7 @@
 import csv
 from io import StringIO
 from flask_babel import gettext
-from catalogue_app.db import query_mysql
+from data_explorer.db import query_mysql
 
 
 def general_tab(course_code):

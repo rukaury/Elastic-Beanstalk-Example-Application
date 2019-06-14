@@ -1,6 +1,6 @@
 from flask_babel import gettext
-from catalogue_app.db import query_mysql
-from catalogue_app.course_routes.utils import as_string, as_int
+from data_explorer.db import query_mysql
+from data_explorer.course_routes.utils import as_string, as_int
 
 
 class Learners:

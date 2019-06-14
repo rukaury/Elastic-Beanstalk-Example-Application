@@ -1,7 +1,7 @@
-# French translations for CSPS Course Catalogue.
+# French translations for CSPS Data Explorer.
 # Copyright (C) 2019 CSPS
-# This file is distributed under the same license as the CSPS Course
-# Catalogue project.
+# This file is distributed under the same license as the CSPS Data
+# Explorer project.
 # FIRST AUTHOR sam.louden@canada.ca, 2019.
 #
 msgid ""

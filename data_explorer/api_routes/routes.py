@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, render_template, request
-from catalogue_app import auth
-from catalogue_app.course_routes.queries import comment_queries
+from data_explorer import auth
+from data_explorer.course_routes.queries import comment_queries
 
 # Instantiate blueprint
 api = Blueprint('api', __name__)

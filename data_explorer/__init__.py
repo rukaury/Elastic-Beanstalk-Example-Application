@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask_httpauth import HTTPBasicAuth
 from flask_babel import Babel
-from catalogue_app.config import Config
+from data_explorer.config import Config
 
 # Declare dictionary as app variable for memoization
 memo_dict = {}
@@ -31,7 +31,7 @@ def create_app(config_class=Config):
 	app.jinja_env.filters['zip'] = zip
 	
 	# Register database
-	from catalogue_app import db
+	from data_explorer import db
 	db.init_app(app)
 	
 	
@@ -53,10 +53,10 @@ def create_app(config_class=Config):
 		return 'fr' if request.cookies.get('lang', None) == 'fr' else 'en'
 	
 	# Register blueprints
-	from catalogue_app.main_routes.routes import main
-	from catalogue_app.course_routes.routes import course
-	from catalogue_app.api_routes.routes import api
-	from catalogue_app.download_routes.routes import downloads
+	from data_explorer.main_routes.routes import main
+	from data_explorer.course_routes.routes import course
+	from data_explorer.api_routes.routes import api
+	from data_explorer.download_routes.routes import downloads
 	app.register_blueprint(main)
 	app.register_blueprint(course)
 	app.register_blueprint(api)

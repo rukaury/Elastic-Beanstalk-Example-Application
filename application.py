@@ -1,4 +1,4 @@
-from catalogue_app import create_app
+from data_explorer import create_app
 
 app = create_app()
 

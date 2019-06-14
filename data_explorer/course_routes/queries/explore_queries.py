@@ -1,7 +1,7 @@
 import pandas as pd
 from flask_babel import gettext
-from catalogue_app.db import query_mysql
-from catalogue_app.course_routes.forms import _clean_title
+from data_explorer.db import query_mysql
+from data_explorer.course_routes.forms import _clean_title
 
 
 class CourseList:
@@ -27,7 +27,7 @@ class CourseList:
 	def _load_courses(self):
 		"""Query the DB and store results in DataFrame."""
 		# Get course codes from LSR to ensure course has usage and will
-		# therefore have an entry in the catalogue i.e. no dead links
+		# therefore have an entry in the Data Explorer i.e. no dead links
 		query = """
 			SELECT DISTINCT c.provider_{0}, c.business_line_{0}, b.course_code, b.course_title_{0}
 			FROM (

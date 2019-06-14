@@ -2,8 +2,8 @@ import copy
 import os
 from flask import g
 import mysql.connector
-from catalogue_app import memo_dict
-from catalogue_app.config import Config
+from data_explorer import memo_dict
+from data_explorer.config import Config
 
 
 def query_mysql(query, args=None, dict_=False):
