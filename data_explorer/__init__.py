@@ -46,6 +46,7 @@ def create_app(config_class=Config):
 	# Register error handlers
 	app.register_error_handler(404, not_found)
 	
+	
 	# Set language
 	@babel.localeselector
 	def get_locale():
