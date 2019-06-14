@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-05-29 20:59-0400\n"
+"POT-Creation-Date: 2019-06-14 17:32-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,12 +27,12 @@ msgid "April"
 msgstr ""
 
 #: course_routes/queries/dashboard_learner_queries.py:56
-#: templates/about.html:20 templates/course-page/ratings.html:25
+#: templates/course-page/ratings.html:25
 msgid "May"
 msgstr ""
 
 #: course_routes/queries/dashboard_learner_queries.py:57
-#: templates/course-page/ratings.html:25
+#: templates/about.html:20 templates/course-page/ratings.html:25
 msgid "June"
 msgstr ""
 
