@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.9\n"
 "Report-Msgid-Bugs-To: sam.louden@canada.ca\n"
-"POT-Creation-Date: 2019-06-17 12:10-0400\n"
+"POT-Creation-Date: 2019-06-17 12:24-0400\n"
 "PO-Revision-Date: 2019-01-06 13:06-0500\n"
 "Last-Translator: SAM LOUDEN sam.louden@canada.ca\n"
 "Language: fr\n"
@@ -217,7 +217,7 @@ msgstr ""
 msgid "Weekly data update performed: "
 msgstr "Date de la dernière mise à jour hebdomadaire : "
 
-#: templates/departmental.html:6
+#: templates/departments.html:6
 msgid "Coming Soon"
 msgstr "Bientôt disponible"
 
