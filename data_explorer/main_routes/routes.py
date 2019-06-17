@@ -16,10 +16,10 @@ def about():
 
 
 # Coming soon
-@main.route('/departmental')
+@main.route('/departments')
 @auth.login_required
-def departmental():
-	return render_template('departmental.html')
+def departments():
+	return render_template('departments.html')
 
 
 @main.route('/setlang')
