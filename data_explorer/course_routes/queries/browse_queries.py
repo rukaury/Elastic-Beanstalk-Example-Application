@@ -5,8 +5,8 @@ from data_explorer.course_routes.forms import _clean_title
 
 
 class CourseList:
-	"""Data for the Explore page, purpose of which is to allow users to 
-	search by Business Line and Provider.
+	"""Data for the Browse page, purpose of which is to allow users to 
+	browse by Business Line and Provider.
 	"""
 	def __init__(self, lang):
 		self.lang = lang

@@ -215,21 +215,21 @@ ensure displays properly on IE11 */
 
 
 
-/***** Explore *****/
-#explore-page {
+/***** Browse *****/
+#browse-page {
 	padding-bottom: 1.5rem;
 }
-#explore-page h3 {
+#browse-page h3 {
 	line-height: 2rem;
 	margin: 1.5rem 0;
 	color: #066169;
 	text-align: left;
 }
-#explore-page p {
+#browse-page p {
 	line-height: 2rem;
 	margin: 1.5rem 0;
 }
-#explore-page .btn {
+#browse-page .btn {
 	display: block;
 	width: 100%;
 	/* Only assign margin-bottom. Using margin-top causes jumping with
@@ -243,18 +243,18 @@ ensure displays properly on IE11 */
 	/* Allow text to wrap to next line on narrow screens */
 	white-space: normal;
 }
-#explore-page .btn.btn-primary {
+#browse-page .btn.btn-primary {
 	background-image: linear-gradient(to right, #066169, #39949c);
 }
-#explore-page table {
+#browse-page table {
 	margin-bottom: 0.75rem;
 	margin-top: 0;
 }
 /* Make provider buttons + table slightly narrower and centered on
 tablet and desktop */
 @media (min-width: 768px) {
-	#explore-page .btn.btn-success,
-	#explore-page table {
+	#browse-page .btn.btn-success,
+	#browse-page table {
 		width: 90%;
 		margin: 0 auto;
 		margin-bottom: 0.75rem;
@@ -263,7 +263,7 @@ tablet and desktop */
 }
 /* Explicitly declare table row height for vertically
 centering ::before and glyphs */
-#explore-page tr {
+#browse-page tr {
 	height: 2.5rem;
 }
 /* Use ::before pseudo-element to make entire table row a hyperlink
@@ -277,7 +277,7 @@ as HTML specs prohibit wrapping <tr> in <a> */
 	/* Same height as <tr> */
 	height: 2.5rem;
 }
-#explore-page tr:hover {
+#browse-page tr:hover {
 	background-color: #ffcc33;
 }
 .glyphicon-minus,
@@ -299,7 +299,7 @@ button[aria-expanded='false'] > span.glyphicon-minus,
 button[aria-expanded='true'] > span.glyphicon-plus {
 	display: none;
 }
-/***** End explore *****/
+/***** End browse *****/
 
 
 
