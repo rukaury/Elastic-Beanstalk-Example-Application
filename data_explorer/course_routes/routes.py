@@ -4,8 +4,8 @@ from data_explorer.config import Config
 from data_explorer.course_routes import utils
 from data_explorer.course_routes.forms import course_form
 from data_explorer.course_routes.queries import (
-	comment_queries, dashboard_learner_queries, dashboard_offering_queries,
-	explore_queries, general_queries, map_queries, rating_queries
+	browse_queries, comment_queries, dashboard_learner_queries,
+	dashboard_offering_queries,general_queries, map_queries, rating_queries
 )
 
 # Instantiate blueprint
@@ -112,12 +112,12 @@ def course_result():
 	return render_template('/course-page/main.html', pass_dict=pass_dict)
 
 
-# Explore
-@course.route('/explore')
+# Browse
+@course.route('/browse')
 @auth.login_required
-def explore():
+def browse():
 	# Only allow 'en' and 'fr' to be passed to app
 	lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en'
-	course_list = explore_queries.CourseList(lang).load()
+	course_list = browse_queries.CourseList(lang).load()
 	pass_dict = course_list._get_nested_dicts()
-	return render_template('explore/explore.html', pass_dict=pass_dict)
+	return render_template('browse/browse.html', pass_dict=pass_dict)

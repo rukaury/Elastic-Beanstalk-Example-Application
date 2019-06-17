@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-14 17:32-0400\n"
+"POT-Creation-Date: 2019-06-17 12:10-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
+
+#: course_routes/queries/browse_queries.py:55
+#: course_routes/queries/browse_queries.py:63
+msgid "<awaiting mapping>"
+msgstr ""
 
 #: course_routes/queries/comment_queries.py:212
 msgid "No response"
@@ -145,11 +150,6 @@ msgstr ""
 msgid "Client Requests"
 msgstr ""
 
-#: course_routes/queries/explore_queries.py:55
-#: course_routes/queries/explore_queries.py:63
-msgid "<awaiting mapping>"
-msgstr ""
-
 #: download_routes/routes.py:16
 msgid "General Tab"
 msgstr ""
@@ -240,6 +240,17 @@ msgstr ""
 
 #: templates/layout.html:60
 msgid "GoC Logo"
+msgstr ""
+
+#: templates/browse/browse.html:5
+msgid "Browse courses by business line and provider."
+msgstr ""
+
+#: templates/browse/browse.html:6
+msgid ""
+"Note: If you're the owner of an unclaimed course, please contact <a "
+"href=\"mailto:csps.lpb.curriculum.dgpa.efpc@canada.ca\">Curriculum "
+"Management</a>."
 msgstr ""
 
 #: templates/course-page/general.html:11
@@ -714,17 +725,6 @@ msgstr ""
 
 #: templates/course-page/dashboards/offerings.html:166
 msgid "Average No-Shows per Offering"
-msgstr ""
-
-#: templates/explore/explore.html:5
-msgid "Browse courses by business line and provider."
-msgstr ""
-
-#: templates/explore/explore.html:6
-msgid ""
-"Note: If you're the owner of an unclaimed course, please contact <a "
-"href=\"mailto:csps.lpb.curriculum.dgpa.efpc@canada.ca\">Curriculum "
-"Management</a>."
 msgstr ""
 
 #: templates/includes/_formhelpers.html:15
