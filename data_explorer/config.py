@@ -11,7 +11,7 @@ class Config:
     JSONIFY_PRETTYPRINT_REGULAR = True
     JSON_SORT_KEYS = False
     # Load strings from environ vars to avoid storing in plaintext
-    BASIC_AUTH_USERNAME = os.environ.get('BASIC_AUTH_USERNAME')
-    BASIC_AUTH_PASSWORD = os.environ.get('BASIC_AUTH_PASSWORD')
+    BASIC_AUTH_USERNAME = "hello"
+    BASIC_AUTH_PASSWORD = "world"
     SECRET_KEY = os.environ.get('SECRET_KEY')
     GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
