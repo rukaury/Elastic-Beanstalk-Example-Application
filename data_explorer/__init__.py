@@ -8,10 +8,10 @@ import click
 memo_dict = {}
 
 # Instantiate login
-auth = HTTPBasicAuth()
+"""auth = HTTPBasicAuth()
 users = {
     Config.BASIC_AUTH_USERNAME: Config.BASIC_AUTH_PASSWORD
-}
+}"""
 
 # Instantiate Babel for bilingual text
 babel = Babel()
@@ -37,11 +37,12 @@ def create_app(config_class=Config):
     
     
     # Register plugins
-    @auth.get_password
+    """@auth.get_password
     def get_pw(username):
         if username in users:
             return users.get(username)
         return None
+    """
     babel.init_app(app)
     
     # Register error handlers

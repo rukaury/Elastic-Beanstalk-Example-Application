@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, render_template, request
-from data_explorer import auth
+#from data_explorer import auth
 from data_explorer.course_routes.queries import comment_queries
 
 # Instantiate blueprint
@@ -17,7 +17,7 @@ question_dict = {
 
 
 @api.route('/api/v1/counts/<string:short_question>/<string:course_code>')
-@auth.login_required
+# @auth.login_required
 def counts(short_question, course_code):
     """Return number of comments by star for a given course code, question,
     and fiscal year.
@@ -35,7 +35,7 @@ def counts(short_question, course_code):
 
 
 @api.route('/api/v1/comments/<string:short_question>/<string:course_code>')
-@auth.login_required
+# @auth.login_required
 def comments(short_question, course_code):
     """Return all comments of a given type (e.g. general comments) for a
     given course code.
