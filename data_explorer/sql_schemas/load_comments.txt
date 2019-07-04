@@ -1,0 +1,11 @@
+LOAD DATA INFILE 'D:\\comments.csv'
+INTO TABLE comments
+FIELDS OPTIONALLY ENCLOSED BY '"'
+TERMINATED BY ','
+LINES TERMINATED BY '\r\n'
+IGNORE 1 LINES;
+
+
+
+# Index
+CREATE INDEX idx_cc_sq ON comments(course_code, short_question);

@@ -1,0 +1,12 @@
+
+LOAD DATA INFILE 'D:\\ratings.csv'
+INTO TABLE ratings
+FIELDS OPTIONALLY ENCLOSED BY '"'
+TERMINATED BY ','
+LINES TERMINATED BY '\r\n'
+IGNORE 1 LINES;
+
+
+
+# Index
+CREATE INDEX idx_cc ON ratings(course_code);S
