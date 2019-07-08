@@ -27,7 +27,7 @@ def context_processor():
 
 # Home page with search bar
 @course.route('/home')
-#@auth.login_required
+@auth.login_required
 def home():
     # Only allow 'en' and 'fr' to be passed to app
     lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en'
@@ -37,7 +37,7 @@ def home():
 
 # Data Explorer's entry for a given course: the meat & potatoes of the app
 @course.route('/course-result')
-#@auth.login_required
+@auth.login_required
 def course_result():
     # Only allow 'en' and 'fr' to be passed to app
     lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en'
@@ -114,7 +114,7 @@ def course_result():
 
 # Browse
 @course.route('/browse')
-# @auth.login_required
+@auth.login_required
 def browse():
     # Only allow 'en' and 'fr' to be passed to app
     lang = 'fr' if request.cookies.get('lang', None) == 'fr' else 'en'

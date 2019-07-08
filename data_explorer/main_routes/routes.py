@@ -10,20 +10,20 @@ def splash():
 
 
 @main.route('/about')
-#@auth.login_required
+@auth.login_required
 def about():
     return render_template('about.html')
 
 
 # Coming soon
 @main.route('/departments')
-#@auth.login_required
+@auth.login_required
 def departments():
     return render_template('departments.html')
 
 
 @main.route('/setlang')
-#@auth.login_required
+@auth.login_required
 def setlang():
     """Allow pages to set cookie 'lang' via query string."""
     # Redirect pages back to themselves except for splash

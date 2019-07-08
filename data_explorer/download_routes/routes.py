@@ -10,7 +10,7 @@ downloads = Blueprint('downloads', __name__)
 
 
 @downloads.route('/download-general')
-#@auth.login_required
+@auth.login_required
 def download_general():
     query_func = download_queries.general_tab
     filename = gettext('General Tab')
@@ -20,7 +20,7 @@ def download_general():
 
 # Dashboard and Maps tabs built from same table
 @downloads.route('/download-dashboard')
-#@auth.login_required
+@auth.login_required
 def download_dashboard():
     query_func = download_queries.dashboard_tab
     filename = gettext('Dashboard Tab')
@@ -38,7 +38,7 @@ def download_dashboard():
 
 
 @downloads.route('/download-comments')
-#@auth.login_required
+@auth.login_required
 def download_comments():
     query_func = download_queries.comments_tab
     filename = gettext('Comments Tab')
