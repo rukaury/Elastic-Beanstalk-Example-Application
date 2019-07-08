@@ -68,6 +68,7 @@ def create_app(config_class=Config):
     @app.cli.command('init-db')
     @click.option('--local', is_flag=True)
     def init_db(local):
+        """Set up mysql database."""
         from .db import initialise_database
         initialise_database(local)
     return app

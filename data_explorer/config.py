@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    DEBUG = True
+    DEBUG = False
     LOCAL_DB = False
     LAST_YEAR = '2018-19'
     THIS_YEAR = '2019-20'
