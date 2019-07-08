@@ -3,6 +3,5 @@ import os
 
 application = app = create_app()
 
-print(os.environ['DB_HOST'])
 if __name__ == '__main__':
     app.run()

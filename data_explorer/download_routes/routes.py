@@ -1,7 +1,7 @@
 import datetime
 from flask import Blueprint, make_response, request
 from flask_babel import gettext
-#from data_explorer import auth
+from data_explorer import auth
 from data_explorer.course_routes import utils
 from data_explorer.download_routes.queries import download_queries
 

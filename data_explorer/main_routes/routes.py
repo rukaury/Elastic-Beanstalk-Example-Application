@@ -1,5 +1,5 @@
 from flask import Blueprint, make_response, render_template, redirect, request, url_for
-# from data_explorer import auth
+from data_explorer import auth
 
 main = Blueprint('main', __name__)
 

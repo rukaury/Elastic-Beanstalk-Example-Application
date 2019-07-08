@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, render_template, request
-#from data_explorer import auth
+from data_explorer import auth
 from data_explorer.course_routes.queries import comment_queries
 
 # Instantiate blueprint

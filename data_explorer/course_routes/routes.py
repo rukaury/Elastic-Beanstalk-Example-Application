@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-#from data_explorer import auth
+from data_explorer import auth
 from data_explorer.config import Config
 from data_explorer.course_routes import utils
 from data_explorer.course_routes.forms import course_form
