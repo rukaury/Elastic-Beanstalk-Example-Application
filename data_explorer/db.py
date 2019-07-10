@@ -64,11 +64,10 @@ def get_db(local):
                     password = os.environ.get("DB_PASSWORD")
                 )
             else:
-                g.db = mysql.connector.connect(
+                server_connection = mysql.connector.connect(
                                         host=os.environ.get('DB_HOST'),
                                         user=os.environ.get('DB_USER'),
-                                        password=os.environ.get('DB_PASSWORD'),
-                                        database=os.environ.get('DB_DATABASE_NAME')
+                                        password=os.environ.get('DB_PASSWORD')
                                     )
 
             initialise_database(connection = server_connection)
