@@ -2,6 +2,7 @@ import copy
 import os
 from flask import g
 import mysql.connector
+from mysql.connector.errors import ProgrammingError
 from data_explorer import memo_dict
 from data_explorer.config import Config
 
@@ -39,8 +40,8 @@ def get_db(local):
     life of request.
     """
     if 'db' not in g:
-        if local:
-            if os.environ.get("DB_DATABASE_NAME") is not None:
+        try:
+            if local:
                 g.db = mysql.connector.connect(
                                             host='localhost',
                                             user=os.environ.get('DB_USER'),
@@ -49,26 +50,42 @@ def get_db(local):
                                         )
             else:
                 g.db = mysql.connector.connect(
-                    host="localhost",
-                    user=os.environ.get('DB_USER'),
-                    password=os.environ.get('DB_PASSWORD')
-                )
+                                        host=os.environ.get('DB_HOST'),
+                                        user=os.environ.get('DB_USER'),
+                                        password=os.environ.get('DB_PASSWORD'),
+                                        database=os.environ.get('DB_DATABASE_NAME')
+                                    )
 
-        else:
-            if os.environ.get("DB_DATABASE_NAME") is not None:
-                g.db = mysql.connector.connect(
-                                            host=os.environ.get('DB_HOST'),
-                                            user=os.environ.get('DB_USER'),
-                                            password=os.environ.get('DB_PASSWORD'),
-                                            database=os.environ.get('DB_DATABASE_NAME')
-                                        )
+        except mysql.connector.Error:
+            if local:
+                server_connection = mysql.connector.connect(
+                    host = "localhost",
+                    user = os.environ.get("DB_USER"),
+                    password = os.environ.get("DB_PASSWORD")
+                )
             else:
                 g.db = mysql.connector.connect(
-                    host=os.environ.get('DB_HOST'),
-                    user=os.environ.get('DB_USER'),
-                    password=os.environ.get('DB_PASSWORD')
-                )
+                                        host=os.environ.get('DB_HOST'),
+                                        user=os.environ.get('DB_USER'),
+                                        password=os.environ.get('DB_PASSWORD'),
+                                        database=os.environ.get('DB_DATABASE_NAME')
+                                    )
 
+            initialise_database(connection = server_connection)
+            if local:
+                g.db = mysql.connector.connect(
+                    host='localhost',
+                    user=os.environ.get('DB_USER'),
+                    password=os.environ.get('DB_PASSWORD'),
+                    database=os.environ.get('DB_DATABASE_NAME')
+                )
+            else:
+                g.db = mysql.connector.connect(
+                                        host=os.environ.get('DB_HOST'),
+                                        user=os.environ.get('DB_USER'),
+                                        password=os.environ.get('DB_PASSWORD'),
+                                        database=os.environ.get('DB_DATABASE_NAME')
+                                    )
     return g.db
 
 
@@ -84,8 +101,10 @@ def init_app(app):
     that connections closed at end of request.
     """
     app.teardown_appcontext(close_db)
+    with app.app_context():
+        get_db(local = Config.LOCAL_DB)
 
-def initialise_database(local = True):
+def initialise_database(local = False, connection = None):
     """
     This will initialise the database.
 
@@ -93,17 +112,26 @@ def initialise_database(local = True):
 
     must have a admin account on db
     """
-    cnx = get_db(local)
+    if connection is None:
+        cnx = get_db(local)
+    else:
+        cnx = connection 
     cursor = cnx.cursor(dictionary = True)
     try:
         cursor.execute(
-            "DROP DATABASE IF EXISTS csps_dashboards;"
+            "DROP DATABASE IF EXISTS {DB};".format(
+                DB = os.environ["DB_DATABASE_NAME"]
+            )
         )
         cursor.execute(
-            "CREATE DATABASE csps_dashboards CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;"
+            "CREATE DATABASE {DB} CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;".format(
+                DB = os.environ["DB_DATABASE_NAME"]
+            )
         )
         cursor.execute(
-            "USE csps_dashboards;"
+            "USE {DB};".format(
+                DB = os.environ["DB_DATABASE_NAME"]
+            )
         )
     except mysql.connector.Error as err:
         print(f"Failed to create database with the following error {err.msg}")
